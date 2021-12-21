@@ -1,0 +1,72 @@
+menu "Board Selection"
+
+config BOARD_CRANE_EVB_Z2
+	bool "ASR CRANE EVB Z2"
+
+config BOARD_CRANEM_EVB
+	bool "board selection cranem evb"
+	default n
+	help
+	  Select this option if you want to build board cranem evb.
+
+config BOARD_CRANEG_A0
+	bool "board selection craneg a0"
+	default n
+	help
+	  Select this option if you want to build board craneg a0.
+	  
+config BOARD_CRANEG_Z2
+	bool "board selection craneg z2"
+	default n
+	help
+	  Select this option if you want to build board craneg z2.
+	  
+config BOARD_CRANE_1601_EVB
+	bool "board selection crane 1601 evb"
+	default n
+	help
+	  Select this option if you want to build board crane 1601 evb.
+
+config BOARD_CUSTOM_B_V01
+	bool "Custom board selection V01"
+	default n
+	help
+	  Select this option if you want to build custom board V01.
+
+config BOARD_CUSTOM_B_V02
+	bool "Custom board selection V02 with dual panel."
+	default n
+	help
+	  Select this option if you want to build custom board V02.
+
+config BOARD_CUSTOM
+	bool "Custom board selection"
+	default y
+	help
+	  Select this option if you want to build custom board.
+
+choice
+    prompt "custom selection"
+	default BOARD_CUSTOM_B
+	depends on BOARD_CUSTOM
+
+    config BOARD_CUSTOM_B
+	    bool "B custom"
+
+    config BOARD_CUSTOM_V
+	    bool "V custom"
+	
+	config BOARD_CUSTOM_G
+	    bool "G custom"
+		
+	config BOARD_CUSTOM_X
+	    bool "X custom"
+	
+	config BOARD_CUSTOM_S
+	    bool "S custom"
+		
+	config BOARD_CUSTOM_S_V2
+	    bool "S custom v2"
+endchoice
+
+endmenu

@@ -1,0 +1,191 @@
+# Kconfig - general configuration options
+
+mainmenu "ASR Feature Phone Configuration"
+
+config BUILD_CP_TARGET
+	bool "build cp image"
+	default y
+	help
+	  Select this option if you want to build cp image.
+
+choice
+	prompt "cp sdk selection"
+	default CP_SDK
+	depends on BUILD_CP_TARGET
+
+	config CP_SDK
+		bool "CP SDK default"
+
+	config CP_SDK009
+		bool "CP SDK009"
+
+	config CP_SDKLWG
+		bool "CP SDKLWG"
+
+	config CP_DM_SDK
+		bool "CP DM SDK"
+
+	config CP_ALIOS_SDK
+		bool "CP ALIOS SDK"
+endchoice
+
+choice
+	prompt "cp modem version"
+	depends on BUILD_CP_TARGET
+	default CP_LTEGSM
+
+	config CP_LTEONLY
+		bool "lte only"
+
+	config CP_LTEGSM
+		bool "lte gsm"
+
+	config CP_LWG
+		bool "lte wcdma gsm"
+
+endchoice
+
+config ENABLE_MUI
+	bool "enable mUI"
+	default y
+	help
+	  Select this option if you want using mUI as MMI solution(default ASR FP UI).
+	  
+config BUILD_GUI_TARGET
+	bool "build gui image"
+	depends on ENABLE_MUI
+	default y
+	help
+	  Select this option if you want to build gui image.
+
+config BUILD_GUI_TARGET_BY_CMAKE
+	bool "build gui image by cmake"
+	depends on BUILD_GUI_TARGET
+	default y
+	help
+	  Select this option if you want to build gui image.
+	  
+config CREATE_HAL_TARGET
+	bool "create hal image"
+	default y
+	help
+	  Select this option if you want to create hal image.
+
+menu "Debug Configurations"
+	  
+config CMAKE_DEBUG
+	bool "print cmake debug message"
+	default n
+	help
+	  Select this option if you want to print cmake debug info.
+
+config DEBUG
+	bool "build a debug version"
+	default y
+	help
+	  Select this option if you want to build a debug version.
+	  
+config LINK_GUI_LIBRARY	  
+	bool "link gui libraries"
+	depends on ENABLE_MUI
+	default y
+	help
+	  Select this option if you want to link gui library.
+	  
+config OUTPUT_DISASSEMBLY
+	bool "Create a disassembly file"
+	default n
+	help
+	  Create an .asm file with the assembly listing of the firmware
+
+config BUILD_OUTPUT_BIN
+	bool "Build a binary in BIN format"
+	default y
+	help
+	  Build a binary in BIN format. This will build a ${TARGET}.bin file need
+	  by some platforms.
+	  
+config OUTPUT_PS_EXTENSION
+	bool "Platform Convertion Tools v4.01 with PS option extension"
+	default y
+	help
+	  Platform Convertion Tools v4.01 with PS option extension
+	  
+config DBG_DEFAULT_PIN_CFG
+	bool "enable API for checking default pin cfg"
+	default n
+	help
+	  checking default pin cfg right or not.  
+endmenu
+
+menu "Release Configurations"
+
+config OUTPUT_LIBRARY
+	bool "Install library in release directory"
+	default y
+	help
+	  All the AP side library will be installed in release directory
+	  	  
+config RELEASE_WITH_NO_ASR_UI
+	bool "Source Code Release with NO ASR UI"
+	default n
+	# depends on SOURCE_CODE_RELEASE
+	help
+	  Release Source Code with NO ASR UI.	
+
+config RELEASE_INSTALL_DIRECTORY
+	string
+	prompt "release directory"
+	default "../rel"
+	help
+	  set source code release install directory
+
+config INSTALL_CP
+	bool "install cp source code to release directory"
+	default n
+
+config INSTALL_TOOL
+	bool "install tool to release directory"
+	default y
+
+config INSTALL_SCRIPTS
+	bool "install scripts to release directory"
+	default y
+	
+endmenu
+
+config BUILD_FROM_SOURCE_CODE
+	bool "build feature phone from all source code"
+	default y
+	help
+	  Select this option if you want to build gui image.
+
+menu "Link Configuration"
+
+config LINK_CUSTOM_SCATTER_FILE
+	bool "link customized scatter file"
+	default n
+	help
+	  Select this option to link customized scatter file.
+
+config SCATTER_FILE
+	string
+	depends on LINK_CUSTOM_SCATTER_FILE
+	prompt "scatter file"
+	default "cp/csw/platform/dev_plat/build/Crane_DS_16M_Ram_16M_Flash_XIP_Common.sct"
+	help
+	  set scatter file
+
+endmenu
+
+source "driver/Kconfig"
+
+config BUILD_CAMERA_TARGET
+	bool "build camera image"
+	depends on FP || MINIPHONE || WEARPHONE
+	default y
+	help
+	  Select this option if you want to build camera image.
+
+source "scripts/boards/Kconfig"
+gsource "$ENV_VAR_BOARD_DIR/Kconfig.defconfig"

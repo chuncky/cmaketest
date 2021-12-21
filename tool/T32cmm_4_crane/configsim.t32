@@ -1,0 +1,29 @@
+
+
+; Environment variables
+OS=
+ID=T32_SIM
+TMP=C:\Users\jinyuanguo\Documents\T32.TEMP
+SYS=C:\T32
+HELP=C:\T32\pdf
+
+; Standard License File (client.lic) used
+
+;T32 API Access
+; not used
+
+;T32 Intercom
+; not used
+
+;T32 GDB
+; not used
+
+;T32 TCF
+; not used
+
+
+;Connection to Host
+PBI=SIM
+
+; Printer settings 
+PRINTER=WINDOWS

@@ -1,0 +1,28 @@
+;TODO: define addr and size by *.h (unity boot33, updater and logo scatter)
+;#include "../common/inc/build/startup_scatter.h"
+LOAD 0x7E000000                              ;0x7E000000 - 0x7E004000, size: 4*64K=256K
+{
+    INIT 0x7E000000 0x2000                   ;8k
+    {
+        OBM_StartUp.o (Init, +First)         ; Startup code
+        main.o (+RO)                        ; Place main() in a root region for the benefit of software breakpoints
+		version_block.o (IMGVERBLOCK)
+    }    
+
+    CODE  +0	0x0E000 ;             		;64k-8k=56k
+    {
+        * (+RO)                             ; Application code, including C library
+    }
+
+    ITCM 0 0x00010000								; Second Exec region is ITCM; size:64K
+    {
+		LzmaDec.o (+RO)								; LzmaDec code on ITCM
+    }
+
+    DATA  0x7E020000	0x100000 ;			;3*64K
+    {
+        * (+RW,+ZI)                         ; All RW and ZI Data
+    }
+}
+
+

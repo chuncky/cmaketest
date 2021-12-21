@@ -1,0 +1,86 @@
+
+menu "Product Configuration"
+
+gsource "$ENV_VAR_BOARD_DIR/Kconfig.board"
+
+config BUILD_PROJECT_TARGET
+	bool "build project image"
+	default y
+	help
+	  Select this option if you want to build cp image.
+
+choice
+	prompt "Current project"
+	default FP
+	depends on BUILD_PROJECT_TARGET
+
+config FP
+	bool "FP"
+#	default y
+
+config FWP
+	bool "FWP"
+#	default n
+
+config MINIPHONE
+	bool "[Experience]MINIPHONE"
+	default N
+
+config WEARPHONE
+	bool "[Experience]WEARPHONE"
+	default N
+
+endchoice
+
+
+choice
+	prompt "Display Resoltion Configuration"
+	default DISPLAY_240x320
+
+config DISPLAY_240x320
+	bool "240x320"
+#	default y
+	help
+	  Select this option if you want to select display resolution is 240x320(Vertical screen).
+
+config DISPLAY_320x240
+	bool "320x240"
+#	default n
+	help
+	  Select this option if you want to select display resolution is 320x240(Horizontal screen).
+
+config DISPLAY_128x160
+	bool "128x160"
+#	default n
+	help
+	  Select this option if you want to select display resolution is 128x160(Vertical screen).
+	  
+config DISPLAY_128x64
+	bool "[Experience]128x64"
+#	default n
+	help
+	  Select this option if you want to select display resolution is 128x64(Horizontal screen).
+	  
+config DISPLAY_176x220
+	bool "176x220"
+#	default n
+	help
+	  Select this option if you want to select display resolution is 176x220(Vertical screen).
+
+config DISPLAY_128x128
+	depends on BOARD_CRANEM_EVB
+	bool "[Experience]128x128"
+#	default n
+	help
+	  Select this option if you want to select display resolution is 128x128(Vertical screen).
+
+config DISPLAY_240x240
+	depends on WEARPHONE
+	bool "[Experience]240x240"
+#	default n
+	help
+	  Select this option if you want to select display resolution is 240x240.
+	  
+endchoice
+
+endmenu

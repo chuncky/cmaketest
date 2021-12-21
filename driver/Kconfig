@@ -1,0 +1,293 @@
+# Kconfig - driver configuration options
+
+menu "Driver Configuration"
+
+config HAL_SUPPORT_DM_REGISTER
+	bool "build DM module to support DM register function"
+	default n
+	help
+	  Select this option if you want to build /hal/modem/dm.
+
+config BUILD_HAL_TEST
+	bool "build hal/test"
+	default y
+	help
+	  Select this option if you want to build hal/test.
+
+config BUILD_ATA_TEST
+	bool "build ATA test code"
+	default n
+	help
+	  Select this option if you want to build ata test code.
+
+config SUPPORT_UILOG
+	bool
+	depends on DEBUG
+	default y
+	help
+	  Select this option if you want to build hal/log.
+	  
+config SUPPORT_UIDBG
+	bool "support ui dbg"
+	depends on DEBUG
+	default y
+	help
+	  Select this option if you want to build hal/dbg.
+
+config DEBUG_SHELL
+	bool "[Experience]support uart shell function debug version"
+	depends on SUPPORT_UIDBG
+	default y
+	help
+	  Select this option if you want to support shell.
+
+config DEBUG_UIUSK
+	bool "[Experience]support uart keypad simulation debug version"
+	depends on SUPPORT_UIDBG
+	default y
+	help
+	  Select this option if you want to support uart keypad simulation.
+
+config DEBUG_UIASS
+	bool
+	depends on SUPPORT_UIDBG
+	default y
+	help
+	  Select this option if you want to support shell.
+
+config DEBUG_UIMLK
+	bool "[Experience]support app memory leak function debug"
+	depends on SUPPORT_UIDBG
+	default y
+	help
+	  Select this option if you want to support app memory leak.
+
+config DEBUG_UIMEM
+	bool
+	depends on SUPPORT_UIDBG
+	default n
+	help
+	  Select this option if you want to build a deeply memory debug version.
+
+config DEBUG_TXCHK
+	bool
+	depends on SUPPORT_UIDBG
+	default n
+	help
+	  Select this option if you want to build a stack check debug version.
+
+config DEBUG_MCCHK
+	bool
+	depends on SUPPORT_UIDBG
+	default n
+	help
+	  Select this option if you want to build a malloc statistics debug version.
+
+config DEBUG_UICMD
+	bool
+	depends on DEBUG_SHELL
+	depends on SUPPORT_UIDBG
+	default n
+	help
+	  Select this option if you want to build a full shell cmd debug version.
+
+choice
+	prompt "sim enable"
+	default MSYS_ENABLE_BOTH_SIM
+
+	config MSYS_ONLY_ENABLE_SIM1
+		bool "only enable sim1"
+
+	config MSYS_ONLY_ENABLE_SIM2
+		bool "only enable sim2"
+
+	config MSYS_ENABLE_BOTH_SIM
+		bool "enable both sim"
+endchoice
+
+choice
+	prompt "AT interface solution"
+	default MSYS_RIL
+
+	config MSYS_RIL
+		bool "ril"
+
+	config MSYS_MINI_AT
+		bool "mini AT"
+
+	config DISABLE_AT_SUPPORT
+		bool "disable AT support"
+endchoice
+	  
+config BUILD_MSYS_RIL_WITH_SOURCE
+	bool "using ril src for building target"
+	depends on MSYS_RIL
+	default n
+	help
+	  Select this option if you want to build target using source code.
+
+config BUILD_MSYS_MINI_AT_WITH_SOURCE
+	bool "using mini AT src for building target"
+	depends on MSYS_MINI_AT
+	default n
+	help
+	  Select this option if you want to build target using source code.
+	  
+config MUI_RIL_ADAPTER_SUPPORT
+	bool "build mUI ril adapter module"
+	depends on ENABLE_MUI
+	default y
+	help
+	  Select this option if you want to include mUI ril adapter module.
+	  
+config ASR_MUI_SMS_HAL_FEATURE
+	bool "build mUI sms hal module"
+#	depends on MSYS_RIL_SUPPORT
+	default y
+	help
+	  Select this option if you want to include mUI sms hal.
+
+config BUILD_ASR_SMS_SOURCE_CODE
+	bool "using sms src for building target"
+	default n
+	help
+	  Select this option if you want to build target using source code.
+
+config SUPPORT_SIM_HOTPLUG
+	bool "enable sim card hotplug support(ui side)"
+	default n
+	help
+	enable sim card hotplug feature
+	
+config SUPPORT_SOFTWARE_SIM_DETECT
+	bool "enable sim card software sim detect"
+	depends on SUPPORT_SIM_HOTPLUG
+	default n
+	help
+	enable sim card software sim detect feature
+	
+config BUILD_MSYS_DBG_WITH_SOURCE
+	bool "using dbg src for building target"
+	default n
+	help
+	  Select this option if you want to build target using source code.
+
+config ENABLE_MULTIMEDIA_MEM
+	bool "enable multimedia large memory management support"
+	default n
+	help
+	  Enable multimedia large memory management support.
+
+config ENABLE_HAL_VERIFY_SUPPORT
+	bool "enable hal verify support"
+	default n
+	help
+	  Enable hal only support,for hal module verify.
+
+config ENABLE_KEYPAD_SUPPORT
+    bool "enable keypad support"
+    default y
+    help
+      Enable keypad support.
+
+config ENABLE_MINIPHONE_CAMERA
+	bool "enable miniphone camera support"
+	depends on BUILD_CAMERA_TARGET && MINIPHONE
+	default y
+	help
+	  Enable miniphone camera support.
+
+config ENABLE_HAL_BUILD_IN_CP
+	bool "enable hal build for cp"
+	default n
+	help
+	  enable hal build in cp.	
+	  
+config ENABLE_HAL_RELEASE_FOR_CP
+	bool "enable hal release for cp"
+	default n
+	help
+	  enable hal release for cp.	  
+
+config BUILD_MHAL_IN_DM
+	bool "build mhal in dm"
+	default n
+	help
+	  build mhal in dm.	
+	  
+config SUPPORT_QRCODE
+	bool "enable qr code library"
+	default n
+	help
+		build open source qr code library
+
+config SUPPORT_QRCODE_ZBAR
+	bool "Zbar library"
+	default n
+	depends on SUPPORT_QRCODE
+	help
+		build open source qr code library
+
+config SUPPORT_QRCODE_ZXING
+	bool "Zxing library"
+	default n
+	depends on SUPPORT_QRCODE
+	help
+		build open source qr code library
+
+config BUILD_QRCODE_ZXING_SOURCE_CODE
+	bool "build zxing source code"
+	default n
+	depends on SUPPORT_QRCODE_ZXING
+	help
+		build zxing source code or link the library
+
+config JRTC_VIDEO_CALL
+	bool "enable juphoon video call(demo version)"
+	default n
+	help
+	  enable juphoon video call.
+	  
+config JRTC_VIDEO_CALL_TEST
+	bool "enable juphoon video call test"
+	default n
+	depends on JRTC_VIDEO_CALL  && ENABLE_HAL_KAWAII_MQTT
+	help
+	  enable juphoon video call test.	
+	  
+config MMI_SUPPORT_BLUETOOTH
+	bool "enable bluetooth support"	
+	default n
+	help
+	  Select this option if you want to support bluetooth.
+
+config BTSERVICE_SIMULATION_TEST
+	bool "enable btservice simulation test support"
+	default n
+	depends on MMI_SUPPORT_BLUETOOTH
+	help
+		send bt event when put some key
+		
+config ENABLE_HAL_KAWAII_MQTT
+	bool "enable hal kawaii mqtt"
+	default n
+	help
+	  enable hal kawayii mqtt.
+
+config ENABLE_CAM_FULLSIZE_STREAM
+	bool "enable camera full size stream"
+	depends on BUILD_CAMERA_TARGET
+	default n
+	help
+	  enable camera full size stream.
+
+config ENABLE_CHARGER_SUPPORT
+    bool "enable charger support"
+    default y
+    help
+      Enable charger support.
+endmenu
+
+#source "driver/media/Kconfig"
+source "driver/lcd/Kconfig"
+

@@ -1,0 +1,35 @@
+
+enum {
+	UI_UDID_NONE,
+	UI_UDID_NOUI,
+	UI_UDID_NGUX,
+	UI_UDID_MAX
+};
+static int s_ui_udid = 0;
+void ui_set_udid(int udid)
+{
+	if(UI_UDID_MAX > udid)
+		s_ui_udid = udid;
+}
+
+int ui_get_udid(void)
+{
+	return s_ui_udid;
+}
+BOOL __attribute__((weak)) pm_BatteryInit(VOID)
+{
+	
+	return 0;
+}
+BOOL __attribute__((weak)) pm_BatteryMonitorProc(void)
+{
+	while(1) {
+		UOS_SleepMs(100000);
+	}
+	return 0;
+}
+VOID __attribute__((weak)) pm_UsbMonitorProc(VOID)
+{
+	return;
+}
+volatile UINT32 __attribute__((weak))  Time_To_MMI_Evt;

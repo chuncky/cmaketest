@@ -1,0 +1,3 @@
+
+config BOARD_HAPS_FPGA
+	bool "ASR HAPS FPGA"

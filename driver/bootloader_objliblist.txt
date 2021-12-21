@@ -1,0 +1,2 @@
+./..//libbootloader_catchall.a
+./lcd/libdriver__lcd.a

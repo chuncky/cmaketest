@@ -1,0 +1,35 @@
+# Kconfig - customer configuration options
+
+menu "Customer Configuration"
+
+config LOCK_KEY_SUPPORT
+	bool "board support lock key function."
+	default n
+	help
+	  Select this option if your board support lock key.
+
+config EXT_PA_SUPPORT
+	bool "board support external PA for Audio."
+	default n
+	help
+	  Select this option if your board support external PA for Audio.
+
+config FM_WITH_EXTERNAL_ANT
+	bool "board support external antenan for FM Radio."
+	default n
+	help
+	  Select this option if your board support external antenan for FM Radio.
+
+config BL_GPIO_SUPPORT
+	bool "board want to backlight controlled by GPIO."
+	default n
+	help
+	  Select this option if your board want to backlight controlled by GPIO.
+	  
+config WITHOUT_PMIC_PWM
+	bool "board want to backlight controlled by external pwm."
+	default n
+	help
+	  Select this option if your board want to backlight controlled by external pwm.
+
+endmenu

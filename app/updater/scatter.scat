@@ -1,0 +1,50 @@
+#!armcc -E -DREGION_END=0x7E420000
+#include "updater_scatter_common.h"
+LOAD UPDATER_PSRAM_BASE_ADDR
+{
+    INIT INIT_BASE_ADDR INIT_SIZE	;64KB
+    {
+        StartUp.o (Init, +First)         ; Startup code
+        main.o (+RO)                        ; Place main() in a root region for the benefit of software breakpoints
+    }
+
+    CODE  CODE_BASE_ADDR CODE_SIZE ;512KB
+    {
+        * (+RO)                             ; Application code, including C library
+    }
+
+    DATA  DATA_BASE_ADDR DATA_SIZE ;1M
+    {
+        * (+RW,+ZI)                         ; All RW and ZI Data
+    }
+	
+	NONCACHE_DATA  0x7E600000	0x100000 ;1M
+    {
+		main.o (TEST_NONCACHE_DATA)
+    }        	
+
+    FOTA_BUFFER 0x7EC00000 EMPTY OVERLAY 0x200000 
+    {
+	
+    }
+    FOTA_BUFFER_ENDMARK (0x7EC00000 + 0x200000 ) EMPTY OVERLAY 0x4 {}
+
+    RSFOTA_BUFFER 0x7EA00000 OVERLAY
+    {
+		rs_ua_porting.o (RS_DATA)
+    }
+	
+	ALIFOTA_HEAP_START 0x7E800000 EMPTY OVERLAY 0x800000 		;ALIOTA heap buffer,8M
+    {
+	
+    }
+    ALIFOTA_HEAP_ENDMARK (0x7E800000 + 0x800000 ) EMPTY OVERLAY 0x4 {}
+
+	VERSION_BLOCK(INIT_BASE_ADDR+UPDATER_LOAD_MAX_SIZE-128-4) FIXED
+	{
+		version_block.o (IMGVERBLOCK)
+	}
+
+}
+
+

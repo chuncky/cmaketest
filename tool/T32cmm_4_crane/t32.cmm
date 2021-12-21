@@ -1,0 +1,345 @@
+; --------------------------------------------------------------------------------
+; @Title: TRACE32 PowerView Default Startup Script (t32.cmm)
+; @Description: Default startup program for TRACE32
+; @Keywords: trace32, startup, setup, menu, toolbar, autostore, history
+; @Author: -
+; @Copyright: (C) 1989-2014 Lauterbach GmbH, licensed for use with TRACE32(R) only
+; --------------------------------------------------------------------------------
+; $Id: t32.cmm 9511 2016-07-04 08:38:29Z mschaeffner $
+
+
+; --------------------------------------------------------------------------------
+; --------------------------------------------------------------------------------
+;
+; This startup program can be modified according to your needs.
+; --------------------------------------------------------------------------------
+; --------------------------------------------------------------------------------
+
+; --------------------------------------------------------------------------------
+; Choose hex mode as default for input values
+; --------------------------------------------------------------------------------
+  RADIX Hex
+
+
+; --------------------------------------------------------------------------------
+; Add some extra buttons to the toolbar
+; --------------------------------------------------------------------------------
+
+ menu.rp
+ (
+  add
+  toolbar
+  (
+   separator
+   toolitem "Source/List" "list" "Data.List"
+   toolitem "Memory Dump" "dump" "Data.dump"
+   toolitem "Register" "reg" "Register"
+   separator
+   toolitem "Watch" ":varwatch" "Var.Watch"
+   toolitem "Stack" ":varframe" "Var.Frame /l /c"
+   toolitem "Automatic Watch" ":varref" "Var.Ref"
+   separator
+   toolitem "List Breakpoints" "break" "Break.List"
+   toolitem "List Symbols" "symbols" "sYmbol.Browse"
+   separator
+  )
+ )
+
+
+; --------------------------------------------------------------------------------
+; choose a different TRACE32 menu file e.g. Japanese (default: english)
+; --------------------------------------------------------------------------------
+
+  IF LANGUAGE()!=""
+  (
+     LOCAL  &menuname
+     &menuname="~~/t32"+LANGUAGE()+".men"
+     IF OS.FILE(&menuname)
+        MENU.ReProgram &menuname
+  )
+
+
+; --------------------------------------------------------------------------------
+; Integrator Probes pulldown (Logic Analyzer)
+; --------------------------------------------------------------------------------
+
+  IF Integrator()
+  (
+     IF (I.ANALOG()>0)
+     (
+        IF (I.ANALOG()&1)==1
+        (
+         ; Reset MUX setup
+           I.PI_MUX_RESET
+
+         ; Define Addresslines
+           I.PI_MUX  amux.0   I.A0
+           I.PI_MUX  amux.1   I.A1
+           I.PI_MUX  amux.2   I.A2
+           I.PI_MUX  amux.3   I.A3
+           I.PI_MUX  amux.4   I.A4
+           I.PI_MUX  amux.5   I.A5
+           I.PI_MUX  amux.6   I.A6
+           I.PI_MUX  amux.7   I.A7
+           I.PI_MUX  amux.8   I.A8
+           I.PI_MUX  amux.9   I.A9
+           I.PI_MUX  amux.10  I.A10
+           I.PI_MUX  amux.11  I.A11
+
+         ; Programming of MUX setup
+           I.PI_MUX_PROGRAM
+
+         ; Menu-ADC-Trigger
+           MENU.ReProgram ~~/t32adc.men
+        )
+        ELSE
+        (
+           PRINT "Please connect AnalogProbe to connector A for trigger support!"
+        )
+     )
+     IF (I.USB()>0)
+     (
+        IF (I.USB()&1)==1
+        (
+           MENU.ReProgram ~~/menprobeusb_def.men
+        )
+        ELSE
+        (
+           PRINT "Please connect USB2 Probe to connector A/B!"
+        )
+     )
+  )
+
+
+; --------------------------------------------------------------------------------
+; Recall and define TRACE32 command history file
+; --------------------------------------------------------------------------------
+  AutoSTORe , HISTory BookMark
+
+
+; --------------------------------------------------------------------------------
+; Start TRACE32 Welcome dialog               (activated since TRACE32 DVD 09/2014)
+; window is only displayed if not disabled by user
+; --------------------------------------------------------------------------------
+;  IF !(ICE()||FIRE()||ESI()||Stg())&&(VERSION.BUILD()>=57090.)
+;     WELCOME.STARTUP
+
+
+;--------------------------------------------------------
+; Variable Declare
+;--------------------------------------------------------
+local &WorkingDir
+local &T32Dir
+local &AXFname
+local &AXFdir
+local &DDRRW
+local &MEMdir
+ 
+ 
+local &saved_registers
+local &R0
+local &R1
+local &R2
+local &R3
+local &R4
+local &R5
+local &R6
+local &R7
+local &R8
+local &R9
+local &R10
+local &R11
+local &R12
+local &R13
+local &R14
+local &PC
+local &CPSR
+local &DFSR
+local &DFAR
+
+;--------------------------------------------------------
+; set working env
+;--------------------------------------------------------
+&WorkingDir=os.env(WORKING_PATH)
+&T32Dir=os.env(T32PATH)
+
+;--------------------------------------------------------
+; Add ThreadX menu
+;--------------------------------------------------------
+if ("&T32Dir"!="")
+(
+	if (file.exist(&T32Dir\demo\arm\kernel\threadx\threadx.t32))
+	(
+		TASK.CONFIG &T32Dir\demo\arm\kernel\threadx\threadx.t32
+		MENU.ReProgram &T32Dir\demo\arm\kernel\threadx\threadx.men
+	)
+)
+else if (file.exist(c:\T32\demo\arm\kernel\threadx\threadx.t32))
+(
+	TASK.CONFIG c:\T32\demo\arm\kernel\threadx\threadx.t32
+	MENU.ReProgram c:\T32\demo\arm\kernel\threadx\threadx.men
+)
+HELP.FILTER.Add rtosthreadx
+
+;--------------------------------------------------------
+; Choose axf file
+;--------------------------------------------------------
+if ("&WorkingDir"!="")
+(
+	cd &WorkingDir
+)
+
+dialog.file *.*f
+entry &AXFname
+&AXFdir=OS.FILE.PATH(&AXFname)
+cd &AXFdir
+
+;--------------------------------------------------------
+; Choose mem file
+;--------------------------------------------------------
+dialog.file com*.bin
+entry &DDRRW
+&MEMdir=OS.FILE.PATH(&DDRRW)
+cd &MEMdir
+
+;--------------------------------------------------------
+; System Configatrue
+;--------------------------------------------------------
+symbol.reset
+system.reset
+system.cpu CortexR5
+system.option BIGENDIAN OFF
+system.up
+
+;--------------------------------------------------------
+; loadbinary & restore regs
+;--------------------------------------------------------
+gosub loadbinarys
+gosub StoreRegs
+gosub RestoreRegs
+
+area.create save_win
+WINCLEAR
+
+WINPOS 0. 0. 80. 20. 13. 1. W000
+WINTABS 10. 10. 25. 62.
+VAR.FRAME /LOCALS /CALLER /ARGS
+
+WINPOS 0. 26. 80. 12. 10. 1. W001
+WINTABS 10. 10. 25. 62.
+Data.List
+
+WINPOS 85. 0. 90. 6. 20. 1. W002
+WINTABS 10. 0. 0. 0. 0. 0. 0.
+v.W rti_rt
+v.AW %s rti_rt.rti_rt_list
+v.AW %s __CurrentExceptionLog
+v.AW %s __CurrentExceptionLog.log[0].desc
+
+
+WINPOS 85. 12. 48. 9. 0. 0. W003
+Register
+
+WINPOS 85. 26. 90. 10. 0. 1. W004
+WINTABS 26. 26.
+sYmbol.Browse
+
+ENDDO
+
+;========================================================
+;;;
+;;; loadbinarys Load axf mem(ddr_rw ddr_dtcm ddr_itcm dsp) regs
+;;;
+;========================================================
+loadbinarys:
+d.load.elf &AXFname /StripPart 5
+
+;0x06200000++22.8MB
+d.load.binary &DDRRW V.Value(&Image$$DDR_DSP_RO_ENDMARK$$Base) /noclear
+if (file.exist(&MEMdir\COM_DTCM.BIN))
+(
+;0xB0020000++64KB
+	d.load.binary &MEMdir\COM_DTCM.BIN V.Value(&Image$$DDR_DTCM$$Base) /noclear
+)
+if (file.exist(&MEMdir\COM_ITCM.BIN))
+(
+;0x00000000++24KB
+	d.save.binary &MEMdir\axf_ITCM.bin V.Value(&Load$$DDR_ITCM$$Base)++V.Value(&Image$$DDR_ITCM$$Length)
+	d.load.binary &MEMdir\axf_ITCM.bin 0x0 /noclear
+	d.load.binary &MEMdir\COM_ITCM.bin 0x0 /noclear
+)
+if (file.exist(&MEMdir\com_dsp_ddr.BIN))
+(
+;0x7C000000++4MB
+	d.load.binary &MEMdir\com_dsp_ddr.bin V.Value(&Image$$DDR_DSP_RO$$Base) /noclear
+)
+return
+
+;========================================================
+;;;
+;;; StoreRegs
+;;;
+;========================================================
+StoreRegs:
+
+  &saved_registers=V.Value((int)&__Saved_Registers)
+
+	&R0=V.VALUE(*((int*)(&saved_registers)))
+	&R1=V.Value(*((int*)(&saved_registers+4)))
+	&R2=V.Value(*((int*)(&saved_registers+8)))
+	&R3=V.Value(*((int*)(&saved_registers+12)))
+	&R4=V.Value(*((int*)(&saved_registers+16)))
+	&R5=V.Value(*((int*)(&saved_registers+20)))
+	&R6=V.Value(*((int*)(&saved_registers+24)))
+	&R7=V.Value(*((int*)(&saved_registers+28)))
+	&R8=V.Value(*((int*)(&saved_registers+32)))
+	&R9=V.Value(*((int*)(&saved_registers+36)))
+	&R10=V.Value(*((int*)(&saved_registers+40)))
+	&R11=Var.VALUE(*((int*)(&saved_registers+44)))
+	&R12=V.Value(*((int*)(&saved_registers+48)))
+	&R13=V.Value(*((int*)(&saved_registers+52)))
+	&R14=V.Value(*((int*)(&saved_registers+56)))
+	&PC=V.Value(*((int*)(&saved_registers+60)))
+	&CPSR=V.Value(*((int*)(&saved_registers+64)))  
+	&DFSR=V.Value(*((int*)(&saved_registers+68)))
+	&DFAR=V.Value(*((int*)(&saved_registers+72)))
+;	&ADFSR=V.Value(*((int*)(&saved_registers+72)))
+;	&IFSR=V.Value(*((int*)(&saved_registers+78)))
+;	&AIFSR=V.Value(*((int*)(&saved_registers+82)))
+;	&IFAR=V.Value(*((int*)(&saved_registers+86)))
+return
+
+;========================================================
+;;;
+;;; RestoreRegs
+;;;
+;========================================================
+RestoreRegs:
+
+  r.s R0 &R0
+  r.s R1 &R1
+  r.s R2 &R2
+  r.s R3 &R3
+  r.s R4 &R4
+  r.s R5 &R5
+  r.s R6 &R6
+  r.s R7 &R7
+  r.s R8 &R8
+  r.s R9 &R9
+  r.s R10 &R10
+  r.s R11 &R11
+  r.s R12 &R12
+  r.s R13 &R13
+  r.s R14 &R14
+  r.s PC &PC
+  r.s CPSR &CPSR
+  PER.Set.simple C15:0x5 %Long &DFSR          ;; DFSR
+  PER.Set.simple C15:0x6 %Long &DFAR          ;; DFAR
+;  PER.Set.simple C15:0x105 %Long &IFSR       ;; IFSR
+;  PER.Set.simple C15:0x206 %Long &IFAR       ;; IFAR
+;  PER.Set.simple C15:0x15  %Long &ADFSR      ;; ADFSR
+;  PER.Set.simple C15:0x115 %Long &AIFSR      ;; AIFSR
+return
+
+; --------------------------------------------------------------------------------
+; --------------------------------------------------------------------------------

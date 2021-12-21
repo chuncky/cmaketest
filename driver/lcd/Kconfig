@@ -1,0 +1,427 @@
+# Kconfig - lcd configuration options
+
+menu "ASR LCD Configuration"
+
+config LCD_ADAPT
+	bool "lcd adapt type."
+	default n
+	help
+		Select this option if lcd support adapt or not.
+
+config LCD_USE_IN_CODE
+	bool "use lcd in code."
+	default y
+	help
+		Select this option if use lcd or not.
+
+choice
+	prompt "LCD HW version"
+	default LCD_HW_CRANE
+	help
+		Select lcd hw version.
+
+config LCD_HW_CRANE
+	bool "LCD hw version: Crane"
+	help
+		Select this option if hw version is Crane.
+
+config LCD_HW_CRANEG_Z1
+	bool "LCD hw version: CraneG_Z1"
+	help
+		Select this option if hw version is CraneG_Z1.
+
+config LCD_HW_CRANEG_A0
+	bool "LCD hw version: CraneG_A0"
+	help
+		Select this option if hw version is CraneG_A0.
+endchoice
+
+config LCD_CONTROLLER_SUPPORT
+	bool "platform support lcd controller."
+	default y
+	help
+	  Select this option if platform support lcd controller.
+
+config LCD_EXT_SPI
+	bool "Use EXT SPI panel"
+	default n
+	help
+	  Select this option if your lcd is ext spi panel.
+
+config LCD_HAS_TE_SIGNAL
+	bool "LCD has TE signal"
+	default y
+	help
+	  Select this option if your lcd has TE signal.
+
+config LCD_HAS_BACKLIGHT
+	bool "LCD has backlight"
+	default y
+	help
+	  Select this option if your lcd has backlight.
+
+config LCD_ESD_SUPPORT
+	bool "LCD support ESD function"
+	default n
+	help
+	  Select this option if you need ESD function.
+
+config LCD_DUAL_PANEL_SUPPORT
+	bool "LCD has dual panel"
+	default n
+	help
+	  Select this option if your system has dual panel.
+
+config LCD_ROTATION_SUPPORT
+	bool "LCD support rotation"
+	default n
+	help
+	  Select this option if you need rotation function.
+
+if LCD_ROTATION_SUPPORT
+choice
+	prompt "LCD rotation angle"
+	default LCD_ROTATION_90
+	help
+		Select rotation angle.
+
+config LCD_ROTATION_90
+	bool "rotation 90 by ASR3601"
+	depends on LCD_ROTATION_SUPPORT
+	help
+		Select this option if rotation 90 angle.
+
+config LCD_ROTATION_180
+	bool "rotation 180 by ASR3601"
+	depends on LCD_ROTATION_SUPPORT
+	help
+		Select this option if rotation 180 angle.
+
+config LCD_ROTATION_270
+	bool "rotation 270 by ASR3601"
+	depends on LCD_ROTATION_SUPPORT
+	help
+		Select this option if rotation 270 angle.
+
+config LCD_ROTATION_FAKE
+	bool "rotation by LCM"
+	depends on LCD_ROTATION_SUPPORT
+	help
+		Select this option if rotation by LCM.
+endchoice
+endif
+
+if LCD_DUAL_PANEL_SUPPORT
+config LCD_SUB_ROTATION_SUPPORT
+	bool "SUB LCD support rotation"
+	default n
+	help
+	  Select this option if you need rotation function for sub panel.
+endif
+
+if LCD_SUB_ROTATION_SUPPORT
+choice
+	prompt "SUB LCD rotation angle"
+	default LCD_SUB_ROTATION_90
+	help
+		Select rotation angle for sub panel for sub panel.
+
+config LCD_SUB_ROTATION_90
+	bool "rotation 90 by ASR3601"
+	depends on LCD_SUB_ROTATION_SUPPORT
+	help
+		Select this option if rotation 90 angle for sub panel.
+
+config LCD_SUB_ROTATION_180
+	bool "rotation 180 by ASR3601"
+	depends on LCD_SUB_ROTATION_SUPPORT
+	help
+		Select this option if rotation 180 angle for sub panel.
+
+config LCD_SUB_ROTATION_270
+	bool "rotation 270 by ASR3601"
+	depends on LCD_SUB_ROTATION_SUPPORT
+	help
+		Select this option if rotation 270 angle for sub panel.
+
+config LCD_SUB_ROTATION_FAKE
+	bool "rotation by LCM"
+	depends on LCD_SUB_ROTATION_SUPPORT
+	help
+		Select this option if rotation by LCM for sub panel.
+endchoice
+endif
+
+choice
+	prompt "LCD interface Select"
+	default LCD_SPI_PANEL
+	help
+		Select the panel interface type.
+
+config LCD_MCU_PANEL
+	bool "Use MCU panel"
+	help
+	  Select this option if your lcd is mcu panel.
+
+config LCD_SPI_PANEL
+	bool "Use SPI panel"
+	help
+	  Select this option if your lcd is spi panel.
+
+config LCD_MIPI_PANEL
+	bool "Use MIPI panel"
+	depends on LCD_HW_CRANEG_A0
+	help
+	  Select this option if your lcd is spi panel.
+endchoice
+
+if LCD_SPI_PANEL
+choice
+	prompt "LCD DCX pin config"
+	default LCD_DCX_GPIO_27
+	help
+		Select the DCX pin for SPI 4wire panel.
+
+config LCD_DCX_GPIO_27
+	bool "Use GPIO 27 as DCX pin"
+	depends on LCD_SPI_PANEL
+	help
+		Select this option if use GPIO 27 as DCX pin.
+
+config LCD_DCX_GPIO_21
+	bool "Use GPIO 21 as DCX pin"
+	depends on LCD_SPI_PANEL
+	help
+		Select this option if use GPIO 21 as DCX pin.
+endchoice
+endif
+
+menu "LCD selection"
+
+if LCD_MCU_PANEL
+config LCD_JD9851_MCU
+	bool "use lcd jd9851 mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use jd9851 mcu lcd.
+
+config LCD_GC9203_MCU
+	bool "use lcd gc9203 mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use gc9203 mcu lcd.
+
+config LCD_GC9300_MCU
+	bool "use lcd gc9300 mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use gc9300 mcu lcd.
+
+config LCD_GC9305_MCU
+	bool "use lcd gc9305 mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use gc9305 mcu lcd.
+
+config LCD_GC9306_MCU
+	bool "use lcd gc9306 mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use gc9306 mcu lcd.
+
+config LCD_ST7789V_MCU
+	bool "use lcd st7789v mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use st7789v mcu lcd.
+
+config LCD_ILI9341_MCU
+	bool "use lcd ili9341 mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use ili9341 mcu lcd.
+
+config LCD_DUMMY_MCU
+	bool "use lcd dummy mcu"
+	depends on LCD_MCU_PANEL
+	default n
+	help
+	  Select this option if you use dummy mcu lcd.
+endif
+
+if LCD_SPI_PANEL
+config LCD_GC9106_SPI_4WIRE_1LANE_1IF
+	bool "use lcd gc9106 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9106 4 wire 1 data lane, interface1 lcd.
+
+config LCD_GC9305_SPI_3WIRE_1LANE_1IF
+	bool "use lcd gc9305 3 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9305 3 wire 1 data lane, interface1 lcd.
+
+config LCD_GC9305_SPI_3WIRE_2LANE_1IF
+	bool "use lcd gc9305 3 wire 2 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9305 3 wire 2 data lane, interface1 lcd.
+	  
+config LCD_GC9305_SPI_4WIRE_1LANE_1IF
+	bool "use lcd gc9305 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9305 4 wire 1 data lane, interface1 lcd.
+
+config LCD_GC9306_SPI_3WIRE_1LANE_1IF
+	bool "use lcd gc9306 3 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9306 3 wire 1 data lane, interface1 lcd.
+
+config LCD_GC9306_SPI_3WIRE_2LANE_1IF
+	bool "use lcd gc9306 3 wire 2 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9306 3 wire 2 data lane, interface1 lcd.
+	  
+config LCD_GC9306_SPI_4WIRE_1LANE_1IF
+	bool "use lcd gc9306 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9306 4 wire 1 data lane, interface1 lcd.
+
+config LCD_GC9307_SPI_4WIRE_1LANE_1IF
+	bool "use lcd gc9307 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use gc9307 4 wire 1 data lane, interface1 lcd.	  
+
+config LCD_ST7789V_SPI_3WIRE_2LANE_1IF
+	bool "use lcd st7789v 3 wire 2 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default y
+	help
+	  Select this option if you use st7789v 3 wire 2 data lane, interface1 lcd.
+
+config LCD_ST7789V_SPI_3WIRE_2LANE_1IF_SUB
+	bool "use lcd st7789v 3 wire 2 data lane, interface 1 (sub)"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7789v 3 wire 2 data lane, interface1 sub lcd.
+	  
+config LCD_ST7789V_SPI_4WIRE_1LANE_1IF
+	bool "use lcd st7789v 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7789v 4 wire 1 data lane, interface1 lcd.
+
+config LCD_ST7789V_SPI_4WIRE_1LANE_2IF
+	bool "use lcd st7789v 4 wire 1 data lane, interface 2"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7789v 4 wire 1 data lane, interface2 lcd.
+
+config LCD_ST7789V_SPI_3WIRE_1LANE_1IF
+	bool "use lcd st7789v 3 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7789v 3 wire 1 data lane, interface1 lcd.
+
+config LCD_ILI9340_SPI_3WIRE_2LANE_1IF
+	bool "use lcd ili9340 3 wire 2 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use ili9340 3 wire 2 data lane, interface1 lcd.
+
+config LCD_ILI9340_SPI_4WIRE_1LANE_1IF
+	bool "use lcd ili9340 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use ili9340 4 wire 1 data lane, interface1 lcd.
+
+config LCD_ST7567_SPI_4WIRE_1LANE_1IF
+	bool "use lcd st7567 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7567 4 wire 1 data lane, interface1 lcd.
+
+config LCD_DUMMY_SPI_3WIRE_2LANE_1IF
+	bool "use lcd dummy 3 wire 2 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use dummy 3 wire 2 data lane, interface1 lcd.
+endif
+config LCD_ST7735S_SPI_4WIRE_1LANE_1IF
+	bool "use lcd st7735s 4 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7735s 4 wire 1 data lane, interface1 lcd.
+
+config LCD_ST7735S_SPI_3WIRE_1LANE_1IF
+	bool "use lcd st7735s 3 wire 1 data lane, interface 1"
+	depends on LCD_SPI_PANEL
+	default n
+	help
+	  Select this option if you use st7735s 3 wire 1 data lane, interface1 lcd.
+
+if LCD_MIPI_PANEL
+config LCD_RM69330_MIPI
+	bool "use lcd rm69330 mipi"
+	depends on LCD_MIPI_PANEL
+	default n
+	help
+	  Select this option if you use rm69330 mipi.
+
+config LCD_ST7796S_MIPI
+	bool "use lcd st7796s mipi"
+	depends on LCD_MIPI_PANEL
+	default n
+	help
+	  Select this option if you use st7796s mipi.
+
+config LCD_NT35410_MIPI
+	bool "use lcd nt35410 mipi"
+	depends on LCD_MIPI_PANEL
+	default n
+	help
+	  Select this option if you use nt35410 mipi.
+
+config LCD_DUMMY_MIPI
+	bool "use lcd dummy mipi"
+	depends on LCD_MIPI_PANEL
+	default n
+	help
+	  Select this option if you use dummy mipi.
+endif
+endmenu
+
+#to add your lcd config
+
+ 
+endmenu

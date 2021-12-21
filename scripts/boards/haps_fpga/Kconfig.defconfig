@@ -1,0 +1,9 @@
+
+if BOARD_HAPS_FPGA
+
+config BOARD
+	string
+	default "haps_fpga"
+	
+	
+endif # BOARD_HAPS_FPGA

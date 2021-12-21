@@ -1,0 +1,7 @@
+NUM,SCRIPT,LCD,FOTA,DESCRIPTION
+1,build_updater.bat,[LCD_ADAPT/LCD_WATCHDKB][ADUPS][ASRSD][ASRDM][REDSTONE_AND_ALI],support for dkb
+2,build_updater_watchlcd.bat,[st7789_4line_1data][ADUPS][REDSTONE_AND_ALI],generally
+3,build_updater_st7789ver1.bat,[st7789_3line_1data][ADUPS][REDSTONE_AND_ALI],generally
+4,build_updater_gc9306ver1.bat,[gc9306_3line_1data][ADUPS][REDSTONE_AND_ALI],generally
+5,build_updater_gc9306ver2.bat,[gc9306_4line_1data][ADUPS][REDSTONE_AND_ALI],generally
+6,build_updater_no_lcd.bat,[NO_LCD][ADUPS][REDSTONE_AND_ALI][ASRSPI],generally

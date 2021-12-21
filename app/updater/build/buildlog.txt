@@ -1,0 +1,2004 @@
+删除文件 - E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\release\readme_updater.txt
+删除文件 - E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\release\updater_st7789v_spi_3wire_2lane_1if_adups.bin
+删除文件 - E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\release\updater_axf_map\updater_st7789v_spi_3wire_2lane_1if_adups.axf
+删除文件 - E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\release\updater_axf_map\updater_st7789v_spi_3wire_2lane_1if_adups.map
+已复制         1 个文件。
+LCD_SUB_MAK is lcd_sub.mak
+找不到 E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\build\updater*.bin
+找不到 E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\build\updater*.axf
+找不到 E:\minigui\code\crane-phone-rls\evb\src\cp\startup\updater\build\updater*.map
+系统找不到指定的文件。
+Makefile:376: recipe for target 'clean' failed
+make[4]: *** [clean] Error 2
+LCD_SUB_MAK is lcd_sub.mak
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../../common/inc/spi_nor.h", line 7: Warning:  #47-D: incompatible redefinition of macro "BIT"  (declared at line 125 of "../../common/inc/common.h")
+  #define BIT(n) (1<<(n))
+          ^
+"../../common/inc/spi_nor.h", line 68: Warning:  #47-D: incompatible redefinition of macro "ADDR_ALIGN"  (declared at line 10 of "../inc/ptable.h")
+  #define ADDR_ALIGN(addr_, align_)         ((addr_+align_-1)&(~(align_-1)))
+          ^
+"../../common/inc/spi_nor.h", line 69: Warning:  #47-D: incompatible redefinition of macro "ARRAY_SIZE"  (declared at line 41 of "../../common/inc/common.h")
+  #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
+          ^
+"../../common/inc/lcd_test.h", line 201: Warning:  #47-D: incompatible redefinition of macro "OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET"  (declared at line 139)
+  #define OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET    (OTA_PROGRESS_BAR_CHINESE_TEXT_HEIGHT_OFFSET - ENGLISH_HEIGHT)
+          ^
+"../../common/inc/updater_table.h", line 21: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../src/main.c", line 239: Warning:  #223-D: function "PM812_CHARGER_IS_DETECTED" declared implicitly
+  				IsChargerDectect = PM812_CHARGER_IS_DETECTED();
+  				                   ^
+"../src/main.c", line 326: Warning:  #223-D: function "psram_set" declared implicitly
+  	psram_set();
+  	^
+"../src/main.c", line 348: Warning:  #513-D: a value of type "unsigned int" cannot be assigned to an entity of type "volatile UINT32 *"
+  	frequencereg=0xd428290c;
+  	            ^
+"../src/main.c", line 348: Warning:  #152-D: conversion of nonzero integer to pointer
+  	frequencereg=0xd428290c;
+  	             ^
+"../src/main.c", line 351: Warning:  #223-D: function "CpCoreFreqChangeTo624" declared implicitly
+  	CpCoreFreqChangeTo624();
+  	^
+"../src/main.c", line 352: Warning:  #223-D: function "CpCoreFreqChangeTo416" declared implicitly
+  	CpCoreFreqChangeTo416();
+  	^
+"../src/main.c", line 356: Warning:  #223-D: function "PMIC_Init" declared implicitly
+  	PMIC_Init();
+  	^
+"../src/main.c", line 368: Warning:  #223-D: function "malloc_init" declared implicitly
+  	malloc_init(g_MallocBuffer, MALLOC_BUFFER_SIZE);
+  	^
+"../src/main.c", line 411: Warning:  #223-D: function "bbu_qspi_init" declared implicitly
+  	bbu_qspi_init();
+  	^
+"../src/main.c", line 447: Warning:  #223-D: function "PMIC_PowerDown" declared implicitly
+  					PMIC_PowerDown();
+  					^
+"../src/main.c", line 452: Warning:  #223-D: function "mdelay" declared implicitly
+  				mdelay(1000);
+  				^
+"../src/main.c", line 459: Warning:  #223-D: function "pm813_get_bat_vol" declared implicitly
+  				volt = pm813_get_bat_vol();
+  				       ^
+"../src/main.c", line 461: Warning:  #223-D: function "pm802_get_battery_voltage" declared implicitly
+  				volt = pm802_get_battery_voltage();
+  				       ^
+"../src/main.c", line 468: Warning:  #223-D: function "PM812_CHARGER_IS_DETECTED" declared implicitly
+  			nStat = PM812_CHARGER_IS_DETECTED();
+  			        ^
+"../src/main.c", line 472: Warning:  #223-D: function "PMIC_PowerDown" declared implicitly
+              	PMIC_PowerDown();
+              	^
+"../src/main.c", line 476: Warning:  #223-D: function "mdelay" declared implicitly
+  			mdelay(1000);
+  			^
+"../src/main.c", line 491: Warning:  #223-D: function "get_fota_param_end_addr" declared implicitly
+  	FotaParamEndAddress   = get_fota_param_end_addr();
+  	                        ^
+"../src/main.c", line 493: Warning:  #223-D: function "get_fota_pkg_end_addr" declared implicitly
+  	FotaPkgEndAddress=get_fota_pkg_end_addr();
+  	                  ^
+"../src/main.c", line 516: Warning:  #167-D: argument of type "unsigned long" is incompatible with parameter of type "const void *__restrict__"
+  		memcpy(fota_flag,FotaParamStartAddress,sizeof(fota_flag));
+  		                 ^
+"../src/main.c", line 522: Warning:  #223-D: function "asr_norflash_read" declared implicitly
+  		asr_norflash_read(FotaParamStartAddress,fota_flag,sizeof(fota_flag));
+  		^
+"../src/main.c", line 542: Warning:  #223-D: function "AUDPSProcedure" declared implicitly
+  			AUDPSProcedure();
+  			^
+"../src/main.c", line 547: Warning:  #223-D: function "AUDPSProcedure" declared implicitly
+  			AUDPSProcedure();
+  			^
+"../src/main.c", line 554: Warning:  #223-D: function "AUDPSProcedure" declared implicitly
+  			AUDPSProcedure();
+  			^
+../src/main.c: 31 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/qspi_core.c", line 147: Warning:  #550-D: variable "ret"  was set but never used
+  	int ret = 0;
+  	    ^
+../src/qspi_core.c: 1 warning, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/qspi_dma.c", line 352: Warning:  #550-D: variable "flag"  was set but never used
+  	int flag = 0;
+  	    ^
+"../src/qspi_dma.c", line 20: Warning:  #177-D: variable "arg_glob"  was declared but never referenced
+  static DMA_STRESS_ARG arg_glob; //global variable for stress test.
+                        ^
+"../src/qspi_dma.c", line 21: Warning:  #177-D: variable "dma_stress_iter"  was declared but never referenced
+  static uint32_t dma_stress_iter;
+                  ^
+"../src/qspi_dma.c", line 61: Warning:  #177-D: function "dma_irq_handler_default"  was declared but never referenced
+  static void dma_irq_handler_default(){
+              ^
+../src/qspi_dma.c: 4 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/qspi_host.c", line 161: Warning:  #61-D: integer operation result is out of range
+  	buf_cfg = 0x1 << 31 | (data_size / 8) << 8;
+  	                 ^
+"../src/qspi_host.c", line 1022: Warning:  #223-D: function "dma_map_device_to_channel" declared implicitly
+  	dma_map_device_to_channel(99, QSPI_DMA_TX_CHANNEL); //TX
+  	^
+"../src/qspi_host.c", line 1031: Warning:  #223-D: function "dma_set_mode" declared implicitly
+  	dma_set_mode(DMA_MODE_NONFETCH, QSPI_DMA_TX_CHANNEL);
+  	^
+"../src/qspi_host.c", line 1032: Warning:  #223-D: function "dma_set_reg_nf" declared implicitly
+  	dma_set_reg_nf((uint32_t)cmd->tx_buf, QSPI0_TBDR, &TX_data,
+  	^
+"../src/qspi_host.c", line 1037: Warning:  #223-D: function "dma_xfer_start" declared implicitly
+  	dma_xfer_start(QSPI_DMA_TX_CHANNEL);
+  	^
+"../src/qspi_host.c", line 1163: Warning:  #550-D: variable "size"  was set but never used
+  		int size;
+  		    ^
+"../src/qspi_host.c", line 1047: Warning:  #177-D: variable "cpsr"  was declared but never referenced
+  	uint32_t tmp, data, cpsr;
+  	                    ^
+"../src/qspi_host.c", line 1246: Warning:  #177-D: variable "cmd_cfg"  was declared but never referenced
+  	struct spi_flash_cmd_cfg *cmd_cfg = cmd->cmd_cfg;
+  	                          ^
+"../src/qspi_host.c", line 181: Warning:  #177-D: function "qspi_lock_lut"  was declared but never referenced
+  static void qspi_lock_lut(void)
+              ^
+"../src/qspi_host.c", line 192: Warning:  #177-D: function "qspi_unlock_lut"  was declared but never referenced
+  static void qspi_unlock_lut(void)
+              ^
+"../src/qspi_host.c", line 519: Warning:  #177-D: function "qspi_enable_xip_on_int"  was declared but never referenced
+  static void qspi_enable_xip_on_int(struct qspi_host *host)
+              ^
+"../src/qspi_host.c", line 529: Warning:  #177-D: function "qspi_disable_xip_on_int"  was declared but never referenced
+  static void qspi_disable_xip_on_int(struct qspi_host *host)
+              ^
+"../src/qspi_host.c", line 703: Warning:  #177-D: function "qspi_irq_handler"  was declared but never referenced
+  static void qspi_irq_handler(void *data)
+              ^
+../src/qspi_host.c: 13 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/qspi_nor.c", line 154: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xb7, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[ENABLE_4BYTE]		= SPI_CMD(0xb7, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 155: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xe9, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[DISABLE_4BYTE] 	= SPI_CMD(0xe9, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 157: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x35, 0, 0, 0, 0, 0, 0, 1, -1, 1},//		[READ_STATUS2]		= SPI_CMD(0x35, 0, 0, 0, 0, 0, 0, 1, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 158: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x15, 0, 0, 0, 0, 0, 0, 1, -1, 1},//		[READ_STATUS3]		= SPI_CMD(0x15, 0, 0, 0, 0, 0, 0, 1, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 159: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x01, 0, 0, 0, 0, 0, 0, 1, -1, 2},//		[WRITE_STATUS]		= SPI_CMD(0x01, 0, 0, 0, 0, 0, 0, 1, -1, 2),
+                              ^
+"../src/qspi_nor.c", line 160: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x31, 0, 0, 0, 0, 0, 0, 1, -1, 2},//		[WRITE_STATUS2]		= SPI_CMD(0x31, 0, 0, 0, 0, 0, 0, 1, -1, 2),
+                              ^
+"../src/qspi_nor.c", line 161: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x03, 3, 1, 0, 0, 0, 0, 1, -1, 1},//		[READ_SLOW] 	= SPI_CMD(0x03, 3, 1, 0, 0, 0, 0, 1, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 163: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x3b, 3, 1, 0, 0, 8, 1, 2, -1, 1},//		[READ_FAST_X2]		= SPI_CMD(0x3b, 3, 1, 0, 0, 8, 1, 2, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 165: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xbb, 3, 2, 8, 2, 0, 0, 2, -1, 1},//		[READ_FAST_DUAL]	= SPI_CMD(0xbb, 3, 2, 8, 2, 0, 0, 2, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 167: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x20, 3, 1, 0, 0, 0, 0, 0, -1, 0},//		[SECTOR_ERASE_4K]	= SPI_CMD(0x20, 3, 1, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 168: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x52, 3, 1, 0, 0, 0, 0, 0, -1, 0},//		[BLK_ERASE_32K] 	= SPI_CMD(0x52, 3, 1, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 169: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xd8, 3, 1, 0, 0, 0, 0, 0, -1, 0},//		[BLK_ERASE_64K] 	= SPI_CMD(0xd8, 3, 1, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 170: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xc7, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[CHIP_ERASE]		= SPI_CMD(0xc7, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 173: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x06, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[WR_ENABLE] 	= SPI_CMD(0x06, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 174: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x04, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[WR_DISABLE]		= SPI_CMD(0x04, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 175: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x9f, 0, 0, 0, 0, 0, 0, 1, -1, 1},//		[READ_ID]		= SPI_CMD(0x9f, 0, 0, 0, 0, 0, 0, 1, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 176: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x38, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[ENABLE_QPI]		= SPI_CMD(0x38, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 177: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x75, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[PGM_ERS_SUSPEND]	= SPI_CMD(0x75, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 178: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x7a, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[PGM_ERS_RESUME]	= SPI_CMD(0x7a, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 179: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x66, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[EN_RST]		= SPI_CMD(0x66, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 180: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x99, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[RESET] 		= SPI_CMD(0x99, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 183: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x15, 0, 0, 0, 0, 0, 0, 1, -1, 1},//           [READ_STATUS2_MXIC] = SPI_CMD(0x15, 0, 0, 0, 0, 0, 0, 1, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 185: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x35, 0, 0, 0, 0, 0, 0, 0, -1, 0},//           [ENABLE_QPI_MXIC]   = SPI_CMD(0x35, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 186: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xb0, 0, 0, 0, 0, 0, 0, 0, -1, 0},//           [PGM_ERS_SUSPEND_MXIC]  = SPI_CMD(0xb0, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 187: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x30, 0, 0, 0, 0, 0, 0, 0, -1, 0},//           [PGM_ERS_RESUME_MXIC]   = SPI_CMD(0x30, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 190: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x00, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[MAX_CMD]		= SPI_CMD(0x00, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 198: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xb7, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[ENABLE_4BYTE_QPI]	= SPI_CMD(0xb7, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 199: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xe9, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[DISABLE_4BYTE_QPI] = SPI_CMD(0xe9, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 200: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x05, 0, 0, 0, 0, 0, 0, 4, -1, 1},//		[READ_STATUS1_QPI]	= SPI_CMD(0x05, 0, 0, 0, 0, 0, 0, 4,  2, 1),
+                              ^
+"../src/qspi_nor.c", line 201: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x35, 0, 0, 0, 0, 0, 0, 4, -1, 1},//		[READ_STATUS2_QPI]	= SPI_CMD(0x35, 0, 0, 0, 0, 0, 0, 4, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 202: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x11, 0, 0, 0, 0, 0, 0, 4, -1, 1},//		[READ_STATUS3_QPI]	= SPI_CMD(0x11, 0, 0, 0, 0, 0, 0, 4, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 203: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x15, 0, 0, 0, 0, 0, 0, 4, -1, 1},//           [READ_STATUS2_MXIC_QPI] = SPI_CMD(0x15, 0, 0, 0, 0, 0, 0, 4, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 204: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x01, 0, 0, 0, 0, 0, 0, 4, -1, 2},//		[WRITE_STATUS_QPI]	= SPI_CMD(0x01, 0, 0, 0, 0, 0, 0, 4, -1, 2),
+                              ^
+"../src/qspi_nor.c", line 205: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x31, 0, 0, 0, 0, 0, 0, 4, -1, 2},//		[WRITE_STATUS2_QPI]	= SPI_CMD(0x31, 0, 0, 0, 0, 0, 0, 4, -1, 2),
+                              ^
+"../src/qspi_nor.c", line 206: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x0b, 3, 4, 0, 0, 8, 4, 4, -1, 1},//		[READ_FAST_QPI] 	= SPI_CMD(0x0b, 3, 4, 0, 0, 8, 4, 4,  3, 1),
+                              ^
+"../src/qspi_nor.c", line 207: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xeb, 3, 4, 0, 0, 8, 4, 4, -1, 1},//		[READ_FAST_QUAD_QPI]	= SPI_CMD(0xeb, 3, 4, 0, 0, 8, 4, 4,  4, 1),
+                              ^
+"../src/qspi_nor.c", line 208: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x20, 3, 4, 0, 0, 0, 0, 0, -1, 0},//		[SECTOR_ERASE_4K_QPI]	= SPI_CMD(0x20, 3, 4, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 209: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x52, 3, 4, 0, 0, 0, 0, 0, -1, 0},//		[BLK_ERASE_32K_QPI] = SPI_CMD(0x52, 3, 4, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 210: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xd8, 3, 4, 0, 0, 0, 0, 0, -1, 0},//		[BLK_ERASE_64K_QPI] = SPI_CMD(0xd8, 3, 4, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 211: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xc7, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[CHIP_ERASE_QPI]	= SPI_CMD(0xc7, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 212: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x02, 3, 4, 0, 0, 0, 0, 4, -1, 2},//		[PROG_QPI]		= SPI_CMD(0x02, 3, 4, 0, 0, 0, 0, 4,  5, 2),
+                              ^
+"../src/qspi_nor.c", line 213: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x06, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[WR_ENABLE_QPI] 	= SPI_CMD(0x06, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 214: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x04, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[WR_DISABLE_QPI]	= SPI_CMD(0x04, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 215: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x9f, 0, 0, 0, 0, 0, 0, 4, -1, 1},//		[READ_ID_QPI]		= SPI_CMD(0x9f, 0, 0, 0, 0, 0, 0, 4, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 216: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xaf, 0, 0, 0, 0, 0, 0, 4, -1, 1},//		[READ_QPIID]		= SPI_CMD(0xaf, 0, 0, 0, 0, 0, 0, 4, -1, 1),
+                              ^
+"../src/qspi_nor.c", line 217: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xff, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[DISABLE_QPI]		= SPI_CMD(0xff, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 218: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xf5, 0, 0, 0, 0, 0, 0, 0, -1, 0},//           [DISABLE_QPI_MXIC]  = SPI_CMD(0xf5, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 219: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xc0, 0, 0, 0, 0, 0, 0, 4, -1, 2},//		[SET_READ_PARA_QPI] = SPI_CMD(0xc0, 0, 0, 0, 0, 0, 0, 4, -1, 2),
+                              ^
+"../src/qspi_nor.c", line 220: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x75, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[PGM_ERS_SUSPEND_QPI]	= SPI_CMD(0x75, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 221: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x7a, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[PGM_ERS_RESUME_QPI]	= SPI_CMD(0x7a, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 222: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0xb0, 0, 0, 0, 0, 0, 0, 0, -1, 0},//           [PGM_ERS_SUSPEND_MXIC_QPI]= SPI_CMD(0xb0, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 223: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x30, 0, 0, 0, 0, 0, 0, 0, -1, 0},//           [PGM_ERS_RESUME_MXIC_QPI]= SPI_CMD(0x30, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 224: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x66, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[EN_RST_QPI]		= SPI_CMD(0x66, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 225: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x99, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[RESET_QPI] 	= SPI_CMD(0x99, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 228: Warning:  #68-D: integer conversion resulted in a change of sign
+  {0x00, 0, 0, 0, 0, 0, 0, 0, -1, 0},//		[MAX_CMD_QPI]		= SPI_CMD(0x00, 0, 0, 0, 0, 0, 0, 0, -1, 0),
+                              ^
+"../src/qspi_nor.c", line 322: Warning:  #223-D: function "udelay" declared implicitly
+  	udelay(2000);
+  	^
+"../src/qspi_nor.c", line 613: Warning:  #177-D: variable "status"  was declared but never referenced
+  	uint8_t status, en4b_shift;
+  	        ^
+"../src/qspi_nor.c", line 715: Warning:  #223-D: function "qspi_memcpy" declared implicitly
+  			qspi_memcpy(&dummy, (void *)dummy_addr, 4);
+  			^
+"../src/qspi_nor.c", line 735: Warning:  #223-D: function "qspi_enable_ahb_preempt" declared implicitly
+  		qspi_enable_ahb_preempt(1);
+  		^
+"../src/qspi_nor.c", line 767: Warning:  #940-D: missing return statement at end of non-void function "spi_nor_erase_4k" 
+  }
+  ^
+"../src/qspi_nor.c", line 776: Warning:  #223-D: function "qspi_memcpy" declared implicitly
+  		qspi_memcpy(rbuf, (void *)addr, size);
+  		^
+"../src/qspi_nor.c", line 847: Warning:  #223-D: function "qspi_enable_ahb_preempt" declared implicitly
+  	qspi_enable_ahb_preempt(1);
+  	^
+"../src/qspi_nor.c", line 880: Warning:  #223-D: function "qspi_memcpy" declared implicitly
+  			qspi_memcpy(&dummy, (void *)dummy_addr, 4);
+  			^
+"../src/qspi_nor.c", line 1174: Warning:  #223-D: function "qspi_config_lookup_tbl" declared implicitly
+  		qspi_config_lookup_tbl(chip, chip->table + PGM_ERS_SUSPEND_MXIC,
+  		^
+"../src/qspi_nor.c", line 1179: Warning:  #223-D: function "qspi_config_lookup_tbl" declared implicitly
+  		qspi_config_lookup_tbl(chip, chip->table + PGM_ERS_SUSPEND,
+  		^
+"../src/qspi_nor.c", line 280: Warning:  #177-D: function "spi_nor_read_qpiid"  was declared but never referenced
+  static int spi_nor_read_qpiid(struct spi_flash_chip *chip, uint8_t *buf)
+             ^
+"../src/qspi_nor.c", line 593: Warning:  #177-D: function "spi_nor_erase_all"  was declared but never referenced
+  static int spi_nor_erase_all(struct spi_flash_chip *chip)
+             ^
+"../src/qspi_nor.c", line 663: Warning:  #177-D: function "spi_nor_disable_4byte_mode"  was declared but never referenced
+  static int spi_nor_disable_4byte_mode(struct spi_flash_chip *chip)
+             ^
+../src/qspi_nor.c: 68 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/updater_table.h", line 21: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../src/loadtable.c", line 110: Warning:  #223-D: function "get_updater_backup_end_addr" declared implicitly
+  	uart_printf("Updater backup end address   : 0x%08x\r\n", get_updater_backup_end_addr());
+  	                                                         ^
+"../src/loadtable.c", line 112: Warning:  #223-D: function "get_updater_end_addr" declared implicitly
+  	uart_printf("Updater end address          : 0x%08x\r\n", get_updater_end_addr());
+  	                                                         ^
+"../src/loadtable.c", line 170: Warning:  #167-D: argument of type "UINT32" is incompatible with parameter of type "uint8_t *"
+  				chip->ops->write(chip, update_start_addr,
+OTAPARAM_BLOCK_SIZE,update_backup_start_addr);
+  				                                                              ^
+"../src/loadtable.c", line 186: Warning:  #223-D: function "Updater_Reset" declared implicitly
+  			Updater_Reset();			
+  			^
+"../src/loadtable.c", line 261: Warning:  #167-D: argument of type "UINT32" is incompatible with parameter of type "uint8_t *"
+  				chip->ops->write(chip, dsp_adc_start_addr,
+OTAPARAM_BLOCK_SIZE,dsp_adc_backup_start_addr);
+  				                                                               ^
+"../src/loadtable.c", line 325: Warning:  #223-D: function "updater_backup_partition_legal_check" declared implicitly
+  			updater_backup_partition_legal_check();
+  			^
+"../src/loadtable.c", line 374: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 424: Warning:  #68-D: integer conversion resulted in a change of sign
+  	return -1;
+  	       ^
+"../src/loadtable.c", line 448: Warning:  #68-D: integer conversion resulted in a change of sign
+  	return -1;
+  	       ^
+"../src/loadtable.c", line 472: Warning:  #68-D: integer conversion resulted in a change of sign
+  	return -1;
+  	       ^
+"../src/loadtable.c", line 478: Warning:  #159-D: declaration is incompatible with previous "get_updater_end_addr"  (declared at line 112)
+  unsigned int get_updater_end_addr(void)
+               ^
+"../src/loadtable.c", line 497: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 516: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 521: Warning:  #159-D: declaration is incompatible with previous "get_updater_backup_end_addr"  (declared at line 110)
+  unsigned int get_updater_backup_end_addr(void)
+               ^
+"../src/loadtable.c", line 530: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 567: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 583: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 604: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 618: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/loadtable.c", line 625: Warning:  #223-D: function "PMIC_IS_PM803" declared implicitly
+  	if( PMIC_IS_PM803() ){
+  	    ^
+"../src/loadtable.c", line 634: Warning:  #159-D: declaration is incompatible with previous "updater_backup_partition_legal_check"  (declared at line 325)
+  unsigned int updater_backup_partition_legal_check(void)
+               ^
+"../src/loadtable.c", line 653: Warning:  #111-D: statement is unreachable
+  				return 0;
+  				^
+"../src/loadtable.c", line 660: Warning:  #940-D: missing return statement at end of non-void function "updater_backup_partition_legal_check" 
+  }
+  ^
+"../src/loadtable.c", line 684: Warning:  #68-D: integer conversion resulted in a change of sign
+  	return -1;
+  	       ^
+"../src/loadtable.c", line 698: Warning:  #68-D: integer conversion resulted in a change of sign
+  	return -1;
+  	       ^
+"../src/loadtable.c", line 713: Warning:  #68-D: integer conversion resulted in a change of sign
+  	return -1;
+  	       ^
+"../src/loadtable.c", line 733: Warning:  #940-D: missing return statement at end of non-void function "get_ps_mode" 
+  }
+  ^
+../src/loadtable.c: 28 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/updater_table.h", line 21: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../src/version_block.c", line 67: Warning:  #1296-D: extended constant initialiser used
+  		
+PDATER_EXEC_ADDR,
+  		^
+"../src/version_block.c", line 68: Warning:  #1296-D: extended constant initialiser used
+  		
+PDATER_LOAD_ADDR,
+  		^
+"../src/version_block.c", line 86: Warning:  #2795-D: concatenation with ""ADUPS"" in macro "FOTA_ADUPS_NAME"  does not create a valid token
+  		
+OTA_NAME,
+  		^
+"../src/version_block.c", line 91: Warning:  #2795-D: concatenation with ""_ver1"" in macro "VB_VERSION_DATE"  does not create a valid token
+  		
+B_VERSION_DATE,
+  		^
+../src/version_block.c: 5 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/psram.c", line 61: Warning:  #61-D: integer operation result is out of range
+  	read_data &= ~((1 << 9) | (0xff << 24));
+  	                                   ^
+"../src/psram.c", line 62: Warning:  #61-D: integer operation result is out of range
+  	read_data |= ((1 << 9) | (0xf0 << 24));
+  	                                  ^
+"../src/psram.c", line 6: Warning:  #177-D: variable "psram_info"  was declared but never referenced
+  static unsigned psram_info = 0;
+                  ^
+"../src/psram.c", line 26: Warning:  #177-D: function "efuse_psram"  was declared but never referenced
+  static unsigned efuse_psram(void)
+                  ^
+"../src/psram.c", line 38: Warning:  #177-D: function "ap_psram_fast_refresh"  was declared but never referenced
+  static void ap_psram_fast_refresh(void)
+              ^
+"../src/psram.c", line 57: Warning:  #177-D: function "psram_Cache_flush_idle_cnt"  was declared but never referenced
+  static void psram_Cache_flush_idle_cnt (void)
+              ^
+../src/psram.c: 6 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/keypad_drv.c", line 173: Warning:  #47-D: incompatible redefinition of macro "BIT"  (declared at line 125 of "../../common/inc/common.h")
+  #define BIT(n) (1<<(n))
+          ^
+"../src/keypad_drv.c", line 830: Warning:  #940-D: missing return statement at end of non-void function "callback" 
+  }
+  ^
+"../src/keypad_drv.c", line 926: Warning:  #111-D: statement is unreachable
+  	uart_printf("keypad_test end\r\n");
+  	^
+../src/keypad_drv.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/adups_bl_flash.c", line 56: Warning:  #223-D: function "get_fota_pkg_end_addr" declared implicitly
+  			fota_back_addr = get_fota_pkg_end_addr() - adups_bl_flash_block_size();
+  			                 ^
+"../src/adups_bl_flash.c", line 108: Warning:  #550-D: variable "ret"  was set but never used
+      int ret;
+          ^
+"../src/adups_bl_flash.c", line 122: Warning:  #223-D: function "asr_norflash_erase" declared implicitly
+  	ret=asr_norflash_erase(start, erase_size);
+  	    ^
+"../src/adups_bl_flash.c", line 136: Warning:  #223-D: function "asr_norflash_erase" declared implicitly
+  	ret=asr_norflash_erase(addr, FLASH_BLOCK_SIZE);
+  	    ^
+"../src/adups_bl_flash.c", line 157: Warning:  #167-D: argument of type "int" is incompatible with parameter of type "const void *__restrict__"
+  		memcpy(buf_addr,pFotaDelta,size);
+  		                ^
+"../src/adups_bl_flash.c", line 201: Warning:  #68-D: integer conversion resulted in a change of sign
+  			return -1;
+  			       ^
+"../src/adups_bl_flash.c", line 202: Warning:  #223-D: function "asr_norflash_erase" declared implicitly
+  		ret = asr_norflash_erase(block_addr, delata_size);
+  		      ^
+"../src/adups_bl_flash.c", line 218: Warning:  #167-D: argument of type "int" is incompatible with parameter of type "void *"
+  		memset(pFotaBackup,0xff,adups_bl_flash_block_size());
+  		       ^
+"../src/adups_bl_flash.c", line 219: Warning:  #120-D: return value type does not match the function type
+  		return 0;		
+  		       ^
+"../src/adups_bl_flash.c", line 224: Warning:  #120-D: return value type does not match the function type
+  		return 0;
+  		       ^
+"../src/adups_bl_flash.c", line 232: Warning:  #120-D: return value type does not match the function type
+  			return ret;
+  			       ^
+"../src/adups_bl_flash.c", line 239: Warning:  #120-D: return value type does not match the function type
+  			return -1;
+  			       ^
+"../src/adups_bl_flash.c", line 240: Warning:  #223-D: function "asr_norflash_erase" declared implicitly
+  		ret = asr_norflash_erase(block_addr, FLASH_BLOCK_SIZE);
+  		      ^
+"../src/adups_bl_flash.c", line 243: Warning:  #120-D: return value type does not match the function type
+  		return ret;
+  		       ^
+"../src/adups_bl_flash.c", line 257: Warning:  #167-D: argument of type "int" is incompatible with parameter of type "void *__restrict__"
+  		memcpy(pFotaBackup,data_ptr,len);
+  		       ^
+"../src/adups_bl_flash.c", line 292: Warning:  #167-D: argument of type "int" is incompatible with parameter of type "const void *__restrict__"
+  		memcpy(data_ptr,pFotaBackup,len);
+  		                ^
+"../src/adups_bl_flash.c", line 380: Warning:  #120-D: return value type does not match the function type
+  	return 0;
+  	       ^
+../src/adups_bl_flash.c: 17 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../../common/inc/lcd_test.h", line 201: Warning:  #47-D: incompatible redefinition of macro "OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET"  (declared at line 139)
+  #define OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET    (OTA_PROGRESS_BAR_CHINESE_TEXT_HEIGHT_OFFSET - ENGLISH_HEIGHT)
+          ^
+"../src/adups_bl_main.c", line 39: Warning:  #167-D: argument of type "adups_uint8 *" is incompatible with parameter of type "char *__restrict__"
+  	vsnprintf(adups_debug_buffer, 128, fmt, args);
+  	          ^
+"../src/adups_bl_main.c", line 62: Warning:  #120-D: return value type does not match the function type
+          return 
+OTA_BUFFER_ADDR_START;
+                 ^
+"../src/adups_bl_main.c", line 99: Warning:  #177-D: variable "FotaMagic"  was declared but never referenced
+  	char FotaMagic[8] = {0};
+  	     ^
+"../src/adups_bl_main.c", line 164: Warning:  #223-D: function "get_fota_param_start_addr" declared implicitly
+  	ParamStartAddress = get_fota_param_start_addr();
+  	                    ^
+"../src/adups_bl_main.c", line 165: Warning:  #223-D: function "asr_norflash_read" declared implicitly
+  	asr_norflash_read(ParamStartAddress,&abup_package_info,sizeof(abup_package_info));
+  	^
+"../src/adups_bl_main.c", line 182: Warning:  #223-D: function "adups_bl_read_flash" declared implicitly
+  			ret=adups_bl_read_flash(i*512,tmp_buffer, 512);
+  			    ^
+"../src/adups_bl_main.c", line 195: Warning:  #223-D: function "adups_bl_read_flash" declared implicitly
+  			ret=adups_bl_read_flash(i*512, tmp_buffer,total);
+  			    ^
+"../src/adups_bl_main.c", line 210: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
+  		adups_MD5_Final(adups_md5_result, &adups_md5);
+  		                ^
+"../src/adups_bl_main.c", line 211: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
+  		adups_MD5Encode(adups_md5_info, adups_md5_result, 16);
+  		                ^
+"../src/adups_bl_main.c", line 211: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
+  		adups_MD5Encode(adups_md5_info, adups_md5_result, 16);
+  		                                ^
+"../src/adups_bl_main.c", line 155: Warning:  #177-D: variable "file_temp"  was declared but never referenced
+  	int file_temp = 0;
+  	    ^
+"../src/adups_bl_main.c", line 157: Warning:  #177-D: variable "len"  was declared but never referenced
+  	uint32_t len=0;
+  	         ^
+"../src/adups_bl_main.c", line 234: Warning:  #223-D: function "adups_IsPackgeFound" declared implicitly
+  	if(!adups_IsPackgeFound())
+  	    ^
+"../src/adups_bl_main.c", line 263: Warning:  #223-D: function "adups_get_package_number" declared implicitly
+  	adups_get_package_number(&adups_delta_num);
+  	^
+"../src/adups_bl_main.c", line 292: Warning:  #223-D: function "adups_get_package_info" declared implicitly
+  		status=adups_get_package_info(&PackageInfo,adups_curr_delta);
+  		       ^
+"../src/adups_bl_main.c", line 330: Warning:  #223-D: function "adups_bl_erase_delata" declared implicitly
+  		adups_bl_erase_delata();
+  		^
+"../src/adups_bl_main.c", line 331: Warning:  #223-D: function "adups_bl_erase_backup_region" declared implicitly
+  		adups_bl_erase_backup_region();
+  		^
+"../src/adups_bl_main.c", line 344: Warning:  #223-D: function "after_updater_success" declared implicitly
+  		after_updater_success();
+  		^
+"../src/adups_bl_main.c", line 359: Warning:  #223-D: function "adups_bl_erase_backup_region" declared implicitly
+  		adups_bl_erase_backup_region();	
+  		^
+"../src/adups_bl_main.c", line 226: Warning:  #177-D: variable "i"  was declared but never referenced
+  	adups_uint8 i;
+  	            ^
+"../src/adups_bl_main.c", line 228: Warning:  #177-D: variable "ret"  was declared but never referenced
+  	int ret;
+  	    ^
+"../src/adups_bl_main.c", line 20: Warning:  #177-D: variable "adups_bl_debug_switch"  was declared but never referenced
+  static adups_int32 adups_bl_debug_switch = 0;
+                     ^
+../src/adups_bl_main.c: 26 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../src/sdcard.c", line 292: Warning:  #223-D: function "Ningbo_Ldo_9_set_1_8" declared implicitly
+          Ningbo_Ldo_9_set_1_8();
+          ^
+"../src/sdcard.c", line 300: Warning:  #223-D: function "Guilin_Ldo_6_set_1_8" declared implicitly
+          Guilin_Ldo_6_set_1_8();
+          ^
+"../src/sdcard.c", line 310: Warning:  #223-D: function "Ningbo_Ldo_9_set_3_3" declared implicitly
+  	 	Ningbo_Ldo_9_set_3_3();
+  	 	^
+"../src/sdcard.c", line 319: Warning:  #223-D: function "Guilin_Ldo_6_set_2_8" declared implicitly
+          Guilin_Ldo_6_set_2_8();
+          ^
+"../src/sdcard.c", line 337: Warning:  #223-D: function "eeSDDump_status_get" declared implicitly
+  	 return eeSDDump_status_get();
+  	        ^
+"../src/sdcard.c", line 698: Warning:  #223-D: function "sdcard_get_mode" declared implicitly
+  	if(sdcard_get_mode() == CARD_MODE_INT)
+  	   ^
+"../src/sdcard.c", line 672: Warning:  #177-D: variable "status"  was declared but never referenced
+  	OSA_STATUS status;
+  	           ^
+"../src/sdcard.c", line 833: Warning:  #223-D: function "sdcard_get_mode" declared implicitly
+  	if(sdcard_get_mode() == CARD_MODE_INT)
+  	   ^
+"../src/sdcard.c", line 754: Warning:  #177-D: variable "ptr16"  was declared but never referenced
+  	volatile UINT16* ptr16;
+  	                 ^
+"../src/sdcard.c", line 759: Warning:  #177-D: variable "status"  was declared but never referenced
+  	OSA_STATUS status;
+  	           ^
+"../src/sdcard.c", line 982: Warning:  #175-D: subscript out of range
+  	csd_struct  = 
+NSTUFF_BITS(resp, 126, 2);
+  	              ^
+"../src/sdcard.c", line 1016: Warning:  #177-D: variable "ocr"  was declared but never referenced
+  	UINT32             ocr = 0;
+  	                   ^
+"../src/sdcard.c", line 1017: Warning:  #177-D: variable "count"  was declared but never referenced
+      UINT32           count = 0;
+                       ^
+"../src/sdcard.c", line 1032: Warning:  #177-D: variable "ocr"  was declared but never referenced
+  	UINT32             ocr = 0;
+  	                   ^
+"../src/sdcard.c", line 1033: Warning:  #177-D: variable "count"  was declared but never referenced
+      UINT32           count = 0;
+                       ^
+"../src/sdcard.c", line 1047: Warning:  #177-D: variable "ocr"  was declared but never referenced
+  	UINT32             ocr = 0;
+  	                   ^
+"../src/sdcard.c", line 1471: Warning:  #550-D: variable "ptr16"  was set but never used
+      volatile UINT16* ptr16;
+                       ^
+"../src/sdcard.c", line 1533: Warning:  #223-D: function "sdcard_set_mode" declared implicitly
+      sdcard_set_mode(CARD_MODE_INT);
+      ^
+"../src/sdcard.c", line 1552: Warning:  #546-D: transfer of control bypasses initialization of:
+            variable "res"  (declared at line 1579)
+  		goto RE_INIT_ERR;
+  		^
+"../src/sdcard.c", line 1560: Warning:  #546-D: transfer of control bypasses initialization of:
+            variable "res"  (declared at line 1579)
+  		goto RE_INIT_ERR;
+  		^
+"../src/sdcard.c", line 1516: Warning:  #177-D: variable "value"  was declared but never referenced
+      UINT16 value;
+             ^
+"../src/sdcard.c", line 1645: Warning:  #159-D: declaration is incompatible with previous "sdcard_get_mode"  (declared at line 698)
+  UINT32 sdcard_get_mode(void)
+         ^
+"../src/sdcard.c", line 1650: Warning:  #159-D: declaration is incompatible with previous "sdcard_set_mode"  (declared at line 1533)
+  UINT32 sdcard_set_mode(UINT32 mode)
+         ^
+"../src/sdcard.c", line 1897: Warning:  #223-D: function "Ningbo_Ldo_9_set_2_8" declared implicitly
+          Ningbo_Ldo_9_set_2_8();
+          ^
+"../src/sdcard.c", line 1898: Warning:  #223-D: function "Ningbo_Ldo_9_set" declared implicitly
+          Ningbo_Ldo_9_set(TRUE);//SDIO
+          ^
+"../src/sdcard.c", line 1899: Warning:  #223-D: function "Ningbo_Ldo_4_set_2_8" declared implicitly
+          Ningbo_Ldo_4_set_2_8();
+          ^
+"../src/sdcard.c", line 1900: Warning:  #223-D: function "Ningbo_Ldo_4_set" declared implicitly
+          Ningbo_Ldo_4_set(TRUE);//SDCARD
+          ^
+"../src/sdcard.c", line 1904: Warning:  #223-D: function "GuilinLite_Ldo_7_set_2_8" declared implicitly
+          GuilinLite_Ldo_7_set_2_8();
+          ^
+"../src/sdcard.c", line 1905: Warning:  #223-D: function "GuilinLite_Ldo_7_set" declared implicitly
+          GuilinLite_Ldo_7_set(TRUE);//SDIO
+          ^
+"../src/sdcard.c", line 1911: Warning:  #223-D: function "Guilin_Ldo_6_set_2_8" declared implicitly
+          Guilin_Ldo_6_set_2_8();
+          ^
+"../src/sdcard.c", line 1912: Warning:  #223-D: function "Guilin_Ldo_6_set" declared implicitly
+          Guilin_Ldo_6_set(TRUE);//SDIO
+          ^
+"../src/sdcard.c", line 1923: Warning:  #223-D: function "Ningbo_Ldo_4_set" declared implicitly
+          Ningbo_Ldo_4_set(FALSE);//SDCARD
+          ^
+"../src/sdcard.c", line 1924: Warning:  #223-D: function "Ningbo_Ldo_9_set" declared implicitly
+          Ningbo_Ldo_9_set(FALSE);//SDIO
+          ^
+"../src/sdcard.c", line 1928: Warning:  #223-D: function "GuilinLite_Ldo_7_set" declared implicitly
+          GuilinLite_Ldo_7_set(FALSE);//SDIO
+          ^
+"../src/sdcard.c", line 1933: Warning:  #223-D: function "Guilin_Ldo_6_set" declared implicitly
+          Guilin_Ldo_6_set(FALSE);//SDIO
+          ^
+"../src/sdcard.c", line 2089: Warning:  #223-D: function "malloc" declared implicitly
+  	char *bufr = malloc(512);
+  	             ^
+"../src/sdcard.c", line 2089: Warning:  #144-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+  	char *bufr = malloc(512);
+  	             ^
+"../src/sdcard.c", line 2092: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "UINT32"
+  	r = sdcard_read_singleblk(
+D1_HOST_CTRL_ADDR, bufr, 0);
+  	                                              ^
+"../src/sdcard.c", line 2099: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "UINT32"
+  	    r = sdcard_read_singleblk(
+D1_HOST_CTRL_ADDR, bufr, 0);
+  	                                                  ^
+"../src/sdcard.c", line 2106: Warning:  #223-D: function "free" declared implicitly
+  	free(bufr);
+  	^
+"../src/sdcard.c", line 2042: Warning:  #546-D: transfer of control bypasses initialization of:
+            variable "bufr"  (declared at line 2089)
+          goto SD_Handle_Err;
+          ^
+"../src/sdcard.c", line 2057: Warning:  #546-D: transfer of control bypasses initialization of:
+            variable "bufr"  (declared at line 2089)
+  		goto SD_Handle_Err;
+  		^
+"../src/sdcard.c", line 1952: Warning:  #177-D: variable "fnnum"  was declared but never referenced
+      int       fnnum = 0;
+                ^
+"../src/sdcard.c", line 2111: Warning:  #177-D: variable "res2"  was declared but never referenced
+  	FRESULT res, res2;
+  	             ^
+"../src/sdcard.c", line 2160: Warning:  #167-D: argument of type "UINT32" is incompatible with parameter of type "void *"
+  	CacheInvalidateMemory(buffer, 0x200*blk_cnt);
+  	                      ^
+"../src/sdcard.c", line 2148: Warning:  #177-D: variable "status"  was declared but never referenced
+  	OSA_STATUS status;
+  	           ^
+"../src/sdcard.c", line 2322: Warning:  #167-D: argument of type "UINT32" is incompatible with parameter of type "void *"
+  	CacheInvalidateMemory(buffer, 0x200);
+  	                      ^
+"../src/sdcard.c", line 2310: Warning:  #177-D: variable "status"  was declared but never referenced
+  	OSA_STATUS status;
+  	           ^
+"../src/sdcard.c", line 2499: Warning:  #167-D: argument of type "UINT32" is incompatible with parameter of type "void *"
+  	CacheCleanMemory(buffer, 0x200*blk_cnt);
+  	                 ^
+"../src/sdcard.c", line 2486: Warning:  #177-D: variable "status"  was declared but never referenced
+  	OSA_STATUS status;
+  	           ^
+"../src/sdcard.c", line 2684: Warning:  #167-D: argument of type "UINT32" is incompatible with parameter of type "void *"
+  	CacheCleanMemory(buffer, 0x200);
+  	                 ^
+"../src/sdcard.c", line 2671: Warning:  #177-D: variable "status"  was declared but never referenced
+  	OSA_STATUS status;
+  	           ^
+"../src/sdcard.c", line 93: Warning:  #177-D: variable "SdcardHISR"  was declared but never referenced
+  static OS_HISR						SdcardInsertHISR;
+                						                ^
+"../src/sdcard.c", line 94: Warning:  #177-D: variable "SdcardInsertHISR"  was declared but never referenced
+  static OS_HISR						SdcardRemoveHISR;
+                						^
+"../src/sdcard.c", line 95: Warning:  #177-D: variable "SdcardRemoveHISR"  was declared but never referenced
+  
+  ^
+"../src/sdcard.c", line 99: Warning:  #177-D: variable "SDDATAHISR"  was declared but never referenced
+  
+  ^
+"../src/sdcard.c", line 105: Warning:  #550-D: variable "sdcard_reinitialized"  was set but never used
+  static UINT8 		  SD_CMD_BufferReady = 0;
+               		 ^
+"../src/sdcard.c", line 107: Warning:  #177-D: variable "SD_ERR_INTSTATUS"  was declared but never referenced
+  
+  ^
+"../src/sdcard.c", line 121: Warning:  #550-D: variable "gSDRecordTime"  was set but never used
+  static int ee_sd_dump_status_g = 1;
+                ^
+"../src/sdcard.c", line 382: Warning:  #177-D: function "sdcard_readb"  was declared but never referenced
+  static UINT8 sdcard_readb(UINT32 base, UINT32 reg)
+               ^
+"../src/sdcard.c", line 511: Warning:  #177-D: function "SdCard_SW_ResetData"  was declared but never referenced
+  static UINT32 SdCard_SW_ResetData(UINT32 base_addr)
+                ^
+"../src/sdcard.c", line 547: Warning:  #177-D: function "SdCard_SW_ResetCmd"  was declared but never referenced
+  static UINT32 SdCard_SW_ResetCmd(UINT32 base_addr)
+                ^
+"../src/sdcard.c", line 620: Warning:  #177-D: function "SdCard_SW_Reset_All"  was declared but never referenced
+  static UINT32 SdCard_SW_Reset_All(UINT32 base_addr)
+                ^
+"../src/sdcard.c", line 1319: Warning:  #177-D: function "sdcard_enable_highspeed"  was declared but never referenced
+  static int sdcard_enable_highspeed(void)
+             ^
+"../src/sdcard.c", line 1509: Warning:  #550-D: variable "sdcard_try_1_mode"  was set but never used
+  static int sdcard_try_1_mode = 0;
+             ^
+"../src/sdcard.c", line 1510: Warning:  #177-D: variable "sdcard_cmd_test_end"  was declared but never referenced
+  static int sdcard_cmd_test_end = 0;
+             ^
+"../src/sdcard.c", line 1821: Warning:  #177-D: function "SdCard_Tune_Clock"  was declared but never referenced
+  static void SdCard_Tune_Clock(UINT32 base_addr)
+              ^
+../src/sdcard.c: 70 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/diskio.c", line 32: Warning:  #177-D: variable "result"  was declared but never referenced
+  	int result;
+  	    ^
+"../src/diskio.c", line 72: Warning:  #177-D: variable "result"  was declared but never referenced
+  	int result;
+  	    ^
+"../src/diskio.c", line 115: Warning:  #223-D: function "sdcard_get_blknum" declared implicitly
+      if (sector > sdcard_get_blknum() || (sector + count) > sdcard_get_blknum()) {
+                   ^
+"../src/diskio.c", line 120: Warning:  #223-D: function "eeGetSystemAssertFlag" declared implicitly
+  	if(eeGetSystemAssertFlag()==TRUE)
+  	   ^
+"../src/diskio.c", line 123: Warning:  #223-D: function "sdcard_read_singleblk" declared implicitly
+  				ret = sdcard_read_singleblk(base, align_buf, sector);
+  				      ^
+"../src/diskio.c", line 125: Warning:  #167-D: argument of type "UINT8 *" is incompatible with parameter of type "UINT32"
+  				ret = sdcard_read_multiblks(base, align_buf, sector, count);
+  				                                  ^
+"../src/diskio.c", line 130: Warning:  #223-D: function "sdcard_read_singleblk" declared implicitly
+  				ret = sdcard_read_singleblk(base, buff,sector);
+  				      ^
+"../src/diskio.c", line 132: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "UINT32"
+  				ret = sdcard_read_multiblks(base, buff, sector, count);
+  				                                  ^
+"../src/diskio.c", line 179: Warning:  #167-D: argument of type "BYTE *" is incompatible with parameter of type "char *"
+  		result = MMC_disk_read(buff, sector, count);
+  		                       ^
+"../src/diskio.c", line 205: Warning:  #111-D: statement is unreachable
+  	return RES_PARERR;
+  	^
+"../src/diskio.c", line 164: Warning:  #177-D: variable "base"  was declared but never referenced
+      UINT base = SD1_HOST_CTRL_ADDR;
+           ^
+"../src/diskio.c", line 225: Warning:  #223-D: function "sdcard_get_blknum" declared implicitly
+      if (sector > sdcard_get_blknum() || (sector + count) > sdcard_get_blknum()) {
+                   ^
+"../src/diskio.c", line 228: Warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+  		       ^
+"../src/diskio.c", line 231: Warning:  #223-D: function "eeGetSystemAssertFlag" declared implicitly
+  	if(eeGetSystemAssertFlag()==TRUE)
+  	   ^
+"../src/diskio.c", line 235: Warning:  #223-D: function "sdcard_write_singleblk" declared implicitly
+  			ret =  sdcard_write_singleblk(base, align_buf, sector);
+  			       ^
+"../src/diskio.c", line 237: Warning:  #167-D: argument of type "UINT8 *" is incompatible with parameter of type "UINT32"
+  			ret = sdcard_write_multiblks(base, align_buf, sector, count);
+  			                                   ^
+"../src/diskio.c", line 242: Warning:  #223-D: function "sdcard_write_singleblk" declared implicitly
+  			ret = sdcard_write_singleblk(base, buff, sector);
+  			      ^
+"../src/diskio.c", line 244: Warning:  #167-D: argument of type "void *" is incompatible with parameter of type "UINT32"
+  			ret = sdcard_write_multiblks(base, buff, sector, count);
+  			                                   ^
+"../src/diskio.c", line 330: Warning:  #167-D: argument of type "const BYTE *" is incompatible with parameter of type "void *"
+  		result = MMC_disk_write(buff, sector, count);
+  		                        ^
+"../src/diskio.c", line 354: Warning:  #127-D: expected a statement
+  	}
+  	^
+"../src/diskio.c", line 390: Warning:  #223-D: function "sdcard_get_blknum" declared implicitly
+  			*(DWORD *)buff = sdcard_get_blknum();
+  			                 ^
+"../src/diskio.c", line 447: Warning:  #111-D: statement is unreachable
+  	return RES_PARERR;
+  	^
+"../src/diskio.c", line 373: Warning:  #177-D: variable "result"  was declared but never referenced
+  	int result;
+  	    ^
+"../src/diskio.c", line 458: Warning:  #61-D: integer operation result is out of range
+  	t =  (2019)<<25 | 5<<21 | 24<<16 | 12<<11 | 12<<5 | 12;
+  	             ^
+"../src/diskio.c", line 106: Warning:  #550-D: variable "sd_full_status"  was set but never used
+  static UINT8 sd_full_status = 0;
+               ^
+../src/diskio.c: 25 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/ff.c", line 451: Warning:  #1278-D: excess initializers are ignored
+  static const char* const VolumeStr[
+F_VOLUMES] = {
+F_VOLUME_STRS};	/* Pre-defined volume ID */
+                                                    ^
+"../src/ff.c", line 3517: Warning:  #223-D: function "uart_printf" declared implicitly
+  	
+atal_printf("%s: vol:%d\n", __func__, vol);
+  	^
+../src/ff.c: 2 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/ff_dump_mem.c", line 82: Warning:  #236-D: controlling expression is constant
+          if(mallco_dev.memmap)used++;
+             ^
+"../src/ff_dump_mem.c", line 221: Warning:  #1-D: last line of file ends without a newline
+  #endif
+        ^
+"../src/ff_dump_mem.c", line 53: Warning:  #177-D: function "ff_dump_memcpy"  was declared but never referenced
+  static void ff_dump_memcpy(void *des,void *src,unsigned int n)  
+              ^
+../src/ff_dump_mem.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/lcd_test.h", line 201: Warning:  #47-D: incompatible redefinition of macro "OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET"  (declared at line 139)
+  #define OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET    (OTA_PROGRESS_BAR_CHINESE_TEXT_HEIGHT_OFFSET - ENGLISH_HEIGHT)
+          ^
+"../../common/inc/lcd_test_data.h", line 178: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[5+27],
+  	^
+"../../common/inc/lcd_test_data.h", line 179: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[6+27],
+  	^
+"../../common/inc/lcd_test_data.h", line 180: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[7+27],
+  	^
+"../../common/inc/lcd_test_data.h", line 181: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[8+27],
+  	^
+"../../common/inc/lcd_test_data.h", line 187: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[0+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 188: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[1+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 189: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[2+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 190: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[15+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 191: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[3+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 192: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[4+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 193: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[5+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 199: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[6+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 200: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[7+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 201: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[0+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 202: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[1+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 203: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[5+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 210: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[0+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 211: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[1+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 212: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[8+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 213: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[9+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 219: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[0+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 220: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[1+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 221: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[10+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 222: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[11+11],
+  	^
+"../../common/inc/lcd_test_data.h", line 231: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[12+11],		/*"鏇?",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 232: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[13+11],		/*"鏂?",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 233: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[14+11],		/*"锛?",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 239: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[0],		/*"0",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 240: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[1],		/*"1",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 241: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[2],		/*"2",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 242: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[3],		/*"3",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 243: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[4],		/*"4",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 244: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[5],		/*"5",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 245: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[6],		/*"6",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 246: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[7],		/*"7",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 247: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[8],		/*"8",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 248: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[9],		/*"9",*/
+  	^
+"../../common/inc/lcd_test_data.h", line 249: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "const uint8_t (*)[72]"
+  	CHINESE_BITMAP[10],		/*"%",*/
+  	^
+"../../common/src/lcd_test.c", line 152: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						&dataptr_OTA_TIPS_CHINESE_TEXT1[i][0][j*OneChineseLineBytes], p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 161: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						&dataptr_OTA_STATUS_CHINESE_PRE_TEXT1[i][0][j*OneChineseLineBytes], p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 170: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						&dataptr_OTA_STATUS_CHINESE_UPGRADING_TEXT2[i][0][j*OneChineseLineBytes], p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 179: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						&dataptr_OTA_STATUS_CHINESE_RES_TEXT3[i][0][j*OneChineseLineBytes], p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 188: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						&dataptr_OTA_STATUS_CHINESE_RES_TEXT4[i][0][j*OneChineseLineBytes], p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 197: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						&dataptr_OTA_PROGRESS_BAR_CHINESE_TEXT[i][0][j*OneChineseLineBytes], p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 211: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						(&dataptr_progress_bar_num[hundreds][0][j*OneChineseLineBytes]), p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 217: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  						(&dataptr_progress_bar_num[tens][0][j*OneChineseLineBytes]), p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  						^
+"../../common/src/lcd_test.c", line 222: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  					(&dataptr_progress_bar_num[units][0][j*OneChineseLineBytes]), p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);
+  					^
+"../../common/src/lcd_test.c", line 226: Warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
+  					(&dataptr_progress_bar_num[
+ER_CENT_OFFSET][0][j*OneChineseLineBytes]), p_ota_display_info->LcdWidth,p_ota_display_info->p_FrameBuffer,p_ota_display_info->TextColor);			
+  					^
+"../../common/src/lcd_test.c", line 119: Warning:  #550-D: variable "OneChineseBytes"  was set but never used
+  	uint16_t OneChineseBytes;
+  	         ^
+"../../common/src/lcd_test.c", line 256: Warning:  #177-D: variable "chinese_len"  was declared but never referenced
+  	UINT16 chinese_len;
+  	       ^
+"../../common/src/lcd_test.c", line 258: Warning:  #177-D: variable "hundreds"  was declared but never referenced
+  	INT32 hundreds,tens,units;
+  	      ^
+"../../common/src/lcd_test.c", line 258: Warning:  #177-D: variable "tens"  was declared but never referenced
+  	INT32 hundreds,tens,units;
+  	               ^
+"../../common/src/lcd_test.c", line 258: Warning:  #177-D: variable "units"  was declared but never referenced
+  	INT32 hundreds,tens,units;
+  	                    ^
+"../../common/src/lcd_test.c", line 403: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_ota_display_info->text_height_offset[0] = 
+TA_TIPS_CHINESE_TEXT1_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 409: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_ota_display_info->text_height_offset[0] = 
+TA_STATUS_CHINESE_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 415: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_ota_display_info->text_height_offset[0] = 
+TA_STATUS_CHINESE_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 421: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_ota_display_info->text_height_offset[0] = 
+TA_STATUS_CHINESE_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 427: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_ota_display_info->text_height_offset[0] = 
+TA_STATUS_CHINESE_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 474: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[0] = 
+TA_TIPS_TEXT1_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 477: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[1] = 
+TA_TIPS_TEXT2_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 483: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[0] = 
+TA_STATUS_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 489: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[0] = 
+TA_STATUS_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 495: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[0] = 
+TA_STATUS_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 501: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[0] = 
+TA_STATUS_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 506: Warning:  #68-D: integer conversion resulted in a change of sign
+  			p_lcd_display_info->text_height_offset[0] = 
+TA_STATUS_ADDITIONAL_HEIGHT_OFFSET;
+  			                                            ^
+"../../common/src/lcd_test.c", line 460: Warning:  #550-D: variable "lcd_width"  was set but never used
+  	UINT16 lcd_width;
+  	       ^
+"../../common/src/lcd_test.c", line 461: Warning:  #550-D: variable "lcd_height"  was set but never used
+  	UINT16 lcd_height;
+  	       ^
+"../../common/src/lcd_test.c", line 569: Warning:  #513-D: a value of type "const char *" cannot be assigned to an entity of type "char *"
+  		 ota_display_info.p_text_buf[0] = p_addtional_text;
+  		                                ^
+../../common/src/lcd_test.c: 69 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/NSSP.h", line 102: Warning:  #1-D: last line of file ends without a newline
+  #endif
+        ^
+"../../common/src/ssp_host.c", line 189: Warning:  #223-D: function "udelay" declared implicitly
+  			udelay(1);
+  			^
+"../../common/src/ssp_host.c", line 199: Warning:  #61-D: integer operation result is out of range
+  			
+MUM->ISCCRX[1] |= (
+YSCLK_EN | BITCLK_EN);
+  			                    ^
+"../../common/src/ssp_host.c", line 428: Warning:  #223-D: function "udelay" declared implicitly
+  	udelay(5);
+  	^
+"../../common/src/ssp_host.c", line 435: Warning:  #177-D: variable "reg"  was declared but never referenced
+  	uint32_t reg;
+  	         ^
+../../common/src/ssp_host.c: 5 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/NSSP.h", line 102: Warning:  #1-D: last line of file ends without a newline
+  #endif
+        ^
+"../../common/inc/spi_nor.h", line 7: Warning:  #47-D: incompatible redefinition of macro "BIT"  (declared at line 125 of "../../common/inc/common.h")
+  #define BIT(n) (1<<(n))
+          ^
+"../../common/inc/spi_nor.h", line 69: Warning:  #47-D: incompatible redefinition of macro "ARRAY_SIZE"  (declared at line 41 of "../../common/inc/common.h")
+  #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
+          ^
+"../../common/src/asr_nor_flash.c", line 124: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "unsigned int"
+  		asr3601s_spinor_do_read(addr,buf_addr,size);
+  		                             ^
+"../../common/src/asr_nor_flash.c", line 128: Warning:  #186-D: pointless comparison of unsigned integer with zero
+  		if((addr <0)||((addr+size)>chip->size)){
+  		         ^
+"../../common/src/asr_nor_flash.c", line 150: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "unsigned int"
+  		asr3601s_spinor_do_write(addr,buf_addr,size);
+  		                              ^
+"../../common/src/asr_nor_flash.c", line 154: Warning:  #186-D: pointless comparison of unsigned integer with zero
+  		if((addr <0)||((addr+size)>chip->size)){
+  		         ^
+"../../common/src/asr_nor_flash.c", line 182: Warning:  #167-D: argument of type "uint32_t" is incompatible with parameter of type "const void *__restrict__"
+  		memcpy(buf_addr,addr,size);
+  		                ^
+"../../common/src/asr_nor_flash.c", line 175: Warning:  #177-D: variable "buf"  was declared but never referenced
+  	uint8_t *buf;	
+  	         ^
+"../../common/src/asr_nor_flash.c", line 219: Warning:  #177-D: variable "write_size"  was declared but never referenced
+  	int write_size;
+  	    ^
+"../../common/src/asr_nor_flash.c", line 301: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+     asr_norflash_read(flash_Addr,temp,size);
+                                  ^
+"../../common/src/asr_nor_flash.c", line 357: Warning:  #167-D: argument of type "unsigned int" is incompatible with parameter of type "uint8_t *"
+  			Retval = asr_norflash_write(flash_Addr  + index, (unsigned int)temp, 
+LASH_SECTOR_SIZE);
+  			                                                 ^
+"../../common/src/asr_nor_flash.c", line 375: Warning:  #167-D: argument of type "unsigned int" is incompatible with parameter of type "uint8_t *"
+  			Retval = asr_norflash_write(flash_Addr  + index, (unsigned int)temp, 
+LASH_SECTOR_SIZE);
+  			                                                 ^
+"../../common/src/asr_nor_flash.c", line 395: Warning:  #167-D: argument of type "unsigned int" is incompatible with parameter of type "uint8_t *"
+  		Retval = asr_norflash_write(flash_Addr  + index, (unsigned int)temp, 
+LASH_BLOCK_SIZE);
+  		                                                 ^
+"../../common/src/asr_nor_flash.c", line 411: Warning:  #167-D: argument of type "unsigned int" is incompatible with parameter of type "uint8_t *"
+  		Retval = asr_norflash_write(flash_Addr  + index, (unsigned int)temp, 
+LASH_SECTOR_SIZE);
+  		                                                 ^
+"../../common/src/asr_nor_flash.c", line 431: Warning:  #167-D: argument of type "unsigned int" is incompatible with parameter of type "uint8_t *"
+  		Retval = asr_norflash_write(flash_Addr  + index, (unsigned int)temp, 
+LASH_SECTOR_SIZE);
+  		                                                 ^
+"../../common/src/asr_nor_flash.c", line 445: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "UINT32"
+  	Retval=FlashData_Check(buf,tempsize,flash_Addr);
+  	                       ^
+"../../common/src/asr_nor_flash.c", line 453: Warning:  #223-D: function "mdelay" declared implicitly
+  		mdelay((i+1)*10*1000);
+  		^
+"../../common/src/asr_nor_flash.c", line 468: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	asr_norflash_read(get_fota_param_start_addr(), fota_magic_buffer, 4096);
+  	                                               ^
+"../../common/src/asr_nor_flash.c", line 471: Warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	asr_norflash_write(get_fota_param_start_addr(), fota_magic_buffer, 4096);
+  	                                                ^
+"../../common/src/asr_nor_flash.c", line 480: Warning:  #223-D: function "get_fota_pkg_end_addr" declared implicitly
+  	lenth=get_fota_pkg_end_addr()-get_fota_pkg_start_addr();
+  	      ^
+../../common/src/asr_nor_flash.c: 21 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/NSSP.h", line 102: Warning:  #1-D: last line of file ends without a newline
+  #endif
+        ^
+"../../common/inc/spi_nor.h", line 7: Warning:  #47-D: incompatible redefinition of macro "BIT"  (declared at line 125 of "../../common/inc/common.h")
+  #define BIT(n) (1<<(n))
+          ^
+"../../common/inc/spi_nor.h", line 69: Warning:  #47-D: incompatible redefinition of macro "ARRAY_SIZE"  (declared at line 41 of "../../common/inc/common.h")
+  #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
+          ^
+"../../common/src/spi_nor.c", line 92: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "uint8_t *"
+      uint8_t *tx_buffer = cmd->tx_buf;
+                           ^
+"../../common/src/spi_nor.c", line 96: Warning:  #223-D: function "spi_xmit_start" declared implicitly
+      spi_xmit_start(port_index);
+      ^
+"../../common/src/spi_nor.c", line 99: Warning:  #223-D: function "spi_xmit_data" declared implicitly
+          spi_xmit_data(port_index, cmd->cmdtmp[i]);
+          ^
+"../../common/src/spi_nor.c", line 105: Warning:  #223-D: function "spi_recv_data" declared implicitly
+          dummy = spi_recv_data(port_index);
+                  ^
+"../../common/src/spi_nor.c", line 109: Warning:  #223-D: function "spi_xmit_data" declared implicitly
+          spi_xmit_data(port_index, tx_buffer[i]);
+          ^
+"../../common/src/spi_nor.c", line 115: Warning:  #223-D: function "spi_recv_data" declared implicitly
+          dummy = spi_recv_data(port_index);
+                  ^
+"../../common/src/spi_nor.c", line 88: Warning:  #550-D: variable "dummy"  was set but never used
+      uint8_t dummy;
+              ^
+"../../common/src/spi_nor.c", line 203: Warning:  #223-D: function "spi_xmit_start" declared implicitly
+  	spi_xmit_start(port_index);
+  	^
+"../../common/src/spi_nor.c", line 206: Warning:  #223-D: function "spi_dss_switch" declared implicitly
+  	spi_dss_switch(port_index,SPI_DSS8);
+  	^
+"../../common/src/spi_nor.c", line 208: Warning:  #223-D: function "spi_xmit_data" declared implicitly
+  		spi_xmit_data(port_index, cmd->cmdtmp[i]);
+  		^
+"../../common/src/spi_nor.c", line 214: Warning:  #223-D: function "spi_recv_data" declared implicitly
+  		dummy = spi_recv_data(port_index);
+  		        ^
+"../../common/src/spi_nor.c", line 219: Warning:  #223-D: function "spi_xmit_data" declared implicitly
+  		spi_xmit_data(port_index, 0x5A);
+  		^
+"../../common/src/spi_nor.c", line 225: Warning:  #223-D: function "spi_recv_data" declared implicitly
+  		rx_buffer[i] = spi_recv_data(port_index);
+  		               ^
+"../../common/src/spi_nor.c", line 194: Warning:  #550-D: variable "dummy"  was set but never used
+  	uint8_t dummy = 0;
+  	        ^
+"../../common/src/spi_nor.c", line 196: Warning:  #177-D: variable "rx_len"  was declared but never referenced
+  	int rx_len = cmd->n_rx;
+  	    ^
+"../../common/src/spi_nor.c", line 237: Warning:  #144-D: a value of type "const uint8_t *" cannot be used to initialize an entity of type "uint8_t *"
+      uint8_t *tx_buffer = cmd->tx_buf;
+                           ^
+"../../common/src/spi_nor.c", line 243: Warning:  #223-D: function "spi_disable_ssp" declared implicitly
+      spi_disable_ssp(port_index);
+      ^
+"../../common/src/spi_nor.c", line 244: Warning:  #223-D: function "spi_xmit_config" declared implicitly
+      spi_xmit_config(port_index, cmd->mode); 
+      ^
+"../../common/src/spi_nor.c", line 265: Warning:  #223-D: function "spi_xmit_start" declared implicitly
+          spi_xmit_start(port_index);
+          ^
+"../../common/src/spi_nor.c", line 270: Warning:  #223-D: function "spi_xmit_data" declared implicitly
+              spi_xmit_data(port_index, *tx_buffer++);
+              ^
+"../../common/src/spi_nor.c", line 283: Warning:  #223-D: function "spi_recv_data" declared implicitly
+                      dummy = spi_recv_data(port_index);
+                              ^
+"../../common/src/spi_nor.c", line 286: Warning:  #223-D: function "spi_recv_data" declared implicitly
+                      *rx_buffer++ = spi_recv_data(port_index);
+                                     ^
+"../../common/src/spi_nor.c", line 290: Warning:  #223-D: function "spi_recv_data" declared implicitly
+                  dummy = spi_recv_data(port_index);
+                          ^
+"../../common/src/spi_nor.c", line 296: Warning:  #223-D: function "spi_xmit_stop" declared implicitly
+              spi_xmit_stop(port_index);
+              ^
+"../../common/src/spi_nor.c", line 304: Warning:  #223-D: function "spi_xmit_stop" declared implicitly
+  	spi_xmit_stop(ssp_index);
+  	^
+"../../common/src/spi_nor.c", line 239: Warning:  #550-D: variable "dummy"  was set but never used
+      uint32_t dummy;
+               ^
+"../../common/src/spi_nor.c", line 386: Warning:  #177-D: variable "i"  was declared but never referenced
+  	uint32_t i=0;
+  	         ^
+"../../common/src/spi_nor.c", line 710: Warning:  #513-D: a value of type "uint32_t *" cannot be assigned to an entity of type "const uint8_t *"
+  	cmd.tx_buf = buffer;
+  	           ^
+"../../common/src/spi_nor.c", line 693: Warning:  #177-D: variable "i"  was declared but never referenced
+      unsigned int i, convert_size;
+                   ^
+"../../common/src/spi_nor.c", line 693: Warning:  #177-D: variable "convert_size"  was declared but never referenced
+      unsigned int i, convert_size;
+                      ^
+"../../common/src/spi_nor.c", line 749: Warning:  #513-D: a value of type "uint32_t *" cannot be assigned to an entity of type "uint8_t *"
+  	cmd.rx_buf = buffer;
+  	           ^
+"../../common/src/spi_nor.c", line 781: Warning:  #167-D: argument of type "uint32_t" is incompatible with parameter of type "uint32_t *"
+  		Retval = spinor_cache_read(chip, FlashOffset, Buffer, read_size);
+  		                                              ^
+"../../common/src/spi_nor.c", line 758: Warning:  #177-D: variable "i"  was declared but never referenced
+  	int i=1;
+  	    ^
+"../../common/src/spi_nor.c", line 759: Warning:  #177-D: variable "port_index"  was declared but never referenced
+      int port_index = ssp_index;
+          ^
+"../../common/src/spi_nor.c", line 809: Warning:  #167-D: argument of type "uint32_t" is incompatible with parameter of type "uint32_t *"
+  			Retval = spinor_program_load(chip, addr, Buffer, 
+AGE_SIZE);
+  			                                         ^
+"../../common/src/spi_nor.c", line 817: Warning:  #167-D: argument of type "uint32_t" is incompatible with parameter of type "uint32_t *"
+  			Retval = spinor_program_load(chip, addr, Buffer, write_size);
+  			                                         ^
+"../../common/src/spi_nor.c", line 794: Warning:  #177-D: variable "i"  was declared but never referenced
+  	uint32_t Retval, i, total_size, write_size, status;
+  	                 ^
+"../../common/src/spi_nor.c", line 794: Warning:  #177-D: variable "total_size"  was declared but never referenced
+  	uint32_t Retval, i, total_size, write_size, status;
+  	                    ^
+"../../common/src/spi_nor.c", line 794: Warning:  #177-D: variable "status"  was declared but never referenced
+  	uint32_t Retval, i, total_size, write_size, status;
+  	                                            ^
+"../../common/src/spi_nor.c", line 795: Warning:  #177-D: variable "buff"  was declared but never referenced
+  	uint32_t *buff = (uint32_t *) Buffer;
+  	          ^
+"../../common/src/spi_nor.c", line 925: Warning:  #223-D: function "ssp_port_init" declared implicitly
+  	ssp_port_init(ssp_index, clk, 1);
+  	^
+"../../common/src/spi_nor.c", line 926: Warning:  #223-D: function "ssp_init_master" declared implicitly
+  	ssp_init_master(ssp_index, clk,1);
+  	^
+"../../common/src/spi_nor.c", line 933: Warning:  #513-D: a value of type "const struct spinor_cmd_cfg *" cannot be assigned to an entity of type "struct spinor_cmd_cfg *"
+  		cmd_cfg = spinor_get_cmd_info_by_name(name);
+  		        ^
+"../../common/src/spi_nor.c", line 938: Warning:  #513-D: a value of type "const struct spinor_cmd_cfg *" cannot be assigned to an entity of type "struct spinor_cmd_cfg *"
+  		cmd_cfg = spinor_get_cmd_info_by_jedecId(id);
+  		        ^
+"../../common/src/spi_nor.c", line 943: Warning:  #120-D: return value type does not match the function type
+  		return -1;
+  		       ^
+"../../common/src/spi_nor.c", line 943: Warning:  #152-D: conversion of nonzero integer to pointer
+  		return -1;
+  		       ^
+"../../common/src/spi_nor.c", line 947: Warning:  #513-D: a value of type "const struct nor_info *" cannot be assigned to an entity of type "struct nor_info *"
+  	chip->info = info;
+  	           ^
+"../../common/src/spi_nor.c", line 952: Warning:  #120-D: return value type does not match the function type
+  		return -1;
+  		       ^
+"../../common/src/spi_nor.c", line 952: Warning:  #152-D: conversion of nonzero integer to pointer
+  		return -1;
+  		       ^
+"../../common/src/spi_nor.c", line 919: Warning:  #550-D: variable "size"  was set but never used
+  	uint64_t size = 0;
+  	         ^
+"../../common/src/spi_nor.c", line 988: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "unsigned int"
+  	asr3601s_spinor_do_read(0x00,tmp_buf,
+EAD_SIZE);
+  	                             ^
+"../../common/src/spi_nor.c", line 996: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "unsigned int"
+  	asr3601s_spinor_do_read(0x00,tmp_buf,
+EAD_SIZE);
+  	                             ^
+"../../common/src/spi_nor.c", line 1002: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "unsigned int"
+  	asr3601s_spinor_do_write(0x00,tmp_buf,
+EAD_SIZE);
+  	                              ^
+"../../common/src/spi_nor.c", line 1004: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "unsigned int"
+  	asr3601s_spinor_do_read(0x00,tmp_buf,
+EAD_SIZE);
+  	                             ^
+"../../common/src/spi_nor.c", line 981: Warning:  #177-D: variable "ret"  was declared but never referenced
+  	int ret,i;
+  	    ^
+"../../common/src/spi_nor.c", line 981: Warning:  #177-D: variable "i"  was declared but never referenced
+  	int ret,i;
+  	        ^
+"../../common/src/spi_nor.c", line 1019: Warning:  #940-D: missing return statement at end of non-void function "asr3601s_spinor_flashinit" 
+  }
+  ^
+"../../common/src/spi_nor.c", line 1025: Warning:  #550-D: variable "ret"  was set but never used
+  	int ret = 0;
+  	    ^
+"../../common/src/spi_nor.c", line 1062: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "uint32_t"
+  	ret = spichip->ops->read(spichip, addr, size, (uint8_t *)buf_addr);
+  	                                              ^
+"../../common/src/spi_nor.c", line 1071: Warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "uint32_t"
+  	ret = spichip->ops->write(spichip, addr, size, (uint8_t *)buf_addr);
+  	                                               ^
+"../../common/src/spi_nor.c", line 1069: Warning:  #550-D: variable "ret"  was set but never used
+  	int ret = 0;
+  	    ^
+"../../common/src/spi_nor.c", line 310: Warning:  #177-D: function "spinor_reset_enable"  was declared but never referenced
+  static int spinor_reset_enable(struct spinor_chip_info *chip)
+             ^
+"../../common/src/spi_nor.c", line 577: Warning:  #177-D: function "spinor_erase_blk_32k"  was declared but never referenced
+  static int spinor_erase_blk_32k(struct spinor_chip_info *chip, int offset, int size)
+             ^
+"../../common/src/spi_nor.c", line 902: Warning:  #177-D: function "spi_nor_set_3byte_opcodes"  was declared but never referenced
+  static void spi_nor_set_3byte_opcodes(struct spinor_chip_info *chip)
+              ^
+../../common/src/spi_nor.c: 67 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/lcd_test.h", line 201: Warning:  #47-D: incompatible redefinition of macro "OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET"  (declared at line 139)
+  #define OTA_STATUS_ADDITIONAL_HEIGHT_OFFSET    (OTA_PROGRESS_BAR_CHINESE_TEXT_HEIGHT_OFFSET - ENGLISH_HEIGHT)
+          ^
+"../../common/src/lcd_var.c", line 16: Warning:  #1295-D: Deprecated declaration get_fota_param_start_addr - give arg types
+  extern get_fota_param_start_addr();
+         ^
+"../../common/src/lcd_var.c", line 34: Warning:  #223-D: function "asr_norflash_read" declared implicitly
+  	asr_norflash_read(language_type_start_address_in_flash, (uint8_t *)&language_type, sizeof(language_type));
+  	^
+../../common/src/lcd_var.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/src/system.c", line 125: Warning:  #223-D: function "CPUCleanDCacheLine" declared implicitly
+  		CPUCleanDCacheLine(address);
+  		^
+"../../common/src/system.c", line 138: Warning:  #223-D: function "enable_psram_cache" declared implicitly
+  	enable_psram_cache(addr,size);
+  	^
+"../../common/src/system.c", line 155: Warning:  #223-D: function "CPUCleanDCacheLine" declared implicitly
+  		CPUCleanDCacheLine(address);
+  		^
+"../../common/src/system.c", line 156: Warning:  #223-D: function "CPUInvalidateDCacheLine" declared implicitly
+  		CPUInvalidateDCacheLine(address);
+  		^
+"../../common/src/system.c", line 162: Warning:  #223-D: function "CPUInvalidateDCacheLine" declared implicitly
+  		CPUInvalidateDCacheLine(address);
+  		^
+"../../common/src/system.c", line 167: Warning:  #223-D: function "CPUCleanDCacheLine" declared implicitly
+  		CPUCleanDCacheLine(address);
+  		^
+"../../common/src/system.c", line 148: Warning:  #177-D: variable "cpsr"  was declared but never referenced
+  	unsigned int cpsr;
+  	             ^
+"../../common/src/system.c", line 181: Warning:  #223-D: function "CPUCleanDCacheLine" declared implicitly
+  		CPUCleanDCacheLine(address);
+  		^
+"../../common/src/system.c", line 188: Warning:  #167-D: argument of type "unsigned int" is incompatible with parameter of type "void *"
+  	CacheCleanMemory1(addr,size);
+  	                  ^
+../../common/src/system.c: 9 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../../common/src/pmic.c", line 360: Warning:  #177-D: variable "XCGR_val"  was declared but never referenced
+      UINT32 			XCGR_val;
+             			^
+"../../common/src/pmic.c", line 493: Warning:  #177-D: variable "XCGR_val"  was declared but never referenced
+      UINT32 			XCGR_val;
+             			^
+"../../common/src/pmic.c", line 497: Warning:  #177-D: variable "result"  was declared but never referenced
+  	int             result;
+  	                ^
+"../../common/src/pmic.c", line 937: Warning:  #177-D: variable "result"  was declared but never referenced
+      int result; 
+          ^
+"../../common/src/pmic.c", line 1147: Warning:  #223-D: function "mdelay" declared implicitly
+  	mdelay(5);
+  	^
+"../../common/src/pmic.c", line 1238: Warning:  #223-D: function "Guilin_VBUCK4_Set_FPWM" declared implicitly
+          Guilin_VBUCK4_Set_FPWM();
+          ^
+"../../common/src/pmic.c", line 1363: Warning:  #111-D: statement is unreachable
+  			return FALSE;
+  			^
+"../../common/src/pmic.c", line 1437: Warning:  #223-D: function "Ningbo_VBUCK1_CFG" declared implicitly
+  			Ningbo_VBUCK1_CFG(NINGBO_VBUCK_1V1000);
+  			^
+"../../common/src/pmic.c", line 1441: Warning:  #223-D: function "Guilin_VBUCK1_CFG" declared implicitly
+  			Guilin_VBUCK1_CFG(GUILIN_VBUCK_1V1000);
+  			^
+"../../common/src/pmic.c", line 1462: Warning:  #223-D: function "Ningbo_VBUCK1_CFG" declared implicitly
+  			Ningbo_VBUCK1_CFG(NINGBO_VBUCK_1V0500);
+  			^
+"../../common/src/pmic.c", line 1466: Warning:  #223-D: function "Guilin_VBUCK1_CFG" declared implicitly
+  			Guilin_VBUCK1_CFG(GUILIN_VBUCK_1V0500);
+  			^
+"../../common/src/pmic.c", line 1487: Warning:  #223-D: function "Ningbo_VBUCK1_CFG" declared implicitly
+  			Ningbo_VBUCK1_CFG(NINGBO_VBUCK_1V0000);
+  			^
+"../../common/src/pmic.c", line 1491: Warning:  #223-D: function "Guilin_VBUCK1_CFG" declared implicitly
+  			Guilin_VBUCK1_CFG(GUILIN_VBUCK_1V0000);
+  			^
+../../common/src/pmic.c: 16 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../../common/src/ningbo.c", line 837: Warning:  #223-D: function "PM813_GPADC_NONSTOP_TRIG_ENABLE" declared implicitly
+  	PM813_GPADC_NONSTOP_TRIG_ENABLE();
+  	^
+"../../common/src/ningbo.c", line 853: Warning:  #159-D: declaration is incompatible with previous "PM813_GPADC_NONSTOP_TRIG_ENABLE"  (declared at line 837)
+  void PM813_GPADC_NONSTOP_TRIG_ENABLE(void)
+       ^
+"../../common/src/ningbo.c", line 874: Warning:  #223-D: function "pm813_get_chargerError" declared implicitly
+      if(PMIC_CHARGER_IS_DETECTED() && pm813_get_chargerError())
+                                       ^
+"../../common/src/ningbo.c", line 876: Warning:  #223-D: function "pm813_charger_restore" declared implicitly
+          pm813_charger_restore();
+          ^
+"../../common/src/ningbo.c", line 888: Warning:  #188-D: enumerated type mixed with another type
+      return (var>>
+INGBO_CHG_FSM_OUT_SHIFT);
+             ^
+"../../common/src/ningbo.c", line 891: Warning:  #159-D: declaration is incompatible with previous "pm813_get_chargerError"  (declared at line 874)
+  BOOL pm813_get_chargerError(void)     
+       ^
+"../../common/src/ningbo.c", line 908: Warning:  #159-D: declaration is incompatible with previous "pm813_charger_restore"  (declared at line 876)
+  void pm813_charger_restore(void)
+       ^
+../../common/src/ningbo.c: 10 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+../../common/src/guilin.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/src/asr_property.c", line 95: Warning:  #223-D: function "uart_printf" declared implicitly
+  		    uart_printf("ASR_PROP_AREA_MAGIC detect\r\n");
+  		    ^
+"../../common/src/asr_property.c", line 99: Warning:  #513-D: a value of type "unsigned int" cannot be assigned to an entity of type "char *"
+  		    m_anchor = (unsigned int)__system_property_find_nth(pa->count - 1) + sizeof(asr_prop_info);
+  		             ^
+"../../common/src/asr_property.c", line 223: Warning:  #223-D: function "uart_printf" declared implicitly
+      uart_printf("[ver_%x][%s]\r\n",ASR_PROP_AREA_VERSION,__func__);
+      ^
+"../../common/src/asr_property.c", line 225: Warning:  #1293-D: assignment in condition
+      for(n = 0; (pi = __system_property_find_nth(n)); n++) {
+                 ^
+../../common/src/asr_property.c: 4 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/tinyalloc.h", line 5: Warning:  #1295-D: Deprecated declaration ta_init - give arg types
+  int ta_init();
+      ^
+"../../common/inc/tinyalloc.h", line 10: Warning:  #1295-D: Deprecated declaration ta_num_free - give arg types
+  size_t ta_num_free();
+         ^
+"../../common/inc/tinyalloc.h", line 11: Warning:  #1295-D: Deprecated declaration ta_num_used - give arg types
+  size_t ta_num_used();
+         ^
+"../../common/inc/tinyalloc.h", line 12: Warning:  #1295-D: Deprecated declaration ta_num_fresh - give arg types
+  size_t ta_num_fresh();
+         ^
+"../../common/inc/tinyalloc.h", line 13: Warning:  #1295-D: Deprecated declaration ta_check - give arg types
+  int ta_check();
+      ^
+"../../common/src/tinyalloc.c", line 185: Warning:  #68-D: integer conversion resulted in a change of sign
+      num         = (num + 
+A_ALIGN - 1) & -
+A_ALIGN;
+                                           ^
+../../common/src/tinyalloc.c: 6 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/FreqChange.h", line 22: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/FreqChange.h", line 23: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../../common/inc/Typedef.h", line 127: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 97 of "../../common/inc/pmic.h")
+  #define BU_REG_READ(x) (*(volatile UINT_T *)(x))
+          ^
+"../../common/inc/Typedef.h", line 128: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 98 of "../../common/inc/pmic.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile UINT_T *)(x)) = y )
+          ^
+"../../common/src/FreqChange.c", line 342: Warning:  #223-D: function "cpcore_fc_config" declared implicitly
+      	cpcore_fc_config(ProductPoint);
+      	^
+"../../common/src/FreqChange.c", line 350: Warning:  #223-D: function "PlatformVcoreConfigLow" declared implicitly
+              PlatformVcoreConfigLow();
+              ^
+"../../common/src/FreqChange.c", line 358: Warning:  #223-D: function "PlatformVcoreConfigHigh" declared implicitly
+              PlatformVcoreConfigHigh();
+              ^
+"../../common/src/FreqChange.c", line 362: Warning:  #223-D: function "PlatformVcoreConfigTop" declared implicitly
+              PlatformVcoreConfigTop();
+              ^
+"../../common/src/FreqChange.c", line 376: Warning:  #159-D: declaration is incompatible with previous "cpcore_fc_config"  (declared at line 342)
+  void cpcore_fc_config(unsigned int idx)
+       ^
+"../../common/src/FreqChange.c", line 378: Warning:  #177-D: variable "ts_now"  was declared but never referenced
+  	UINT32 ts_now;
+  	       ^
+"../../common/src/FreqChange.c", line 826: Warning:  #223-D: function "PMIC_ID_GET" declared implicitly
+  	switch(PMIC_ID_GET())
+  	       ^
+"../../common/src/FreqChange.c", line 870: Warning:  #61-D: integer operation result is out of range
+  	}while((val&1<<31)!=(1<<31));
+  	               ^
+"../../common/src/FreqChange.c", line 870: Warning:  #68-D: integer conversion resulted in a change of sign
+  	}while((val&1<<31)!=(1<<31));
+  	            ^
+"../../common/src/FreqChange.c", line 870: Warning:  #61-D: integer operation result is out of range
+  	}while((val&1<<31)!=(1<<31));
+  	                        ^
+"../../common/src/FreqChange.c", line 870: Warning:  #68-D: integer conversion resulted in a change of sign
+  	}while((val&1<<31)!=(1<<31));
+  	                    ^
+"../../common/src/FreqChange.c", line 838: Warning:  #177-D: variable "lvt_cyc"  was declared but never referenced
+  	unsigned int lvt_cyc,svt_cyc;
+  	             ^
+../../common/src/FreqChange.c: 17 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/updater_table.h", line 21: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/inc/logo_table.h", line 7: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/utilities.c", line 30: Warning:  #223-D: function "GetTimer0CNT" declared implicitly
+  	startTime = GetTimer0CNT();
+  	            ^
+"../../common/src/utilities.c", line 262: Warning:  #167-D: argument of type "void *" is incompatible with parameter of type "uint32_t"
+      	ret = asr_norflash_read( (void *)dsp_adc_copy_src_addr, (void *)dsp_adc_copy_dst_addr,dsp_adc_copy_size);
+      	                         ^
+"../../common/src/utilities.c", line 221: Warning:  #177-D: variable "compress_magic"  was declared but never referenced
+  	UINT32 compress_magic;
+  	       ^
+"../../common/src/utilities.c", line 305: Warning:  #177-D: variable "code_addr"  was declared but never referenced
+      UINT32 code_addr, squ_addr,copy_len,i;
+             ^
+"../../common/src/utilities.c", line 431: Warning:  #167-D: argument of type "UINT8 *" is incompatible with parameter of type "const char *"
+  	data1[strlen(data1)]='\0';
+  	             ^
+"../../common/src/utilities.c", line 432: Warning:  #167-D: argument of type "UINT8 *" is incompatible with parameter of type "const char *"
+  	data2[strlen(data2)]='\0';
+  	             ^
+"../../common/src/utilities.c", line 449: Warning:  #167-D: argument of type "UINT8 *" is incompatible with parameter of type "const char *"
+  	*AdcValue = m_atoi_dec(data1);
+  	                       ^
+"../../common/src/utilities.c", line 450: Warning:  #167-D: argument of type "UINT8 *" is incompatible with parameter of type "const char *"
+  	*VoltageValue = m_atoi_dec(data2);
+  	                           ^
+"../../common/src/utilities.c", line 401: Warning:  #177-D: variable "value"  was declared but never referenced
+  	UINT32 value=0,value_off=0;
+  	       ^
+"../../common/src/utilities.c", line 676: Warning:  #223-D: function "PMIC_IS_PM803" declared implicitly
+  	if(!PMIC_IS_PM803()){
+  	    ^
+"../../common/src/utilities.c", line 679: Warning:  #223-D: function "Timer0_enable" declared implicitly
+  	Timer0_enable( TRUE );
+  	^
+"../../common/src/utilities.c", line 712: Warning:  #223-D: function "PMIC_PowerDown" declared implicitly
+  			PMIC_PowerDown();
+  			^
+"../../common/src/utilities.c", line 793: Warning:  #223-D: function "GetTimer0CNT" declared implicitly
+  	startTime = GetTimer0CNT();
+  	            ^
+"../../common/src/utilities.c", line 852: Warning:  #167-D: argument of type "volatile UINT32 *" is incompatible with parameter of type "UINT32 *"
+  		MRD_GetValueRes = MRDAdcValueGet_boot( i, &temp_MrdData.AdcValue, &temp_MrdData.VoltageValue);
+  		                                          ^
+"../../common/src/utilities.c", line 852: Warning:  #167-D: argument of type "volatile UINT32 *" is incompatible with parameter of type "UINT32 *"
+  		MRD_GetValueRes = MRDAdcValueGet_boot( i, &temp_MrdData.AdcValue, &temp_MrdData.VoltageValue);
+  		                                                                  ^
+"../../common/src/utilities.c", line 914: Warning:  #177-D: function "pm803_ResetBatteryReadyFlag"  was declared but never referenced
+  static void pm803_ResetBatteryReadyFlag( void )
+              ^
+"../../common/src/utilities.c", line 919: Warning:  #177-D: function "pm803_print_debug_info"  was declared but never referenced
+  static void pm803_print_debug_info( void )
+              ^
+../../common/src/utilities.c: 19 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+../../common/src/guilin_lite.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/updater_table.h", line 21: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/updater_table.c", line 7: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/updater_table.c", line 42: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/updater_table.c", line 200: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/updater_table.c", line 358: Warning:  #2795-D: concatenation with ""ADUPS"" in macro "FOTA_ADUPS_NAME"  does not create a valid token
+  	if( 0 == strncmp(p_updater_fota_type_string,
+OTA_ADUPS_NAME,strlen(FOTA_ADUPS_NAME)) ){
+  	                                            ^
+"../../common/src/updater_table.c", line 358: Warning:  #2795-D: concatenation with ""ADUPS"" in macro "FOTA_ADUPS_NAME"  does not create a valid token
+  	if( 0 == strncmp(p_updater_fota_type_string,
+OTA_ADUPS_NAME,strlen(
+OTA_ADUPS_NAME)) ){
+  	                                                                   ^
+"../../common/src/updater_table.c", line 360: Warning:  #2795-D: concatenation with ""REDSTONE"" in macro "FOTA_REDSTONE_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_REDSTONE_NAME,strlen(FOTA_REDSTONE_NAME))){
+  	                                                 ^
+"../../common/src/updater_table.c", line 360: Warning:  #2795-D: concatenation with ""REDSTONE"" in macro "FOTA_REDSTONE_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_REDSTONE_NAME,strlen(
+OTA_REDSTONE_NAME))){
+  	                                                                           ^
+"../../common/src/updater_table.c", line 362: Warning:  #2795-D: concatenation with ""ASRSD"" in macro "FOTA_ASRSD_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_ASRSD_NAME,strlen(FOTA_ASRSD_NAME))){
+  	                                                 ^
+"../../common/src/updater_table.c", line 362: Warning:  #2795-D: concatenation with ""ASRSD"" in macro "FOTA_ASRSD_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_ASRSD_NAME,strlen(
+OTA_ASRSD_NAME))){
+  	                                                                        ^
+"../../common/src/updater_table.c", line 364: Warning:  #2795-D: concatenation with ""ASRSPI"" in macro "FOTA_ASRSPI_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_ASRSPI_NAME,strlen(FOTA_ASRSPI_NAME))){
+  	                                                 ^
+"../../common/src/updater_table.c", line 364: Warning:  #2795-D: concatenation with ""ASRSPI"" in macro "FOTA_ASRSPI_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_ASRSPI_NAME,strlen(
+OTA_ASRSPI_NAME))){
+  	                                                                         ^
+"../../common/src/updater_table.c", line 366: Warning:  #2795-D: concatenation with ""ASRDM"" in macro "FOTA_ASRDM_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_ASRDM_NAME,strlen(FOTA_ASRDM_NAME))){
+  	                                                 ^
+"../../common/src/updater_table.c", line 366: Warning:  #2795-D: concatenation with ""ASRDM"" in macro "FOTA_ASRDM_NAME"  does not create a valid token
+  	}else if(0 == strncmp(p_updater_fota_type_string,
+OTA_ASRDM_NAME,strlen(
+OTA_ASRDM_NAME))){
+  	                                                                        ^
+../../common/src/updater_table.c: 14 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/updater_table.h", line 21: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/inc/logo_table.h", line 7: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/logo_table.c", line 9: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+"../../common/src/logo_table.c", line 32: Warning:  #144-D: a value of type "int" cannot be used to initialize an entity of type "LogoHeaderTableStruct *"
+  static LogoHeaderTableStruct *pLogoHeaderInfo = 
+OGO_INVALID_VALUE;
+                                                  ^
+"../../common/src/logo_table.c", line 32: Warning:  #152-D: conversion of nonzero integer to pointer
+  static LogoHeaderTableStruct *pLogoHeaderInfo = 
+OGO_INVALID_VALUE;
+                                                  ^
+"../../common/src/logo_table.c", line 57: Warning:  #167-D: argument of type "LogoHeaderTableStruct *" is incompatible with parameter of type "uint8_t *"
+  		asr_norflash_read(logo_flash_start_address, &s_LogoHeaderInfo, sizeof(LogoHeaderTableStruct));
+  		                                            ^
+"../../common/src/logo_table.c", line 58: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)	
+        ^
+"../../common/src/logo_table.c", line 282: Warning:  #14-D: extra text after expected end of preprocessing directive
+  #else if(CONFIG_STARTUP_OR_CP == BUILD_IN_CP)
+        ^
+../../common/src/logo_table.c: 8 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/src/asr_lzma.c", line 46: Warning:  #223-D: function "CpCoreFreqChangeTo624" declared implicitly
+  		CpCoreFreqChangeTo624();
+  		^
+"../../common/src/asr_lzma.c", line 47: Warning:  #223-D: function "PsramPhyFreqChangeTo416" declared implicitly
+  		PsramPhyFreqChangeTo416();
+  		^
+"../../common/src/asr_lzma.c", line 52: Warning:  #223-D: function "CpCoreFreqChangeTo416" declared implicitly
+  		CpCoreFreqChangeTo416();
+  		^
+../../common/src/asr_lzma.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/src/LzmaDec.c", line 1018: Warning:  #223-D: function "malloc" declared implicitly
+    return malloc(size);
+           ^
+"../../common/src/LzmaDec.c", line 1018: Warning:  #120-D: return value type does not match the function type
+    return malloc(size);
+           ^
+"../../common/src/LzmaDec.c", line 1028: Warning:  #223-D: function "free" declared implicitly
+    free(address);
+    ^
+"../../common/src/LzmaDec.c", line 1056: Warning:  #167-D: argument of type "unsigned long *" is incompatible with parameter of type "SizeT *"
+    ret = LzmaDecode(dest, &dstLen, src+propsSize, srcLen, props, (unsigned)propsSize, LZMA_FINISH_ANY, &status, &g_Alloc);
+                           ^
+../../common/src/LzmaDec.c: 4 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+../../../../hal/chip/lcd/panel_drv.c: 3 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 365: Warning:  #223-D: function "PMIC_IS_PM802" declared implicitly
+      return PMIC_IS_PM802();
+             ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 370: Warning:  #223-D: function "PMIC_IS_PM812" declared implicitly
+  	return PMIC_IS_PM812();
+  	       ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 375: Warning:  #223-D: function "PMIC_IS_PM813" declared implicitly
+  	return PMIC_IS_PM813();
+  	       ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 380: Warning:  #223-D: function "PMIC_IS_PM813S" declared implicitly
+      return PMIC_IS_PM813S();
+             ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 385: Warning:  #223-D: function "PMIC_IS_PM803" declared implicitly
+      return PMIC_IS_PM803();
+             ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 391: Warning:  #223-D: function "NingboLcdBackLightCtrl" declared implicitly
+      NingboLcdBackLightCtrl(level);
+      ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 401: Warning:  #223-D: function "PMIC_IS_PM813" declared implicitly
+      if (PMIC_IS_PM813()||PMIC_IS_PM813S())
+          ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 401: Warning:  #223-D: function "PMIC_IS_PM813S" declared implicitly
+      if (PMIC_IS_PM813()||PMIC_IS_PM813S())
+                           ^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 403: Warning:  #223-D: function "Ningbo_LDO_Set_VOUT" declared implicitly
+  		Ningbo_LDO_Set_VOUT(0x8F, (0x0 << 2));
+  		^
+"../../../../hal/chip/lcd/lcd_sys_api.c", line 404: Warning:  #223-D: function "Ningbo_Ldo_11_set" declared implicitly
+          Ningbo_Ldo_11_set(OnOff);
+          ^
+../../../../hal/chip/lcd/lcd_sys_api.c: 10 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../../common/inc/pmic.h", line 97: Warning:  #47-D: incompatible redefinition of macro "BU_REG_READ"  (declared at line 119 of "../../common/inc/common.h")
+  #define BU_REG_READ(x) (*(volatile unsigned long *)(x))
+          ^
+"../../common/inc/pmic.h", line 98: Warning:  #47-D: incompatible redefinition of macro "BU_REG_WRITE"  (declared at line 120 of "../../common/inc/common.h")
+  #define BU_REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+          ^
+"../../common/inc/pmic.h", line 357: Warning:  #1295-D: Deprecated declaration ustica_I2CInit - give arg types
+  void ustica_I2CInit();
+       ^
+"../../../../hal/device/lcd/backlight_drv.c", line 64: Warning:  #223-D: function "IsChipCraneM" declared implicitly
+  	if (IsChipCraneM())
+  	    ^
+"../../../../hal/device/lcd/backlight_drv.c", line 69: Warning:  #223-D: function "Pmic_is_pm813s" declared implicitly
+      if(Pmic_is_pm813() || Pmic_is_pm813s()){
+                            ^
+"../../../../hal/device/lcd/backlight_drv.c", line 102: Warning:  #223-D: function "Pmic_is_pm803" declared implicitly
+      else if (Pmic_is_pm803()){
+               ^
+../../../../hal/device/lcd/backlight_drv.c: 6 warnings, 0 errors
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+Warning: C4052E: couldn't read file 'feedback': No such file or directory
+"../src/StartUp.s", line 228: Warning: A1608W: MOV pc,<rn> instruction used, but BX <rn> is preferred
+  228 000000c4  mov pc, r0
+0 Errors, 1 Warning
+"../scatter.scat", line 86 (column 20): Warning: L6314W: No section matches pattern rs_ua_porting.o(RS_DATA).
+Finished: 0 information, 1 warning and 0 error messages.
+[UPD_SIZE    ]=[0x4c4c554e  ] -> [0x0001dac4  ]
+|-------------------------------------------------------------------------------
+|updater_st7789v_spi_3wire_2lane_1if_adups.bin        |  0x0001dac4 = 118.691(KB)
+|            +                                                                   
+|../../common/lib/dsp_adc_lzma.bin                    |  0x00002a09 = 10.509(KB)
+|            =                                                                   
+|updater_st7789v_spi_3wire_2lane_1if_adups.bin        |  0x000204cd = 129.200(KB)
+|-------------------------------------------------------------------------------
+[EXT_SIZE    ]=[0x4c4c554e  ] -> [0x000204cd  ]
+DEBUG >>> : CRC_TOOL_EXEC=..\..\common\tool\create_crc_res.exe
+DEBUG >>> : INPUT_FILE=updater_st7789v_spi_3wire_2lane_1if_adups.bin
+DEBUG >>> : INPUT_FILE_SIZE=132301.byte
+DEBUG >>> : APPEND_CRC_CODE=0x840
+DEBUG >>> : OUTPUT_FILE_SIZE=132305.byte
+updater_st7789v_spi_3wire_2lane_1if_adups.bin
+已复制         1 个文件。
+updater_st7789v_spi_3wire_2lane_1if_adups.axf
+已复制         1 个文件。
+updater_st7789v_spi_3wire_2lane_1if_adups.map
+已复制         1 个文件。
+LCD_SUB_MAK is lcd_sub.mak
+系统找不到指定的文件。
+Makefile:376: recipe for target 'clean' failed
+make[4]: *** [clean] Error 2
+****************************************************************
+***********************  BUILD SUCCESS  ************************
+****************************************************************
