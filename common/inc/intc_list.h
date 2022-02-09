@@ -383,7 +383,6 @@ typedef enum
 	#define INTC_SRC_SINTC_OR_XIRQ INTC_SRC_SINTC
 #endif//INTEL_2CHIP_PLAT_BVD
 
-#if defined(PHS_SW_DEMO_TTC) 
 	#if defined(FLAVOR_APP)                 // ACIPC aliases for AP
 		#define	INTC_AC_IPC_0 INTC_AC_IPC_AP_0
 		#define	INTC_AC_IPC_1 INTC_AC_IPC_AP_1
@@ -425,7 +424,7 @@ typedef enum
 	#define INTC_COMM_UART INTC_SRC_UART1_SLOW
 	#endif
 
-#endif // PHS_SW_DEMO_TTC
+
 
 #if defined(SILICON_TTC)
 	#if defined(FLAVOR_APP)                 // ACIPC aliases for AP

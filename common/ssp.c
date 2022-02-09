@@ -32,41 +32,17 @@ UINT32 DummyTxbuffer[512]={0};
 
 /* timer function is common, move into updater/src/main.c */
 extern unsigned long GetTimer0CNT(void);
-#if 0
-/* Timer0_0 is configured to free run @1MHz from BootROM. */
-#define APBTIMER0_CNT_REG   0xD4014090
-#define APBTIMER0_EN_REG    0xD4014000
-#endif
+
 unsigned long Timer0IntervalInMicro(unsigned long Before, unsigned long After)
 {    
     unsigned long temp = (After - Before);    
 	return temp;
 }
-#if 0
-unsigned long GetTimer0CNT(void){
-	return *(volatile unsigned long*)APBTIMER0_CNT_REG;
-}
-#endif
-void DelayInMilliSecond(unsigned int us){
-	unsigned long startTime, endTime;
-	startTime = GetTimer0CNT();
-	do    {
-		endTime = GetTimer0CNT();
-	}    while(Timer0IntervalInMicro(startTime, endTime) < us);
-}
-#if 0
-void Timer0_Switch(unsigned char OnOff){
-	if (OnOff)        
-		*(volatile unsigned long*)APBTIMER0_EN_REG |= 0x1; //enable Timer0_0 (in free run)    
-	else        
-		*(volatile unsigned long*)APBTIMER0_EN_REG &= ~0x1; //disable Timer0_0 (in free run)
-}
-#endif
+
+
+
 extern void Timer0_Switch(unsigned char OnOff); 
-UINT32 timerCountRead(int tcr_number){
-	//uart_printf("Counter read\r\n");
-	return GetTimer0CNT();
-}
+
 
 typedef struct
 {

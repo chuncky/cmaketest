@@ -208,7 +208,7 @@ GPIOReturnCode GpioBindInterruptCallback(UINT32 portHandle, GPIOCallback func)
 	
 	GPIO_CHECK_VALID_CALLBACK(func);
 
-	GPIOPortHandler[portHandle].ISR = func;
+	GPIOPortHandler[portHandle].ISRhandler = func;
 
 	return GPIORC_OK;
 }

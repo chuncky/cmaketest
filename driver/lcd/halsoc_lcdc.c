@@ -387,9 +387,9 @@ void lcd_config_osd1(lcd_layer_config *layer_config)
         hal_lcdc_set_bits(LCD_PN_CTRL1, CFG_PN_ALPHA_MODE);
     }
 
-    hal_lcdc_clear_bits(LCD_TV_CTRL1, CFG_CKEY_GRA);
-    hal_lcdc_clear_bits(LCD_PN_CTRL0, CFG_PN_CBSH_ENA);
-    hal_lcdc_clear_bits(PN_IOPAD_CONTROL, CFG_GRA_VM_ENA);
+    hal_lcdc_clear_bits(LCD_TV_CTRL1, CFG_CKEY_GRA);       //color key disable
+    hal_lcdc_clear_bits(LCD_PN_CTRL0, CFG_PN_CBSH_ENA);     //disable panel Video Contrast/Saturation/Brightness/Hue Adjust
+    hal_lcdc_clear_bits(PN_IOPAD_CONTROL, CFG_GRA_VM_ENA);   //Panel Path Graphic Vertical Mirror disable
 }
 
 void lcd_config_output(lcd_output_config *output_config, uint8_t wb_enable)
@@ -626,6 +626,7 @@ static int lcdc_wait_complete(uint8_t wb_enable)
 
     while (i<100) {
         reg = hal_lcdc_read(SPU_IRQ_ISR_RAW);
+        printf("lcdc_wait_complete: [0x%x][%x] ---\n", reg, check_bit);
         if (reg & check_bit) {
             break;
         }
@@ -676,6 +677,7 @@ static unsigned first_time = 1;
 int hal_lcdc_sync(lcd_context *lcd_ctx, int polling_mode)
 {
     int ret = 0;
+    unsigned reg = 0;
     lcd_config_osd1(&(lcd_ctx->layer_config_osd1));
     //lcd_config_img_layer(&(lcd_ctx->layer_config_img));
     //lcd_config_wb(&(lcd_ctx->wb_config));
@@ -695,13 +697,12 @@ int hal_lcdc_sync(lcd_context *lcd_ctx, int polling_mode)
 
     if (polling_mode) { /* polling mode */
 
-#if LCD_TE_ENABLE  
-        hal_lcdc_clear_bits(SPU_IRQ_ENA, IRQ_TE_DONE);
-        barrier();   
-        lcdc_wait_tesingnal();
-#endif
         hal_lcdc_clear_bits(SPU_IRQ_ENA, FRAME_DONE_BIT);
         barrier();
+        uart_printf("LCD_PN_CTRL1:0x%x",hal_lcdc_read(LCD_PN_CTRL1));
+        reg = hal_lcdc_read(SPU_IRQ_ISR_RAW);
+        hal_lcdc_write(SPU_IRQ_ISR_RAW, ~reg);
+
         if(lcd_ctx->output_config.format != MIPI_FORMAT_VIDEO) {
             hal_lcdc_set_bits(LCD_PN_CTRL1, CFG_FRAME_TRIG); /* trigger transfer */
             mipi_video_flag = 0;

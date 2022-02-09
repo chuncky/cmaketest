@@ -1,3 +1,6 @@
 ./..//libbootloader_catchall.a
+./../os/libos.a
 ./../driver/lcd/libdriver__lcd.a
+./../driver/usb/libdriver__usb.a
+./../common/libcommon.a
 ./src/libbootloader__src.a

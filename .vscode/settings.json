@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "common.h": "c",
+        "usb_device_config.h": "c",
+        "cmath": "c",
+        "complex": "c",
+        "valarray": "c",
+        "mvusblog.h": "c",
+        "usbtrace.h": "c",
+        "slist": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

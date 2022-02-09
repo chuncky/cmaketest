@@ -360,7 +360,7 @@ void hold_dsp_adc( void )
     PMUM_CPRR |= BIT_5;								// execute is hold
 }
 
-
+#if 0
 /*--------------------------------------------------*/
 INT32 MRDAdcFlagGet_boot(PM803_ADC_TYPE type, ADC_TEMP_t tempType)
 {
@@ -548,6 +548,8 @@ UINT32 MRDAdcCntGet_boot(PM803_ADC_TYPE type, ADC_TEMP_t tempType)
 	return cnt;
 }
 
+#endif
+
 void transmit_data(const char *name, const UINT32 data )
 {
 	char string_buffer[32] = { 0 };
@@ -581,6 +583,52 @@ UINT32 get_transmit_data( const char *name )
 
 	return data;
 }
+
+
+UINT64 T32kHzBase=0;
+
+/**
+ *    32kHz      --> 13MHz: tick32k * (13M/32k) = tick32k * 406.25
+ * cpu_freq/64 --> 13MHz: tickFreq * (13M/(Freq/64))
+*/
+UINT64 timerCountReadU64(void)
+{
+	UINT32 overflow,p;
+	UINT64 performance_count,tmp0_13M, tmp1_13M, sum;
+	UINT64 cpu_freq = (UINT64)get_cr5_cpu_freq();
+	UINT64 t32k_count;
+    UINT32 cpsr;
+
+    cpsr = disableInterrupts();
+	if(cpu_freq == 0){
+		cpu_freq = 1;
+	}
+	t32k_count = T32kHzBase;
+	tmp0_13M = t32k_count * 397 - t32k_count/4;
+	overflow = get_overflow_flag_status();
+	p = get_performance_count();
+	performance_count = p;
+	if(overflow & 0x80000000)
+		performance_count += 0xffffffff;
+	tmp1_13M = (performance_count * 13 * 64) / cpu_freq;
+	sum = tmp0_13M + tmp1_13M;
+
+    restoreInterrupts(cpsr);
+
+	return sum;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -712,6 +760,7 @@ BOOL PM803_CHARGER_IS_DETECTED(void)
 	return ret_val;
 }
 
+#if 0
 
 void Startup_SoftwareNotProceedUntilReachOneValue(const UINT32 battery_value)
 {
@@ -771,7 +820,7 @@ void Startup_SoftwareNotProceedUntilReachOneValue(const UINT32 battery_value)
 	return;
 }
 
-
+#endif
 #ifdef AUX_ADC_ATE
 INT16 rtn_pm803_def[2] =
 {
@@ -979,7 +1028,7 @@ static void pm803_print_debug_info( void )
 	CevaExecuteStage = pm803_get_share_memory_data( DSP_ADC_SHARE_MEMORY_ADDR + 0x10 );
 	CP_LOGD("[DSP_ADC] dsp_adc run stage:0x%x\r\n",CevaExecuteStage);
 }
-
+#if 0
 void pm803_get_battery_voltage( PM803_Battery_Res_t *p_pm803_battery_res )
 {
 	Dsp_adc_type_t dsp_adc_type;
@@ -1078,7 +1127,7 @@ void pm803_get_battery_voltage( PM803_Battery_Res_t *p_pm803_battery_res )
 	return;
 }
 
-
+#endif
 /**
  * vribator trigger description
  * 1. PM813

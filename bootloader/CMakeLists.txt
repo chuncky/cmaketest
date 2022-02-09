@@ -10,6 +10,7 @@ fp_library_include_directories(
 fp_sources(
   main.c
   OBM_StartUp.s
+  vectors.s
 )
 
 #add_subdirectory_ifdef(CONFIG_BUILD_EXAMPLE cmake_example)

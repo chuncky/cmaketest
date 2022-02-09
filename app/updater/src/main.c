@@ -112,21 +112,7 @@ int set_mpu_reg_0(void )
 }
 
 
-/* Timer0_0 is configured to free run @1MHz from BootROM. */
-#define APBTIMER0_CNT_REG   0xD4014090
-#define APBTIMER0_EN_REG    0xD4014000
 
-unsigned long GetTimer0CNT(void){
-	return *(volatile unsigned long*)APBTIMER0_CNT_REG;
-}
-
-void Timer0_Switch(unsigned char OnOff)
-{
-	if(OnOff)        
-		*(volatile unsigned long *)APBTIMER0_EN_REG |= 0x1;  //enable Timer0_0 (in free run)    
-	else        
-		*(volatile unsigned long *)APBTIMER0_EN_REG &= ~0x1; //disable Timer0_0 (in free run)
-}
 
 void updater_delay_ms(UINT32 ms)
 {

@@ -17,6 +17,7 @@
  #ifndef VOID
     #define VOID	void
  #endif
+ typedef char CHAR;
 //typedef char int8_t;
 //typedef short int16_t;
 //typedef int int32_t;
@@ -32,9 +33,18 @@ typedef unsigned short  UINT16;       /* Unsigned 16-bit quantity       */
 typedef unsigned int   UINT32;       /* Unsigned 32-bit quantity       */
 typedef  unsigned char BOOL;
 typedef unsigned long long    UINT64;
+typedef int STATUS;
+
+typedef unsigned char   u8_t;        /* Unsigned 8-bit quantity        */
+
 
 #define TRUE 1
 #define FALSE 0 
+
+#define TURN_BIT_ON(r, b)					((r) |= (b))
+#define TURN_BIT_OFF(r, b)        ((r) &= ~(b))
+#define IS_BIT_SET(r, b)					((r) & (b))
+
 
 //#define REG32(x)	*((volatile unsigned long*)(x))
 
@@ -119,11 +129,23 @@ int uart_printf(const char *fmt, ...);
 #define BU_REG_READ(x) (*(volatile BU_U32 *)(x))
 #define BU_REG_WRITE(x,y) ((*(volatile BU_U32 *)(x)) = y )
 
+
+#define REG_READ(x) (*(volatile unsigned long *)(x))
+#define REG_WRITE(x,y) ((*(volatile unsigned long *)(x)) = y )
+
+
+
+
+
+
+
+
 #define BU_REG_RDSET(x,y)  (BU_REG_WRITE(x,((BU_REG_READ(x))|y)))
 #define BU_REG_RDCLEAR(x,y)  (BU_REG_WRITE(x,((BU_REG_READ(x))&(~y))))
 #define ALIGN(val,exp)                  (((val) + ((exp)-1)) & ~((exp)-1))
 #define BIT(nr)			(1UL << (nr))
 
+#define DIAG_ALIGN(nbytes)	__align(nbytes)
 
 // ---------------------------------------------------------------
 // Memory Map
@@ -321,7 +343,10 @@ extern void restoreInterrupts(unsigned int cpsr);
 #define FLASH_BLOCK_SIZE (0x00010000) //64*1024 - 1
 #define FLASH_BLOCK_MASK (FLASH_BLOCK_SIZE-0x1) //64*1024 - 1
 
-
+// copy from bsp_hisr.h
+#define HISR_PRIORITY_0 0 //highest priority
+#define HISR_PRIORITY_1 1 //medium priority
+#define HISR_PRIORITY_2 2 //lowest priority
 
 
 
@@ -331,7 +356,7 @@ typedef void*   OSSemaRef;
 typedef void*   OSMutexRef;
 typedef		void*				OS_HISR;
 typedef UINT8   OSA_STATUS;
-typedef unsigned int            UNSIGNED_INT;
+typedef unsigned int     UNSIGNED_INT;
 #define OS_STATUS OSA_STATUS
 #define DUMP_VOL "D:/"
 #define OSA_SUSPEND             0xFFFFFFFF
@@ -339,6 +364,42 @@ typedef unsigned int            UNSIGNED_INT;
 typedef void*   OSFlagRef;
 typedef void*   OSTaskRef;
 typedef void*   OSSemaRef;
+typedef void*   OSMsgQRef;
+
+typedef unsigned short FILE_ID;
+
+typedef  enum
+{
+    TCR_1,                              // non drowsy TCR
+    TCR_2,                              // non drowsy TCR
+    TCR_3,                              // non drowsy TCR
+
+
+    TCR_4, MAX_HW_TCR_NUMBER = TCR_4, TCR_EXT = TCR_4,
+    TCR_5,
+    TCR_6,
+    
+    MAX_TCR_NUMBER
+
+}TCR_NUMBER;
+
+#define TS_TIMER_ID TCR_2
+
+typedef enum
+{
+    rti_mode_none       = 0,
+    rti_memory_mode     = 1,
+    rti_timer_mode      = 2,
+    rti_urtlog_mode     = 3,
+    rti_fsyslog_mode    = 4,
+    rti_log2acat_mode   = 5,
+    rti_usbtrace_mode   = 6,
+    rti_muxtrace_mode   = 7,
+    rti_psoff_mode      = 8,
+    rti_uarttrace_mode  = 9,
+    rti_mode_max        = 0xFFFF
+}rti_mode;
+
 
 
 enum

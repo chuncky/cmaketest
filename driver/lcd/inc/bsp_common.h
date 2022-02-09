@@ -10,22 +10,6 @@ extern "C" {
 #include "hal_conf.h"
 #include "pmic.h"
 
-typedef  enum
-{
-    TCR_1,                              // non drowsy TCR
-    TCR_2,                              // non drowsy TCR
-    TCR_3,                              // non drowsy TCR
-
-    TCR_4, MAX_HW_TCR_NUMBER = TCR_4, TCR_EXT = TCR_4,
-    TCR_5,
-    TCR_6,
-    
-    MAX_TCR_NUMBER
-
-}TCR_NUMBER;
-
-#define TS_TIMER_ID TCR_2
-
 //#define FAST_TIMER_CLOCK_RATE_IN_HZ                3250000
 #define TIMER_USECS_IN_SECOND                      1000000
 #define FAST_TIMER_CLOCK_RATE_IN_HZ                13000000

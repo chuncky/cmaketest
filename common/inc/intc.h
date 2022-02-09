@@ -42,9 +42,6 @@
 
 
 
-
-
-
 typedef enum
 {
     INTC_RC_OK = 1,
@@ -393,6 +390,34 @@ void IRQCTRL_SWI_STATE  (UINT32 bASE, UINT32 fLAG, UINT32 SwInUM);
 #define   IRQ_LVL_EDG1    (volatile UINT32 *)(IRQCTRL_BASE_ADDR+XIRQ_EDGELEVEL_OFFSET+0x04)
 //#define   WR_IRQCTRL_REG(bASE, rEG, vALUE)    WR_REG16(bASE, rEG, vALUE)
 /* AlexR :Register value is multiplied by 2 , becouse all offsets (rEG) defined for 16-bits registers*/
+
+
+#define INTC_SYS_REG_ADDR (IRQCTRL_BASE_ADDR+0x8C)
+#define INTC_SYS_REG_REG16     (* (volatile UINT16*) INTC_SYS_REG_ADDR)
+#define INTC_SYS_REG_SET16(val)  INTC_SYS_REG_REG16 = (val)
+
+//#define AIRQ_EDGE_OR_LEVEL0  (0xD4000E00UL)
+#define AIRQ_EDGE_OR_LEVEL0			  (UINT32)(IRQ_LVL_EDG0)
+//#define AIRQ_EDGE_OR_LEVEL32 (0xD4000E04UL)
+#define AIRQ_EDGE_OR_LEVEL32			  (UINT32)(IRQ_LVL_EDG1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #define NUM_OF_VIRTUAL_INT       4

@@ -36,7 +36,8 @@
 /* TEMPORARY*/
 #define dlDisableIrq disableInterrupts
 /* TEMPORARY*/
-
+#include "common.h"
+#include "bsp.h"
 #include "intc.h"
 
 //#endif
@@ -179,16 +180,6 @@ extern INTC_HW_CONF_REGS_Y    INTC_D2_Backup_str ;
 #define INTC_D2_BACKUP_SET(field) 
 #endif
 
-
-
-#if defined(_S_INTC_)
-#define INTC_IS_SINTC_SOURCE(s)         (s >= INTC_MAX_PRIMARY_INTERRUPT_SOURCES)
-#if defined(SINTC_DOES_SRC_CONVERSION)
-#define SINTC_SOURCE(s)  (s)
-#else
-#define SINTC_SOURCE(s)  ((s)-INTC_SRC_S_START)
-#endif
-#endif
 
 //#define INTC_OUT_OF_RANGE(s)            (s >= INTC_MAX_PRIMARY_INTERRUPT_SOURCES)
 #ifdef _TCU_ON_PRIMARY_
@@ -653,12 +644,6 @@ INTC_ReturnCode INTCConfigure(INTC_InterruptSources isrSource, INTC_FastNormal f
                               INTC_ActivationType activationType)
 
 {
-#ifdef _S_INTC_
-    if(INTC_IS_SINTC_SOURCE(isrSource))
-    {
-        return SINTCConfigure(SINTC_SOURCE(isrSource),fastNormal,activationType);
-    }
-#endif
     CHECK_VALID_SOURCE(isrSource);
 
 #ifdef _TCU_ON_PRIMARY_
@@ -1002,9 +987,371 @@ void IRQCTRL_SWI_STATE(UINT32 bASE, UINT32 fLAG, UINT32 SwInUM)
 
 
 
+/************************************************************************
+* Function: INTCInterruptHandlerIRQ										*
+*************************************************************************
+* Description: This function handles the FAST interrupt sources.		*
+*              In this function, there is a loop over the request		*
+*              register as long as there are pending interrupts			*
+*																		*
+* Parameters: None														*
+*																		*
+* Return value: None													*
+*																		*
+* Notes: Clearing the pending interrupt source must be done in the ISR,	*
+*		 and is the source's responsibility!!!							*
+************************************************************************/
+//extern void check_rx_workaround(void);
+extern UINT64 timerCountReadU64(void);
+
+
+UINT32 get_int_status_0(void)
+{
+	return InterruptController.all.ICU_INT_STATUS_0;
+
+}
+
+UINT32 get_int_status_1(void)
+{
+	return InterruptController.all.ICU_INT_STATUS_1;
+
+}
+
+UINT32 get_int_status_2(void)
+{
+	return InterruptController.all.ICU_INT_STATUS_2;
+
+}
+
+UINT32 get_int_status_3(void)
+{
+	return InterruptController.all.ICU_INT_STATUS_3;
+
+}
+
+UINT64 intc_tick;
+
+void INTCInterruptHandlerIRQ(INTC_InterruptInfo info)
+{
+	UINT64 tick;
+
+	tick = timerCountReadU64();//timerCountRead(TS_TIMER_ID);
+	//uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+	UINT32 irqPending;
+    UINT32 source;
+	//[klockwork][issue id: 1627]
+	UINT64 cycles = 0;
+
+	// loop for interrupt sources
+	while( (irqPending = InterruptController.own.ICU_IRQ_PENDING) & ICU_PENDING_INT_VALID_BITS_CRANE)	
+	{
+		// identify the SOURCE interrupt
+		source = irqPending & ICU_PENDING_INT_NUM_BITS_CRANE;
+	
+		//if(source != 0)
+		//	rti_icu_switch_to(source);
+		(_interruptHandlers[source])(source + INTC_MAX_PRIMARY_INTERRUPT_SOURCES);
+				
+		//uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+	}
+ 	/* interrupt tick statistics */
+	tick = timerCountReadU64() - tick;
+	intc_tick += tick;
+}/* End of INTCInterruptHandlerIRQ */
 
 
 
+
+/*******************************************************************************
+ *
+ * @Function:    INTCPhase1Init @
+ *
+ * @Interface:   PLK/M@
+ *
+ * @Parameters:  None @
+ *
+ * @Returns:     Nothing @
+ *
+ * @Description: Init the interrupt vector lookkup table.
+ *				 From this point, INTCBind can be used.
+ *				 This will bind the interrupt, but interrupts will not be
+ *				 enabled until the end of DLMicInitialise
+ *
+ *******************************************************************************/
+INTC_ReturnCode INTCPhase1Init_XIRQ (void)
+{
+	Int16 i;
+
+	dlDisableIrq();
+	uart_printf("AIRQ_EDGE_OR_LEVEL0=%lx,INTC_SYS_REG_REG16=%lx\n",AIRQ_EDGE_OR_LEVEL0,INTC_SYS_REG_ADDR);
+    /* IRQ Reset flag must be cleared for normal operation*/
+    INTC_SYS_REG_SET16(0);
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+/**/
+
+	WR_REG32(AIRQ_EDGE_OR_LEVEL0, 0x0UL, 0xFFFFFFFF);
+	WR_REG32(AIRQ_EDGE_OR_LEVEL32, 0x0UL, 0xFFFFFFFF);
+
+	/* Clear all Enable Mask Registers by writing 1 in all clear bits*/
+  	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_SWI_CLR_ENABLE, 0xffffL); /* clear 15 SWI interrupts */
+	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_REG_CLR_ENABLE, 0x00ffL); /* clear 8  RI  interrupts */
+	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_EIRQ_CLR_ENABLE,0x0007L); /* clear 1  EIRQ  interrupts */
+	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_HWI0_CLR_ENABLE, 0xffffL); /* clear 16 HW interrupts 0-15*/
+	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_HWI1_CLR_ENABLE, 0xffffL); /* clear 16 HW interrupts 16-31*/
+	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_HWI2_CLR_ENABLE, 0xffffL); /* clear 16 HW interrupts 32-47*/
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+
+	for (i=0; i<IRQ_VECT_SIZE; i++)
+	{
+		irqVectorLookup[i] = UNHANDLED_VEC;
+	}
+
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+	return(INTC_RC_OK);
+} /* INTCPhase1Init */
+
+INTC_ReturnCode INTCPhase1Init(void)
+{
+    int i;
+	/*Fix coverity[uninit_use]*/
+	INTC_ReturnCode rc = INTC_RC_OK;
+	
+
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+	XIRQ_init();  //crane
+		
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+	INTCPhase1Init_XIRQ();
+		
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+
+    for (i=0;i<P_ICU_NUM_SOURCES;i++)
+        InterruptController.all.ICU_CONF[i]=0x0; //clear interrupt config regs
+
+    maxInterruptControllerSources = MAX_INTERRUPT_CONTROLLER_SOURCES_MACRO;
+    // Initialize the interrupt handlres array
+    for(i=0; i<maxInterruptControllerSources; i++)
+    {
+        _interruptHandlers[i] = INTCDefaultInterruptServiceRoutine;
+    }
+
+
+    rc=INTC_P_ICU_Init();
+    ASSERT(rc==INTC_RC_OK);
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+    return rc;
+} /* End of INTCPhase1Init */
+
+
+
+/************************************************************************
+* Function: INTCDisableInterruptOutput 									*
+*************************************************************************
+* Description: Disables the output of interrupt controller towards core	*
+*																		*
+*																		*
+* Parameters: None														*
+*																		*
+* Return value:  None			                                        *
+************************************************************************/
+
+extern void XIRQClockOnOff(CLK_OnOff OnOff);
+void XIRQ_init(void)
+{
+   volatile UINT32 *reg;
+   UINT8 temp;
+   //pei add
+   XIRQClockOnOff(CLK_ON);
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+	//uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+	uart_printf("IRQCTRL_BASE_ADDR=%lx,IRQ_STICKY_CLR0=%lx\n",IRQCTRL_BASE_ADDR,IRQ_STICKY_CLR0);
+
+	reg = (volatile UINT32 *)(IRQCTRL_BASE_ADDR + 0x8c); //XIRQ system reset reg.
+   	*reg = 0x01;
+
+	temp = 0x10;
+	while(temp--);
+
+	*reg = 0;
+	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+	reg = (volatile UINT32 *)(IRQCTRL_BASE_ADDR + 0x468);
+	*reg = 0x03;
+/**/
+	reg = (volatile UINT32 *)(IRQ_STICKY_CLR0);	 
+	*reg = 0xFFFFFFFF;
+	reg = (volatile UINT32 *)(IRQ_STICKY_CLR16);	 
+	*reg = 0xFFFFFFFF;
+	//reg = (volatile UINT32 *)(IRQ_STICKY_CLR2);  
+	//*reg = 0xFFFFFFFF;
+	
+   uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+
+}
+UINT32 debug_intc_count = 0;
+
+void INTCInterruptHandlerIRQ_XIRQ(INTC_InterruptInfo info)
+{
+    UINT16 status;
+    UINT16 cin;
+	//[klockwork][issue id: 1626]
+	UINT64 cycles= 0;
+
+
+	UINT32 frint_flag = 0;
+	debug_intc_count = 0;
+
+
+   status = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_STATUS_CTRL);
+
+   while (!(status & 0x2UL)) //re-read at the end of while()
+   {
+	   cin = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_NUM);
+	   
+	    ASSERT(cin < MAX_NUM_IRQ);
+		
+	if ((cin == SW_INT_SRC_4) && (frint_flag == 0)) 
+	{
+		frint_flag = 1;
+	}
+	else if((cin == SW_INT_SRC_4) && (frint_flag == 1)) 
+	{
+		WR_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_NUM, cin);
+        status = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_STATUS_CTRL);
+		continue;
+	}
+
+		//rti_xirq_switch_to(cin);
+        (irqVectorLookup[cin])((INTC_InterruptInfo)(cin+INTC_SRC_S_START));
+		
+		/* At the end Cur interrupt number must be written back
+	     * It will cause the IRQ module to look up the corresponding priority register value
+         * and reset the corrsponding group bit in the ActiveIntMask Register
+	    */
+  	    WR_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_NUM, cin);
+        status = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_STATUS_CTRL);
+   }/* while loop*/
+
+}/* End of INTCInterruptHandlerIRQ */
+
+
+
+void INTCD2rmD2Register(void)
+{
+
+}
+
+/************************************************************************
+* Function: INTCPhase2Init                                              *
+*************************************************************************
+* Description: Phase 2 of the initializes process of the INTC package   *
+*																		*
+* Parameters: NONE														*
+*																		*
+* Return value: NONE                                                    *
+*																		*
+* Notes:																*
+************************************************************************/
+void INTCPhase2Init_XIRQ(void)
+{
+    // Enable all the 'combined' GPIO's because they are disabled from the GPIO package
+   //enableInterrupts();
+
+   //XIRQ_init();
+   uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+   
+   INTCConfigure(INTC_SRC_ICU_AIRQ, INTC_IRQ, INTC_RISING_EDGE);
+   INTCBind ( INTC_SRC_ICU_AIRQ , INTCInterruptHandlerIRQ_XIRQ );
+   INTCEnable(INTC_SRC_ICU_AIRQ);
+
+   uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
+	INTCD2rmD2Register();
+} /* End of INTCPhase2Init */
+
+void INTCPhase2Init(void)
+{
+	INTCPhase2Init_XIRQ();
+} 
+
+/************************************************************************
+* Function: INTCClrSrc,INTCClear                                        *
+*************************************************************************
+* Description: Clears steaky bit of the edge interrupt                  *
+*																		*
+* Parameters: interrupt number											*
+*																		*
+* Return value: NONE                                                    *
+*																		*
+* Notes:																*
+************************************************************************/
+INTC_ReturnCode INTCClear_XIRQ(INTC_InterruptSources isrSource)
+{
+   UINT32 HwIndex;
+   UINT32 BaseAddr;
+   UINT32 WrVal;
+     
+   if((isrSource >= HWI0_ID ) && (isrSource < MAX_NUM_IRQ))
+   {
+	HwIndex =  isrSource - HWI0_ID;
+   } /* isrSource */
+   else
+   {
+		/* Non-relevant for non-HW*/
+		return(INTC_RC_OK);
+   }
+
+   	if(HwIndex < 32)
+   	{
+      WrVal   = (1 << HwIndex);
+	  BaseAddr  =  IRQ_STICKY_CLR0 ;
+   	}
+
+	else
+	{
+		WrVal =	(1<<(HwIndex-32));
+		BaseAddr	=  IRQ_STICKY_CLR16 ;
+	}
+
+   WR_REG32(BaseAddr,0, WrVal);
+   return(INTC_RC_OK);
+}/*  INTCClrSrc */
+
+void GPIOInterruptClear(GPIO_PinNumbers gpioPin) {}
+
+
+INTC_ReturnCode INTCClear(INTC_InterruptSources isrSource)
+{
+	//UINT32 reg, place, mask;
+
+	// check whether the source is GPIO edge driven:
+    if(IS_VIA_GPIO(isrSource))
+    {
+        GPIO_PinNumbers gpioPin;
+
+        // convert the INTC source into GPIO pin number:
+        gpioPin = CONVERT_INTC_TO_GPIO_PIN(isrSource);
+        GPIOInterruptClear(gpioPin);
+
+        // get the pin's register number and its place in the register
+        /*reg = pin >> GPIO_SHIFT_PINS_PER_REG;
+        place = pin % GPIO_PINS_PER_REG;
+
+        mask = CONVERT_NUMBER_TO_32BIT_MASK(place);
+
+        GPIOClearEdgeDetectionStatusReg(reg, mask);*/
+    }
+
+    if (isrSource < MAX_INTERRUPT_CONTROLLER_SOURCES)
+		return INTCClear_XIRQ(isrSource);
+
+	return INTC_RC_OK;
+
+}/* End of INTCClear */
 
 
 
@@ -1166,7 +1513,7 @@ void XIRQ_init(void);
 
 #ifdef PHS_SW_DEMO_TTC
 UINT32 debug_intc_num[32];
-UINT32 debug_intc_count = 0;
+
 UINT32 debug_intc_time[32];
 
 typedef struct 
@@ -1180,178 +1527,9 @@ extern unsigned long long get_performance_count(void);
 #endif
 
 
-void INTCInterruptHandlerIRQ_XIRQ(INTC_InterruptInfo info)
-{
-    UINT16 status;
-    UINT16 cin;
-	//[klockwork][issue id: 1626]
-	UINT64 cycles= 0;
 
 
-	UINT32 frint_flag = 0;
-	debug_intc_count = 0;
 
-
-   status = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_STATUS_CTRL);
-
-   while (!(status & 0x2UL)) //re-read at the end of while()
-   {
-	   cin = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_NUM);
-	   
-	    ASSERT(cin < MAX_NUM_IRQ);
-		
-	if ((cin == SW_INT_SRC_4) && (frint_flag == 0)) 
-	{
-		frint_flag = 1;
-	}
-	else if((cin == SW_INT_SRC_4) && (frint_flag == 1)) 
-	{
-		WR_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_NUM, cin);
-        status = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_STATUS_CTRL);
-		continue;
-	}
-
-		rti_xirq_switch_to(cin);
-        (irqVectorLookup[cin])((INTC_InterruptInfo)(cin+INTC_SRC_S_START));
-		
-		/* At the end Cur interrupt number must be written back
-	     * It will cause the IRQ module to look up the corresponding priority register value
-         * and reset the corrsponding group bit in the ActiveIntMask Register
-	    */
-  	    WR_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_NUM, cin);
-#if defined(ARIQ_MASK_INTERRUPT_BUG_WORKAROUND)
-		// elevy(TP-4167)-the AIM should be 0 at this stage. due to HW bug we observe case where this register is not 0
-		// this will mask any interrupt that is lower or equal to the bit in AIM. the SW WA is to force 0 to AIM
-		rdForTest = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_ACTIVE_IRQ_MASK);
-		if (rdForTest != 0x0)
-		{
-#if defined(ARIQ_MASK_INTERRUPT_BUG_WORKAROUND_TRACE)
-			AIMTrace.AIMHistoricalVal[AIMTrace.AIMArrIndex].aimVal=rdForTest;
-			AIMTrace.AIMHistoricalVal[AIMTrace.AIMArrIndex].lastCin=cin;
-			AIMTrace.AIMHistoricalVal[AIMTrace.AIMArrIndex].currentCin=RD_IRQCTRL_REG(IRQCTRL_MCU, IC_CIN_VAL_REG);
-			if (AIMTrace.AIMArrIndex == AIM_ARR_MAX_SIZE-1) 
-				AIMTrace.AIMArrIndex=0;
-			else
-				AIMTrace.AIMArrIndex++;
-#endif
-			//WR_IRQCTRL_REG(IRQCTRL_MCU, IC_ACTIVE_IRQ_MASK,0x0); /* clear AIM*/
-		}
-#endif//ARIQ_MASK_INTERRUPT_BUG_WORKAROUND
-
-        status = RD_IRQCTRL_REG(IRQCTRL_MCU, IC_IRQ_STATUS_CTRL);
-   }/* while loop*/
-
-}/* End of INTCInterruptHandlerIRQ */
-
-/************************************************************************
-* Function: INTCInterruptHandlerIRQ										*
-*************************************************************************
-* Description: This function handles the FAST interrupt sources.		*
-*              In this function, there is a loop over the request		*
-*              register as long as there are pending interrupts			*
-*																		*
-* Parameters: None														*
-*																		*
-* Return value: None													*
-*																		*
-* Notes: Clearing the pending interrupt source must be done in the ISR,	*
-*		 and is the source's responsibility!!!							*
-************************************************************************/
-//extern void check_rx_workaround(void);
-extern UINT64 timerCountReadU64(void);
-
-
-UINT32 get_int_status_0(void)
-{
-	return InterruptController.all.ICU_INT_STATUS_0;
-
-}
-
-UINT32 get_int_status_1(void)
-{
-	return InterruptController.all.ICU_INT_STATUS_1;
-
-}
-
-UINT32 get_int_status_2(void)
-{
-	return InterruptController.all.ICU_INT_STATUS_2;
-
-}
-
-UINT32 get_int_status_3(void)
-{
-	return InterruptController.all.ICU_INT_STATUS_3;
-
-}
-
-
-void INTCInterruptHandlerIRQ(INTC_InterruptInfo info)
-{
-	UINT64 tick;
-
-	extern UINT64 intc_tick;
-	
-	tick = timerCountReadU64();//timerCountRead(TS_TIMER_ID);
-	//uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-#if 0
-	INTCInterruptHandlerIRQ_XIRQ(info);	
-#else
-	UINT32 irqPending;
-    UINT32 source;
-	//[klockwork][issue id: 1627]
-	UINT64 cycles = 0;
-	if (1)
-		{
-			// loop for interrupt sources
-			while( (irqPending = InterruptController.own.ICU_IRQ_PENDING) & ICU_PENDING_INT_VALID_BITS_CRANE)	
-			{
-				// identify the SOURCE interrupt
-				source = irqPending & ICU_PENDING_INT_NUM_BITS_CRANE;
-	
-				if(source != 0)
-					rti_icu_switch_to(source);
-				(_interruptHandlers[source])(source + INTC_MAX_PRIMARY_INTERRUPT_SOURCES);
-				
-				//uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-			}
-	   }
-
-    else if (IS_CHIPID_HELANLTE)
-    {
-        // loop for interrupt sources
-        while( (irqPending = InterruptController_HelanLTE.own.ICU_IRQ_PENDING) & ICU_PENDING_INT_VALID_BITS_HELANLTE)   
-        {
-            // identify the SOURCE interrupt
-            source = irqPending & ICU_PENDING_INT_NUM_BITS_HELANLTE;
-
-        	if(source != 0)
-        		rti_icu_switch_to(source);
-            (_interruptHandlers[source])(source + INTC_MAX_PRIMARY_INTERRUPT_SOURCES);
-        }
-   }
-   else
-   {
-       // loop for interrupt sources
-       while( (irqPending = InterruptController.own.ICU_IRQ_PENDING) & ICU_PENDING_INT_VALID_BITS)   
-       {
-           // identify the SOURCE interrupt
-           source = irqPending & ICU_PENDING_INT_NUM_BITS;
-
-           if(source != 0)
-               rti_icu_switch_to(source);
-           (_interruptHandlers[source])(source + INTC_MAX_PRIMARY_INTERRUPT_SOURCES);
-       }
-   }
-
-#endif
-
- 	/* interrupt tick statistics */
-	//tick = timerCountRead(TS_TIMER_ID) - tick;
-	tick = timerCountReadU64() - tick;
-	intc_tick += tick;
-}/* End of INTCInterruptHandlerIRQ */
 
 
 /************************************************************************
@@ -1589,257 +1767,12 @@ INTC_ReturnCode INTCConfigureSwi(XIRQ_InterruptSources isrSource, INTC_FastNorma
 
 }
 
-/*******************************************************************************
- *
- * @Function:    INTCPhase1Init @
- *
- * @Interface:   PLK/M@
- *
- * @Parameters:  None @
- *
- * @Returns:     Nothing @
- *
- * @Description: Init the interrupt vector lookkup table.
- *				 From this point, INTCBind can be used.
- *				 This will bind the interrupt, but interrupts will not be
- *				 enabled until the end of DLMicInitialise
- *
- *******************************************************************************/
-INTC_ReturnCode INTCPhase1Init_XIRQ (void)
-{
-	Int16 i;
-
-	dlDisableIrq();
-	uart_printf("AIRQ_EDGE_OR_LEVEL0=%lx,INTC_SYS_REG_REG16=%lx\n",AIRQ_EDGE_OR_LEVEL0,INTC_SYS_REG_ADDR);
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-    /* IRQ Reset flag must be cleared for normal operation*/
-    INTC_SYS_REG_SET16(0);
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-/**/
-
-	WR_REG32(AIRQ_EDGE_OR_LEVEL0, 0x0UL, 0xFFFFFFFF);
-	WR_REG32(AIRQ_EDGE_OR_LEVEL32, 0x0UL, 0xFFFFFFFF);
-
-	/* Clear all Enable Mask Registers by writing 1 in all clear bits*/
-  	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_SWI_CLR_ENABLE, 0xffffL); /* clear 15 SWI interrupts */
-	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_REG_CLR_ENABLE, 0x00ffL); /* clear 8  RI  interrupts */
-	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_EIRQ_CLR_ENABLE,0x0007L); /* clear 1  EIRQ  interrupts */
-	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_HWI0_CLR_ENABLE, 0xffffL); /* clear 16 HW interrupts 0-15*/
-	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_HWI1_CLR_ENABLE, 0xffffL); /* clear 16 HW interrupts 16-31*/
-	WR_IRQCTRL_REG(IRQCTRL_MCU, IC_HWI2_CLR_ENABLE, 0xffffL); /* clear 16 HW interrupts 32-47*/
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
 
 
-	for (i=0; i<IRQ_VECT_SIZE; i++)
-	{
-		irqVectorLookup[i] = UNHANDLED_VEC;
-	}
-
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-	return(INTC_RC_OK);
-} /* INTCPhase1Init */
-
-INTC_ReturnCode INTCPhase1Init(void)
-{
-    int i;
-	/*Fix coverity[uninit_use]*/
-	INTC_ReturnCode rc = INTC_RC_OK;
-	
-
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-	XIRQ_init();  //crane
-		
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-	INTCPhase1Init_XIRQ();
-		
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
 
 
-    for (i=0;i<P_ICU_NUM_SOURCES;i++)
-        InterruptController.all.ICU_CONF[i]=0x0; //clear interrupt config regs
-
-    maxInterruptControllerSources = MAX_INTERRUPT_CONTROLLER_SOURCES_MACRO;
-    // Initialize the interrupt handlres array
-    for(i=0; i<maxInterruptControllerSources; i++)
-    {
-        _interruptHandlers[i] = INTCDefaultInterruptServiceRoutine;
-    }
 
 
-    rc=INTC_P_ICU_Init();
-    ASSERT_NO_DIAG(rc==INTC_RC_OK);
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-    return rc;
-} /* End of INTCPhase1Init */
-/************************************************************************
-* Function: INTCDisableInterruptOutput 									*
-*************************************************************************
-* Description: Disables the output of interrupt controller towards core	*
-*																		*
-*																		*
-* Parameters: None														*
-*																		*
-* Return value:  None			                                        *
-************************************************************************/
-
-extern void XIRQClockOnOff(CLK_OnOff OnOff);
-void XIRQ_init(void)
-{
-   volatile UINT32 *reg;
-   UINT8 temp;
-   //pei add
-   XIRQClockOnOff(CLK_ON);
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-	//uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-	uart_printf("IRQCTRL_BASE_ADDR=%lx,IRQ_STICKY_CLR0=%lx\n",IRQCTRL_BASE_ADDR,IRQ_STICKY_CLR0);
-
-	reg = (volatile UINT32 *)(IRQCTRL_BASE_ADDR + 0x8c); //XIRQ system reset reg.
-   	*reg = 0x01;
-
-	temp = 0x10;
-	while(temp--);
-
-	*reg = 0;
-	uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-	reg = (volatile UINT32 *)(IRQCTRL_BASE_ADDR + 0x468);
-	*reg = 0x03;
-/**/
-	reg = (volatile UINT32 *)(IRQ_STICKY_CLR0);	 
-	*reg = 0xFFFFFFFF;
-	reg = (volatile UINT32 *)(IRQ_STICKY_CLR16);	 
-	*reg = 0xFFFFFFFF;
-	//reg = (volatile UINT32 *)(IRQ_STICKY_CLR2);  
-	//*reg = 0xFFFFFFFF;
-	
-   uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-}
-
-
-/************************************************************************
-* Function: INTCPhase2Init                                              *
-*************************************************************************
-* Description: Phase 2 of the initializes process of the INTC package   *
-*																		*
-* Parameters: NONE														*
-*																		*
-* Return value: NONE                                                    *
-*																		*
-* Notes:																*
-************************************************************************/
-void INTCPhase2Init_XIRQ(void)
-{
-    // Enable all the 'combined' GPIO's because they are disabled from the GPIO package
-   //enableInterrupts();
-
-       //XIRQ_init();
-       uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-   
-#ifdef TCU_UNIT_TEST
-  extern void AirqInterruptInit(void);
-  AirqInterruptInit();
-#else
-
-   INTCConfigure(INTC_SRC_ICU_AIRQ, INTC_IRQ, INTC_RISING_EDGE);
-   INTCBind ( INTC_SRC_ICU_AIRQ , INTCInterruptHandlerIRQ_XIRQ );
-   INTCEnable(INTC_SRC_ICU_AIRQ);
-#endif
-   uart_printf("file:%s,function:%s,line:%d\r\n", __FILE__,__func__,__LINE__);
-
-	INTCD2rmD2Register();
-} /* End of INTCPhase2Init */
-
-void INTCPhase2Init(void)
-{
-	INTCPhase2Init_XIRQ();
-} 
-/************************************************************************
-* Function: INTCClrSrc,INTCClear                                        *
-*************************************************************************
-* Description: Clears steaky bit of the edge interrupt                  *
-*																		*
-* Parameters: interrupt number											*
-*																		*
-* Return value: NONE                                                    *
-*																		*
-* Notes:																*
-************************************************************************/
-INTC_ReturnCode INTCClear_XIRQ(INTC_InterruptSources isrSource)
-{
-   UINT32 HwIndex;
-   UINT32 BaseAddr;
-   UINT32 WrVal;
-     
-   if((isrSource >= HWI0_ID ) && (isrSource < MAX_NUM_IRQ))
-   {
-	HwIndex =  isrSource - HWI0_ID;
-   } /* isrSource */
-   else
-   {
-		/* Non-relevant for non-HW*/
-		return(INTC_RC_OK);
-   }
-
-   	if(HwIndex < 32)
-   	{
-      WrVal   = (1 << HwIndex);
-	  BaseAddr  =  IRQ_STICKY_CLR0 ;
-   	}
-
-	else
-	{
-		WrVal =	(1<<(HwIndex-32));
-		BaseAddr	=  IRQ_STICKY_CLR16 ;
-	}
-
-   WR_REG32(BaseAddr,0, WrVal);
-   return(INTC_RC_OK);
-}/*  INTCClrSrc */
-
-INTC_ReturnCode INTCClear(INTC_InterruptSources isrSource)
-{
-	//UINT32 reg, place, mask;
-
-#if defined(_S_INTC_)
-    if ( INTC_IS_SINTC_SOURCE(isrSource) )
-	   	return SINTCClear(SINTC_SOURCE(isrSource));
-
-#if defined(_TCU_ON_PRIMARY_)
-	if ( INTC_TCU_RANGE(isrSource) )
-		return TCUClear(isrSource);
-#endif /*_TCU_ON_PRIMARY_*/
-
-#endif /*_S_INTC_*/
-
-	// check whether the source is GPIO edge driven:
-    if(IS_VIA_GPIO(isrSource))
-    {
-        GPIO_PinNumbers gpioPin;
-
-        // convert the INTC source into GPIO pin number:
-        gpioPin = CONVERT_INTC_TO_GPIO_PIN(isrSource);
-        GPIOInterruptClear(gpioPin);
-
-        // get the pin's register number and its place in the register
-        /*reg = pin >> GPIO_SHIFT_PINS_PER_REG;
-        place = pin % GPIO_PINS_PER_REG;
-
-        mask = CONVERT_NUMBER_TO_32BIT_MASK(place);
-
-        GPIOClearEdgeDetectionStatusReg(reg, mask);*/
-    }
-
-    if (isrSource < MAX_INTERRUPT_CONTROLLER_SOURCES)
-		return INTCClear_XIRQ(isrSource);
-
-	return INTC_RC_OK;
-
-}/* End of INTCClear */
 
 
 

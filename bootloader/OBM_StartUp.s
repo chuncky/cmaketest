@@ -92,8 +92,10 @@ Stack_Top
 
 
                 EXPORT  Reset_Handler
+				EXPORT INT_Initialize
                 
 Reset_Handler
+INT_Initialize
 ; normal vector address selected
                 MRC   p15, 0, r1, c1, c0, 0
                 BIC   r1, r1, #0x2000
@@ -550,6 +552,36 @@ restoreInterrupts
 	LDMFD   sp!,    {r1,  lr}
 	BX      LR
 
+	EXPORT enable_performance_count
+
+enable_performance_count
+	
+	STMFD SP!,{r0-r3, LR}
+	MOV r0, #0x0
+	MCR p15, 0, r0, c15, c12, 0 	
+	
+	MOV r0, #0x0
+	MCR p15, 0, r0, c15, c13, 0
+	MCR p15, 0, r0, c15, c13, 1
+	
+	MOV r0, #0x3
+	MCR p15, 0, r0, c15, c12, 0 
+	LDMFD SP!,{r0-r3, LR}
+	
+	BX	  lr
+
+
+; UINT32 ReadMode_R14(UINT32 mode);
+  EXPORT ReadMode_R14
+ReadMode_R14
+		MRS     r1,CPSR
+		AND     r0,r0,#0x1F
+		ORR     r0,r0,#0xC0
+		ORR     r0,r0,#0x100		
+		MSR     CPSR_cxsf,r0
+		MOV     r0,R14
+		MSR     CPSR_cxsf,r1
+		BX      lr
 
    END
 

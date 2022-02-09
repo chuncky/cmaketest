@@ -1640,7 +1640,31 @@ void Updater_Reset(void)
 
 
 
+volatile UINT32 USBphyRegOn = 0;
+void ustica_USB_shutdown(void)
+{
+	volatile unsigned long regval;
+	
+	//uart_printf("ustica_USB_shutdown\r\n");
+	USBphyRegOn = *(volatile unsigned long *)0xD428285C;
+	regval =  *(volatile unsigned long *)0xD428285C;
+	//regval &= ~((0x1<<5)|(0x1<<0));
+	//regval |= ((0x1<<4)|(0x1<<1));
+	regval &= ~(0x1<<3);
+	*(volatile unsigned long *)0xD428285C = regval;
 
+
+}
+extern volatile UINT32      usb_shutdown;
+
+void ustica_USB_turnOn(void)
+{
+	
+	//uart_printf("ustica_USB_turnOn\r\n");
+	if(USBphyRegOn != 0)
+		*(volatile unsigned long *)0xD428285C = USBphyRegOn;
+	usb_shutdown = 0;
+}
 
 
 

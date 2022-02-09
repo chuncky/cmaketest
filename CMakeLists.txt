@@ -214,6 +214,7 @@ endif()
 	"CSD_NEW_API"
 	"__PLAT_USE_UCS2_ENCODING__"
 	"__DATA_STATUS_REPORT_SUPPORT__"
+	"MV_USB2_MASS_STORAGE"
 )
 
 if (DEFINED CONFIG_DYNAMIC_SWITCH_DATA_SIM_SUPPORT)
@@ -320,9 +321,11 @@ MESSAGE(STATUS "CMAKE_ASM_COMPILER       : ${CMAKE_ASM_COMPILER}")
 #
 #add_subdirectory(hal)
 #add_subdirectory(cus)
+add_subdirectory(os)
 add_subdirectory(driver)
-add_subdirectory(bootloader)
 add_subdirectory(common)
+add_subdirectory(bootloader)
+
 
 
 set(fp_lnk
@@ -367,6 +370,7 @@ MESSAGE(STATUS "BOOTLOADER_OBJLIBLIST_FILE_ORIG       : ${BOOTLOADER_OBJLIBLIST_
         # export OBM_StartUp.c
         #    
         "${CMAKE_BINARY_DIR}/CMakeFiles/${FP_CURRENT_CATCHALL_LIB}.dir/bootloader/OBM_StartUp.o\n"
+		"${CMAKE_BINARY_DIR}/CMakeFiles/${FP_CURRENT_CATCHALL_LIB}.dir/bootloader/vectors.o\n"
         "${BOOTLOADER_LIB}\n"
 )
 

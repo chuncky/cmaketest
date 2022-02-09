@@ -1,6 +1,6 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
-
+#include "common.h"
 /*------------------------ DSP_ADC ----------------------------------*/
 // MACRO of register for release dsp_adc.bin
 #define PMUM_CPRR 		*(volatile UINT32*)0xD4050020

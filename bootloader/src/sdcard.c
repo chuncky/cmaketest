@@ -15,7 +15,8 @@
 //#include "intc.h"               // for INTCConfigure declaration
 //#include "intc_list.h"          // for INTC_SRC_USB2CI_OTG definition
 
-//#include "bsp_hisr.h"
+//#include "bsp_hisr.h"
+
 //#include "utilities.h"
 //#include "pmic.h"
 #include "ff.h"
@@ -39,10 +40,7 @@ int sdcard_fat_is_ok(void)
 {
     return sdcard_fatfs_mount_status_g;
 }
-void CacheInvalidateMemory(void *pMem, UINT32 size)
-{
-    return;
-}
+
 void CacheCleanMemory(void *pMem, UINT32 size)
 {
 	return;
@@ -2099,7 +2097,8 @@ static void sd_isr(INTC_InterruptInfo sourceInfo)
 
 	if((slot_int & 0x2) == 2) {
 		//sdio_isr(sourceInfo);
-		uart_printf("ERR----------ERR---------------ERR SDIO\n");
+		uart_printf("ERR----------ERR---------------ERR SDIO\n");
+
 		uart_printf("ERR----------ERR---------------ERR SDIO\n");
 		uart_printf("ERR----------ERR---------------ERR SDIO\n");
 		uart_printf("ERR----------ERR---------------ERR SDIO\n");

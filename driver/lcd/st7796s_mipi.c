@@ -324,19 +324,10 @@ static int st7796s_mipi_probe(unsigned lcd_clk)
     }
 
     lcd_dsi_write_cmds(st7796s_init_cmds, ARR_SIZE(st7796s_init_cmds));
-
-
     lcd_dsi_read_cmds(&dbuf, st7796s_read_rddst,ARR_SIZE(st7796s_read_rddst));
-
     lcd_dsi_read_cmds(&dbuf, st7796s_read_rddpm,ARR_SIZE(st7796s_read_rddpm));
-
     lcd_dsi_read_cmds(&dbuf, st7796s_read_dmdctl,ARR_SIZE(st7796s_read_dmdctl));
 
-
-
-
-
-    
     width=320;
     height=480;
 #if (LV_COLOR_DEPTH == 16)

@@ -22,5 +22,6 @@ fp_open_library_sources(
 	qspi_nor.c 
 	uart.c 
 	version_block.c
+	EEHandler_fatal.c
 	
 )

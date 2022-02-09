@@ -13,7 +13,7 @@ endif()
 #add_subdirectory(task)
 
 add_subdirectory(lcd)
-
+add_subdirectory(usb)
 fp_generate_objliblist_file()
 
 if(0)

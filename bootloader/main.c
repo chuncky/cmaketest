@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "common.h"
 #include "cpu.h"
 #include "qspi.h"
 #include "reg.h"
@@ -20,8 +20,9 @@
 #include "asr_property.h"
 #include "logo_table.h"
 #include "asr_lzma.h"
-
-
+#include "bsp.h"
+#include "intc.h"
+#include "timer_hw.h"
 void FIQ_Routine(void)
 {
     uart_printf("Kernel Panic");
@@ -170,30 +171,7 @@ UINT8 g_compressed_buffer[COMPRESSED_ALGORITHM_BUFFER_SIZE];
 
 
 
-/*----------------------------------------------------------*/
 
-unsigned long Timer0IntervalInMilli(unsigned long Before, unsigned long After)
-{
-    unsigned long temp = (After - Before);
-    return (temp / (1000));
-}
-
-unsigned long GetTimer0CNT(void)
-{
-    return *(volatile unsigned long*)APBTIMER0_CNT_REG;
-}
-
-void DelayInMilliSecond(unsigned int ms)
-{
-    unsigned long startTime, endTime;
-
-    startTime = GetTimer0CNT(); 
-    do
-    {
-        endTime = GetTimer0CNT();    
-    }
-    while(Timer0IntervalInMilli(startTime, endTime) < ms);
-}
 
 #define PMUTIMER_WDT_STATUS_REG 0xD4080070
 BOOL IfWdtResetTriggered(void)
@@ -979,8 +957,17 @@ void Fota_displayRGB(void)
 	}
 
 }
-
-
+extern void USBDevicePhase1Init(void);
+extern void usb_device_init(void );
+extern void timerPhase1Init(void);
+extern void TickPhase1Init(void);
+extern void INTCPhase2Init(void);
+extern void timerPhase2Init(void);
+extern void InitTimers(void);
+extern void initTimerCount13MHz(void);
+extern void TickPhase2Init(void);
+extern void NUTickRegister(void);
+extern void dumpTimerReg(TCR_NUMBER tcr_number);
 void bootloader(void)
 {
     unsigned int val;
@@ -1102,13 +1089,33 @@ void bootloader(void)
 	if(is_partition_internal_flash(PTABLE_FLASH_INTERNAL) == TRUE){
 		asr3601s_spinor_flashinit();
 	}
+
+	INTCPhase1Init();
+	timerPhase1Init();
+	//USBDevicePhase1Init();
+	TickPhase1Init();
+
     //LOADTABLE INIT AND DUMP
     loadtable_init(CpFlashAddress);
 	malloc_init(g_compressed_buffer, COMPRESSED_ALGORITHM_BUFFER_SIZE);
 
 	unsigned int  uiwidth;
 	unsigned int  uiheigh;
-	
+	uart_printf("%s-01\r\n",__func__);
+	sysSetLocalInterrupt(ENABLE_IRQ);
+	INTCPhase2Init();
+	uart_printf("%s-02\r\n",__func__);
+	timerPhase2Init();
+	uart_printf("%s-03\r\n",__func__);
+	InitTimers();
+	uart_printf("%s-04\r\n",__func__);
+	initTimerCount13MHz();
+	uart_printf("%s-05\r\n",__func__);
+	NUTickRegister();
+	TickPhase2Init();
+	//usb_device_init();
+
+#if 0	
 	fotalcd_init();
 
 	hal_getlcdinfo(&uiwidth,&uiheigh);
@@ -1139,6 +1146,19 @@ void bootloader(void)
 	Fota_lcdshow(g_asrlcd_framebuffer);
 	mdelay(1000);	
 	dump_loadtable();
+#endif	
+	while(1)
+	{
+		uart_printf("while continue 0x%x\r\n",timerCountRead(TS_TIMER_ID));
+		//dumpTimerReg(TS_TIMER_ID);
+		mdelay(1000);	
+
+	}
+
+
+
+
+
 
 #ifdef BOOT33_SECBOOT_SUPPORT
 	#include "secboot.h"

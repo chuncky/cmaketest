@@ -198,17 +198,9 @@ typedef struct
 {
 	BOOL						IntcEnabled;
 	BOOL						WuEnabled;
-	GPIOCallback				ISR;
+	GPIOCallback				ISRhandler;
 	GPIOCallback				WU;
 }GPIO_Port_Handler;
-
-
-
-
-
-
-
-
 
 
 #define GPIO_MAX_PORT_HANDLERS				128
