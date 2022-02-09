@@ -476,11 +476,8 @@ void TickPhase2Init(void)
 	// Currently, only on Harbell special setting of Clk-fast (13Mhz)
 	//#if defined ( _TAVOR_HARBELL_) || defined(SILICON_PV2)
 
-
-    uart_printf("use CLK_FAST for crane evb !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    uart_printf("use CLK_FAST for crane evb !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n");
     TickRequestHWclockSettingOnNextActivation(CLK_FAST); //PHS_DEMO_FIX_TIMER_BUG_20080826
-
-
 
 	// for QT - the run is much slower! Thus:
 	// In HRBL, the Free-running clock is set to FAST clcok and the time passed seems ok
@@ -569,16 +566,6 @@ TimeIn32KhzUnit TickSubmit( TickCallbackPtr callback_ptr, SuspendCallbackPtr sus
 	ASSERT( RegIndex < MAX_TICK_REGISTER );                 /* no available place in callback arry*/
 	return (timerCountRead(TS_TIMER_ID));
 }
-
-
-
-
-
-
-
-
-
-
 
 void  NUTickUpdate( void )
 {
